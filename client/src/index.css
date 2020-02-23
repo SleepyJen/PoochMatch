@@ -1,0 +1,69 @@
+/* NOTE:  *//* TODO:  *//* REVIEW:  *//* FIXME:  *//* SECTION:  *//* STUB:  *//* ANCHOR:  *//* *: *//* !: *//* ?: */
+
+
+
+.App {
+    text-align: center;
+}
+
+/* --------------- */
+
+body {
+    margin: 0;
+    font-family: 
+        -apple-system, BlinkMacSystemFont, 
+        'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 
+        'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: 
+        source-code-pro, Menlo, 
+        Monaco, Consolas, 
+        'Courier New', monospace;
+}
+
+/* --------------- */
+
+/* 
+*, *::before, *::after {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+*/
+/* 
+ html, body {
+    width: 100%; height: 100%;
+    border: 2px solid black;
+    font-family: sans-serif;
+}
+*/
+
+/* body { */
+    /* border: 2px solid gray; */
+
+    /* display: flex; */
+    /* flex-flow: column; */
+
+    /* text-align: center; */
+    /* overflow-y: scroll; */
+    /* scroll-behavior: smooth; */
+/* } */
+
+/* 
+body {
+    width: 100vw; height: 100vh;
+    border: 2px solid black;
+    font-family: sans-serif;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+} 
+*/
