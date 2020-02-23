@@ -1,4 +1,13 @@
-/* NOTE:  *//* TODO:  *//* REVIEW:  *//* FIXME:  *//* SECTION:  *//* STUB:  *//* ANCHOR:  *//* *: *//* !: *//* ?: */
+/* NOTE:  */
+/* TODO:  */
+/* REVIEW:  */
+/* FIXME:  */
+/* SECTION:  */
+/* STUB:  */
+/* ANCHOR:  */
+/* *: */
+/* !: */
+/* ?: */
 
 
 
@@ -10,20 +19,22 @@
 
 body {
     margin: 0;
-    font-family: 
-        -apple-system, BlinkMacSystemFont, 
+    font-family:
+        -apple-system, BlinkMacSystemFont,
         'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 
+        'Ubuntu', 'Cantarell', 'Fira Sans',
         'Droid Sans', 'Helvetica Neue',
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: url(./images/dogPark.jpg) no-repeat center center fixed;
+    background-size: cover;
 }
 
 code {
-    font-family: 
-        source-code-pro, Menlo, 
-        Monaco, Consolas, 
+    font-family:
+        source-code-pro, Menlo,
+        Monaco, Consolas,
         'Courier New', monospace;
 }
 
@@ -46,14 +57,14 @@ code {
 */
 
 /* body { */
-    /* border: 2px solid gray; */
+/* border: 2px solid gray; */
 
-    /* display: flex; */
-    /* flex-flow: column; */
+/* display: flex; */
+/* flex-flow: column; */
 
-    /* text-align: center; */
-    /* overflow-y: scroll; */
-    /* scroll-behavior: smooth; */
+/* text-align: center; */
+/* overflow-y: scroll; */
+/* scroll-behavior: smooth; */
 /* } */
 
 /* 
