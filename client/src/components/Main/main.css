@@ -1,0 +1,10 @@
+main {
+    border: 2px solid gray;
+    width: 100%;
+    flex: 1 1 auto;
+}
+main .container-wrapper {
+    border: 2px solid black;
+    max-width: 960px;
+    margin: 0 auto;
+}
