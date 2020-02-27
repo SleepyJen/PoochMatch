@@ -16,11 +16,10 @@ At this time we provide two services:
 2. Breeding - we can help you fingd the perfect partner for your four legged friend!
 
  The application works as follows:
-* The pet owner will answer a few questions about the pet, including pet information and interests
-* Based on the answers our api's will find matched based on interests and location
+* The pet owner enter information about the pet, including basic information and interests
+* Based on the answers our api's will find matches based on interests and location
 1. The user will be able to see those matches on the homepage
-2. Once a user finds a perfect match, they will be able to make meeting arrangements using our user friendly interface 
-
+2. Once a user finds a perfect match, they will be able to make meeting arrangements using our user friendly interface.
 
 Other services that can be added in the future:
 1. Adoption  - Looking to adopt a dog? We can help you find your next companion
@@ -38,7 +37,7 @@ gitr add
 6. **Calendar -** _Nice to have -_ We'd like to implement a calendar for the users to view all the scheduled playdates. This might be done during this sprint if possible.
 
 ---
-### Applications used: 
+### Technologies used: 
 1. React
 2. Node
 2. MongoDB
