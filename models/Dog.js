@@ -35,7 +35,6 @@ const DogSchema = new Schema({
     },
     personality: {
         type: String,
-        required: "Must provide a dog personality"
     },
 });
 
