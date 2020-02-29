@@ -1,16 +1,37 @@
-.slogan {
-    background-color: coral;
-    width: 50%;
-    margin-left: 25%;
-    height: 40vh;
-    /* background: url() no-repeat center center fixed; */
+.banner {
+    /* width: 100%; */
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background: url("/assets/images/dogsPlaying.jpeg") no-repeat fixed;
+    background-size: cover;
 }
 
-.SloganButton {
-    margin-top: 40%;
-    height: 4vh;
+.banner-button {
+    cursor: pointer;
+    padding: 20px;
+    font-size: 10pt;
+    border-radius: 10px;
+    border: 2px solid black;
+    border: none;
+    background-color: antiquewhite;
 }
 
-.bannerText {
-    padding-top: 5%;
+.banner-button:hover {
+    background-color: aquamarine;
+}
+
+.banner-button:active {
+    background-color: red;
+}
+
+.banner-text {
+    font-size: 30pt;
+    color: whitesmoke;
+}
+
+.banner>* {
+    margin: 15px;
 }
