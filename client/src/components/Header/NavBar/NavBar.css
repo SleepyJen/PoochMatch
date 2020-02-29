@@ -12,7 +12,7 @@
     .navbar li {
         border: 2px solid lightblue;
     }
-    .navbar a {
+    .navbar .anchor {
         background: white;
         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         border: 2px solid green;
@@ -24,12 +24,15 @@
 
         /* width: 100%; */
         height: 100%;
-        padding: 10px 0;
+        padding: 0 10px;
     }
-    .navbar a:hover {
-        background: lightgreen;
+    .navbar .anchor:hover {
+        background: antiquewhite;
         color: black;
     }
+
+/*  */
+
 .menu-bar {
     cursor: pointer;
     border: 2px solid red;

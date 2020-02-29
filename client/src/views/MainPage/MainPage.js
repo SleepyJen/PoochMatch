@@ -6,9 +6,9 @@ import './MainPage.css'
 function MainPage () {
 
   return (
-    <div className="App">
-      <h1>MAIN PAGE</h1>
-    </div>
+    <main className="placeholder">
+      <h2>MAIN PAGE</h2>
+    </main>
   );
 
 }
