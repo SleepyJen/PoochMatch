@@ -1,0 +1,38 @@
+header {
+    border: 2px solid lightgray;
+    width: 100%;
+}
+
+header .container-wrapper {
+    border: 2px solid darkgray;
+    background: rgba(0, 0, 0, 0);
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 960px;
+    height: 10;
+    margin: 0 auto;
+}
+
+.header-logo,
+.navbar
+/* .menu-bar  */
+{
+    /* min-height: 100%; */
+    height: 7vh;
+}
+
+/*  */
+
+@media screen and (max-width: 335px) {
+    .header-logo h1 {
+        display: none;
+    }
+
+    .navbar {
+        width: 100%;
+    }
+}
