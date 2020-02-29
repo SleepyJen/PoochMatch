@@ -10,6 +10,7 @@ import './app.css'
 // import ___ from './components/___/'
 import Header from './components/Header/Header.js'
 // import Main from './components/Main/Main.js'
+import Banner from "./components/Banner/Banner.js";
 
 import HomePage from './views/HomePage/HomePage.js'
 import MainPage from './views/MainPage/MainPage.js'
@@ -17,11 +18,10 @@ import MainPage from './views/MainPage/MainPage.js'
 
 // import axios from 'axios';
 
-
-
-function App () {
+function App() {
   return (
     <div className="App">
+
       <Router>
         <Header />
 
@@ -44,6 +44,4 @@ function App () {
   );
 }
 
-
-
-export default App
+export default App;

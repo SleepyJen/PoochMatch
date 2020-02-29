@@ -1,0 +1,16 @@
+.slogan {
+    background-color: coral;
+    width: 50%;
+    margin-left: 25%;
+    height: 40vh;
+    /* background: url() no-repeat center center fixed; */
+}
+
+.SloganButton {
+    margin-top: 40%;
+    height: 4vh;
+}
+
+.bannerText {
+    padding-top: 5%;
+}
