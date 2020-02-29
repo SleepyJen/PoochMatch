@@ -1,0 +1,9 @@
+form label {
+    width: 110px;
+    display: inline-block;
+    text-align: center;
+}
+
+label[for="spayed_neutered"] {
+    width: inherit;
+}

@@ -21,10 +21,6 @@ body {
 
     display: flex;
     flex-flow: column;
-
-    text-align: center;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
 }
 
 /* 

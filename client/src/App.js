@@ -13,6 +13,8 @@ import MainPage from "./views/MainPage/MainPage.js";
 // import LandingPage from './views/LandingPage/LandingPage.js'
 import SignUpPage from "./views/SignUpPage/SignUpPage.js";
 import SignInPage from "./views/SignInPage/SignInPage.js";
+import NewUserPage from "./views/NewUserPage/NewUserPage.js";
+import NewDogPage from "./views/NewDogPage/NewDogPage.js";
 
 // import axios from 'axios';
 
@@ -41,6 +43,16 @@ function App() {
 
           <Route exact path="/sign-up">
             <SignUpPage />
+          </Route>
+
+
+
+          <Route exact path="/new-user">
+            <NewUserPage />
+          </Route>
+
+          <Route exact path="/new-dog">
+            <NewDogPage />
           </Route>
         </Switch>
       </Router>
