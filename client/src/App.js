@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React from "react";
 
 import "./reset.css";
-// import "./App.css";
+import "./App.css";
 
 // import ___ from './components/___/'
 import Header from "./components/Header/Header.js";
