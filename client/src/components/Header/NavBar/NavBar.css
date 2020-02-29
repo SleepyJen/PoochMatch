@@ -1,0 +1,85 @@
+.navbar {
+    border: 2px solid red;
+    /* width: 200px; */
+
+    /* display: none; */
+}
+    .navbar ul {
+        border: 2px solid blue;
+        display: flex;
+        height: 100%;
+    }   
+    .navbar li {
+        border: 2px solid lightblue;
+    }
+    .navbar a {
+        background: white;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        border: 2px solid green;
+        /* color: white; */
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        /* width: 100%; */
+        height: 100%;
+        padding: 10px 0;
+    }
+    .navbar a:hover {
+        background: lightgreen;
+        color: black;
+    }
+.menu-bar {
+    cursor: pointer;
+    border: 2px solid red;
+    display: flex;
+    align-items: center;
+
+    /* display: none; */
+}
+    .nav-btn,
+    .exit-btn
+    {
+        /* border: 2px solid pink; */
+        color: black;
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    .exit-btn {
+        display: none;
+    }
+        .nav-btn:hover,
+        .exit-btn:hover
+        {
+            color: gray;            
+        }
+        .nav-btn:active,
+        .exit-btn:active
+        {
+            color: black;
+        }
+    .menu-bar i {
+        color: black;
+        font-size: 1.5em;
+        padding: 0 10px;
+    }
+/*  */
+
+
+
+/*  */
+/* .active-nav { */
+    /* left: 0; */
+/* } */
+/* .active-flex { */
+    /* display: flex; */
+/* } */
+/* .active-block { */
+    /* display: block; */
+/* } */
+/* .hidden { */
+    /* display: none; */
+/* } */
+/*  */
