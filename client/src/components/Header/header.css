@@ -9,6 +9,7 @@ header {
     border: 2px solid green;
     width: 100%;
 }
+
 header .container-wrapper {
     border: 2px solid lightgreen;
     background: rgba(0, 0, 0, 0);
@@ -25,8 +26,7 @@ header .container-wrapper {
 
 .header-logo,
 /* .navbar, */
-.menu-bar
-{
+.menu-bar {
     /* min-height: 100%; */
     height: 7vh;
 }
@@ -38,16 +38,19 @@ header .container-wrapper {
     /* height: 8vh; */
     padding: 0 10px;
 }
-    .header-logo i {
-        color: black;
-        font-size: 1.5em;
-        padding: 0 5px;
-    }
-    .header-logo h1 {
-        color: black;
-        font-size: 1.5em;
-        padding: 0 5px;
-    }
+
+.header-logo i {
+    color: black;
+    font-size: 1.5em;
+    padding: 0 5px;
+}
+
+.header-logo h1 {
+    color: black;
+    font-size: 1.5em;
+    padding: 0 5px;
+}
+
 /*  */
 
 
@@ -59,6 +62,7 @@ header .container-wrapper {
     .header-logo h1 {
         display: none;
     }
+
     .navbar {
         width: 100%;
     }

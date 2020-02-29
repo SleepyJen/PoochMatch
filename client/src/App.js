@@ -1,19 +1,16 @@
-import { 
-  BrowserRouter as Router, 
-  Route , Switch
-} from 'react-router-dom'
-import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from "react";
 
-import './reset.css'
-import './app.css'
+import "./reset.css";
+import "./app.css";
 
 // import ___ from './components/___/'
-import Header from './components/Header/Header.js'
+import Header from "./components/Header/Header.js";
 // import Main from './components/Main/Main.js'
-import Banner from "./components/Banner/Banner.js";
+// import Banner from "./components/Banner/Banner.js";
 
-import HomePage from './views/HomePage/HomePage.js'
-import MainPage from './views/MainPage/MainPage.js'
+import HomePage from "./views/HomePage/HomePage.js";
+import MainPage from "./views/MainPage/MainPage.js";
 // import LandingPage from './views/LandingPage/LandingPage.js'
 
 // import axios from 'axios';
@@ -21,7 +18,6 @@ import MainPage from './views/MainPage/MainPage.js'
 function App() {
   return (
     <div className="App">
-
       <Router>
         <Header />
 
@@ -35,10 +31,9 @@ function App() {
           </Route>
 
           {/* <Route exact path="/landing"> */}
-            {/* <LandingPage /> */}
+          {/* <LandingPage /> */}
           {/* </Route> */}
         </Switch>
-
       </Router>
     </div>
   );

@@ -1,14 +1,13 @@
-import React from 'react' // , { useState }
-import './HomePage.css'
+import React from "react"; // , { useState }
+import "./HomePage.css";
 
+import Banner from "../../components/Banner/Banner";
 
-
-export default function HomePage () {
-
+export default function HomePage() {
   return (
-    <div className="App">
+    <main className="App">
       <h1>HOME PAGE</h1>
-    </div>
+      <Banner />
+    </main>
   );
-
 }
