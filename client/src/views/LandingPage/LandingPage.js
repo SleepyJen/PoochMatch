@@ -2,12 +2,17 @@ import React from 'react' // , { useState }
 import './LandingPage.css'
 
 
-export default function LandingPage () {
+
+function LandingPage () {
 
   return (
-    <div className="App">
-      <h1>Title</h1>
-    </div>
+    <main className="placeholder">
+      <h2>Landing Page</h2>
+    </main>
   );
 
 }
+
+
+
+export default LandingPage

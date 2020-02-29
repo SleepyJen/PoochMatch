@@ -23,10 +23,35 @@ function NavBar () {
           >Main
           </Link>
         </li>
+{/* 
+        <li>
+          <Link 
+            className="anchor" 
+            to="/landing"
+          >Landing
+          </Link>
+        </li>
+*/}
+        <li>
+          <Link 
+            className="anchor" 
+            to="/sign-in"
+          >Sign-In
+          </Link>
+        </li>
+        <li>
+          <Link 
+            className="anchor" 
+            to="/sign-up"
+          >Sign-Up
+          </Link>
+        </li>
       </ul>
     </nav>
   );
 
 }
+
+
 
 export default NavBar

@@ -3,26 +3,16 @@ import './SignUpPage.css'
 
 
 
-// export default class SignUpPage extends Component {
-  
-//   render () {
-//     return (
-//       <div className="App">
-//         <h1>Title</h1>
-//       </div>
-//     );
-//   }
-
-// }
-
-
-
-export default function SignUpPage () {
+function SignUpPage () {
 
   return (
-    <div className="App">
-      <h1>Title</h1>
-    </div>
+    <main className="placeholder">
+      <h2>Sign Up Page</h2>
+    </main>
   );
 
 }
+
+
+
+export default SignUpPage
