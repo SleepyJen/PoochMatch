@@ -7,6 +7,8 @@ const path = require('path');
 const mongoose = require('mongoose');
 const MONGO_URI =
     process.env.MONGODB_URI || "mongodb://localhost/pooch_match";
+const multer = require('multer');
+const bodyParser = require('body-parser');
 
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
@@ -19,6 +21,13 @@ mongoose.connect(MONGO_URI, {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const userRoutes = require('./controller/userRoutes');
+app.use('/user', userRoutes);
+
+const imageRoutes = require('./controller/Image');
+app.use('/addImage', imageRoutes);
 
 
 if (process.env.NODE_ENV === 'production') {
