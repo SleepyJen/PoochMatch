@@ -8,22 +8,20 @@ const DogSchema = new Schema({
     },
     breed: {
         type: String,
-        required: "Must enter a dog breed"
     },
     gender: {
         type: String,
         required: "Must enter a dog gender"
     },
     age: {
-        type: String,
-        required: "Must enter a dog age"
+        type: Number
     },
     images: [{
         data: Buffer,
         contentType: String
     }],
     weight: {
-        type: String,
+        type: Number
     },
     spayedNeutered: {
         type: Boolean,
@@ -34,7 +32,7 @@ const DogSchema = new Schema({
         default: [],
     },
     personality: {
-        type: String,
+        type: String
     },
 });
 
