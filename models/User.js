@@ -29,8 +29,7 @@ const UserSchema = new Schema({
         default: []
     },
     imgs: {
-        data: Buffer,
-        contentType: String
+        type: String
     },
     phone: {
         type: String
