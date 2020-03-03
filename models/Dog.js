@@ -16,10 +16,9 @@ const DogSchema = new Schema({
     age: {
         type: Number
     },
-    images: [{
-        data: Buffer,
-        contentType: String
-    }],
+    images: [
+        { type: String }
+    ],
     weight: {
         type: Number
     },
