@@ -14,25 +14,38 @@ const DogSchema = new Schema({
         required: "Must enter a dog gender"
     },
     age: {
-        type: Number
+        type: String,
     },
-    images: [
-        { type: String }
-    ],
     weight: {
-        type: Number
+        type: String,
     },
     spayedNeutered: {
         type: Boolean,
-        required: "Must priovide altered state"
+        required: "Must provide spayed/neutered state"
     },
-    vaccines: {
-        type: [],
-        default: [],
+    rabiesVaccine: {
+        type: Boolean,
+        required: "Must provide rabies vaccine state"
+    },
+    bordatellaVaccine: {
+        type: Boolean,
+        required: "Must provide bordatella vaccine state"
+    },
+    parvovirusVaccine: {
+        type: Boolean,
+        required: "Must provide parvovirus vaccine state"
+    },
+    distemperVaccine: {
+        type: Boolean,
+        required: "Must provide distemper vaccine state"
     },
     personality: {
         type: String
     },
+    images: [
+        { type: String }
+    ],
+
 });
 
 const Dog = mongoose.model('Dog', DogSchema);

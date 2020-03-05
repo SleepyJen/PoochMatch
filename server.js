@@ -29,6 +29,9 @@ app.use('/user', userRoutes);
 const imageRoutes = require('./controller/Image');
 app.use('/addImage', imageRoutes);
 
+const dogRoutes = require('./controller/dogRoutes');
+app.use('/dog', dogRoutes);
+
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
