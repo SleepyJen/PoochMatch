@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import './NewUserPage.css'
+import './UserProfile.css'
 
 
 
-class NewUserPage extends Component {
+class UserProfile extends Component {
  
   constructor () {
     super()
 
     this.state = {
       // email: '',
-      password: '',
+      // password: '',
       first_name: '',
       last_name: '',
       city: '',
@@ -49,8 +49,8 @@ class NewUserPage extends Component {
   render () {
 
     // email ,
+    // password,
     const { 
-      password,
       first_name , last_name,
       city , state, phone
     } = this.state;
@@ -60,7 +60,7 @@ class NewUserPage extends Component {
 
 
     return (
-      <main className="App">
+      <main className="component">
         <h2>New User Page</h2>
 
         <form onSubmit={ submitForm }>
@@ -69,7 +69,7 @@ class NewUserPage extends Component {
 
             <div>
               <label htmlFor="first_name">
-                First Name:
+                *First Name:
               </label>
               <input
                 type="text"
@@ -85,7 +85,7 @@ class NewUserPage extends Component {
 
             <div>
               <label htmlFor="last_name">
-                Last Name:  
+                *Last Name:  
               </label>
               <input
                 type="text"
@@ -97,40 +97,10 @@ class NewUserPage extends Component {
                 // required
               />
             </div>
-{/* 
-            <div>
-              <label htmlFor="email">
-                Email:
-              </label>
-              <input
-                type="text"
-                name="email"
-                placeholder="enter email"
-                autoComplete="off"
-                value={ email }
-                onChange={ handleValue }
-                // required
-              />
-            </div>
-*/}
-            <div>
-              <label htmlFor="password">
-                Password:
-              </label>
-              <input
-                type="text"
-                name="password"
-                placeholder="enter password"
-                autoComplete="off"
-                value={ password }
-                onChange={ handleValue }
-                // required
-              />
-            </div>
 
             <div>
               <label htmlFor="city">
-                City:
+                *City:
               </label>
               <input
                 type="text"
@@ -145,7 +115,7 @@ class NewUserPage extends Component {
 
             <div>
               <label htmlFor="state">
-                State:
+                *State:
               </label>
               <input
                 type="text"
@@ -189,7 +159,7 @@ class NewUserPage extends Component {
 
 
 
-export default NewUserPage
+export default UserProfile
 
 /* 
 = User Model =

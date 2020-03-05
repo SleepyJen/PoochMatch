@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './SignInPage.css'
+// import db from '../../data.json'
 
 
 
@@ -11,7 +12,7 @@ class SignInPage extends Component {
     this.state = {
       email: '',
       password: ''
-    }
+    };
   }
 
 
@@ -25,8 +26,13 @@ class SignInPage extends Component {
   submitForm = (event) => {
     event.preventDefault()
     
-    const { email, password } = this.state;
-    console.log({email , password});
+    const { email , password } = this.state;
+    console.log({ email , password })
+
+    /*  */
+    // let user = db.find( user => (user.email === email));
+    // if (user) { console.log('User:', user, '√') }
+    /*  */
     
     this.setState({ email:'' , password:'' })
   };
@@ -38,39 +44,60 @@ class SignInPage extends Component {
     const { handleValue , submitForm } = this;
 
     return (
-      <div className="App">
-        <form onSubmit={ submitForm } >
-          <fieldset>
-            <legend>Class Comp</legend>
-            <input
-              type="email"
-              name="email"
-              placeholder="enter email"
+      <main className="login-page">
+        <h2>Login Page</h2>
+        <form 
+          className="form" 
+          onSubmit={ submitForm } 
+        >
+          <div className="group">
+            <input 
+              type="text" 
+              name="email" 
+              className="email input"
               autoComplete="off"
               autoFocus
               value={ email }
               onChange={ handleValue }
-              // required
             />
-            <br/>
-            <input
-              type="text"
-              name="password"
-              placeholder="enter password"
+            <label htmlFor="email" className="border">
+              <span className="text">
+                Email
+              </span>
+            </label>
+          </div>
+
+          <div className="group">
+            <input 
+              type="text" 
+              name="password" 
+              className="password input"
               autoComplete="off"
               value={ password }
               onChange={ handleValue }
-              // required
             />
-            <br/>
-            <input
-              type="submit"
-              name="submit"
-              value="SUBMIT"
-            />
-          </fieldset>
+            <label htmlFor="password" className="border">
+              <span className="text">
+                Password
+              </span>
+            </label>
+          </div>
+
+          <br />
+
+          <input
+            type="submit"
+            name="submit"
+            value="SUBMIT"
+          />
         </form>
-      </div>
+        <div className="img-comp">
+          <img 
+            src="/assets/images/photo-1518020382113-a7e8fc38eac9.jfif" 
+            alt="register-img"
+          />
+        </div>
+      </main>
     );
   }
 
@@ -79,3 +106,22 @@ class SignInPage extends Component {
 
 
 export default SignInPage
+
+
+
+/* 
+            <div class="group">
+              <input 
+                type="text" 
+                name="text" 
+                class="text input"
+                autocomplete="off"
+                autofocus
+              />
+              <label for="text" class="border">
+                <span class="text">
+                  Text
+                </span>
+              </label>
+            </div>
+*/

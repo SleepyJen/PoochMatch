@@ -8,7 +8,7 @@ class ___ extends Component {
   
   render () {
     return (
-      <div className="placeholder">
+      <div className="component">
         <h2>Title</h2>
       </div>
     );
@@ -21,7 +21,7 @@ class ___ extends Component {
 function ___ () {
 
   return (
-    <div className="placeholder">
+    <div className="component">
       <h2>Title</h2>
     </div>
   );

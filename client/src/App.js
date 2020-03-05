@@ -1,24 +1,24 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React from "react";
 
-import "./reset.css";
-import "./App.css";
+import "./assets/reset.css";
+import "./assets/App.css";
 
-// import ___ from './components/___/'
+// import ___ from "./components/___/___.js";
 import Header from "./components/Header/Header.js";
 
 // import ___ from "./views/___/___.js";
 import HomePage from "./views/HomePage/HomePage.js";
 import MainPage from "./views/MainPage/MainPage.js";
-// import LandingPage from './views/LandingPage/LandingPage.js'
 import SignUpPage from "./views/SignUpPage/SignUpPage.js";
 import SignInPage from "./views/SignInPage/SignInPage.js";
-import NewUserPage from "./views/NewUserPage/NewUserPage.js";
-import NewDogPage from "./views/NewDogPage/NewDogPage.js";
+import UserPage from "./views/UserPage/UserPage.js";
+import ErrorPage from "./views/ErrorPage/ErrorPage.js";
 
-// import axios from 'axios';
+
 
 function App() {
+
   return (
     <>
       <Router>
@@ -32,32 +32,33 @@ function App() {
           <Route exact path="/main">
             <MainPage />
           </Route>
-{/* 
-          <Route exact path="/landing">
-            <LandingPage />
+
+          {/*  */}
+
+          <Route exact path="/user">
+            <UserPage />
           </Route>
-*/}
-          <Route exact path="/sign-in">
+          
+          {/*  */}
+
+          <Route exact path="/user/sign-in">
             <SignInPage />
           </Route>
 
-          <Route exact path="/sign-up">
+          <Route exact path="/user/sign-up">
             <SignUpPage />
           </Route>
+          
+          {/*  */}
 
-
-
-          <Route exact path="/new-user">
-            <NewUserPage />
-          </Route>
-
-          <Route exact path="/new-dog">
-            <NewDogPage />
-          </Route>
+          <Route component={ ErrorPage } />
         </Switch>
       </Router>
     </>
   );
+
 }
+
+
 
 export default App;

@@ -6,7 +6,7 @@ import './MainPage.css'
 function MainPage () {
 
   return (
-    <main className="placeholder">
+    <main className="component">
       <h2>MAIN PAGE</h2>
     </main>
   );
