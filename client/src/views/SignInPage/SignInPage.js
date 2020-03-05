@@ -28,14 +28,14 @@ class SignInPage extends Component {
     event.preventDefault()
     
     const { email , password } = this.state;
-    console.log({ email , password })
+    console.log('Client Data:' , { email , password })
 
     /*  */
     // let user = db.find( user => (user.email === email));
     // if (user) { console.log('User:', user, '√') }
     /*  */
     
-    this.setState({ initState })
+    this.setState({ ...initState })
   };
 
 
