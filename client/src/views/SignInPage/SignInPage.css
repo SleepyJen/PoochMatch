@@ -48,7 +48,7 @@ div.group {
             content: '';
 
             position: absolute;
-            top: 75%;
+            top: 55%;
             left: 50%;
             right: 50%;
             /* bottom: 0.6em; */
@@ -75,3 +75,18 @@ div.group {
                 width: 100%;
             }
 /*  */
+
+input.input:not([value=""]):not(:focus):optional + .border::after
+{
+    background: green;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+input.input:not([value=""]):not(:focus):optional + .border .text
+{
+    color: green;
+    top: 0;
+    font-size: 8pt;
+}
