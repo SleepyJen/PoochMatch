@@ -59,7 +59,7 @@ class SignUpPage extends Component {
     /*  */
 
     this.createUser(user_data)
-    this.setState({ initState  })
+    this.setState({ ...initState  })
   };
 
 
