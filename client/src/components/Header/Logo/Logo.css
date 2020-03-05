@@ -1,21 +1,14 @@
-.img-logo {
-    width: 30px;
-    height: auto;
-}
-
-
-
 .header-logo {
     border: 2px solid red;
     display: flex;
     align-items: center;
+   
     /* height: 8vh; */
     padding: 0 10px;
 }
-    .header-logo i {
-        color: black;
-        font-size: 1.5em;
-        padding: 0 5px;
+    .header-logo img {
+        width: 30px;
+        height: auto;
     }
 
     .header-logo h1 {
@@ -24,3 +17,8 @@
         padding: 0 5px;
     }
 /*  */
+
+
+@media screen and (max-width: 550px) {
+    .header-logo h1 { display: none; }
+}

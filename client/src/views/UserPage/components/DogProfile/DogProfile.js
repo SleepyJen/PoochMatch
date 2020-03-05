@@ -11,12 +11,13 @@ class NewDogPage extends Component {
     this.state = {
       name: '',
       breed: '',
+      species: '',
       gender: '',
       age: '',
       weight: '',
       spayed_neutered: '',
       personality: '',
-    }
+    };
   }
 
 
@@ -39,6 +40,7 @@ class NewDogPage extends Component {
     this.setState({
       name: '',
       breed: '',
+      species: '',
       gender: '',
       age: '',
       weight: '',
@@ -51,8 +53,8 @@ class NewDogPage extends Component {
   render () {
 
     const {
-      name , breed, 
-      gender , age , weight,
+      name   , breed , species,
+      gender , age   , weight,
       spayed_neutered , personality
     } = this.state;
     const {
@@ -60,7 +62,7 @@ class NewDogPage extends Component {
     } = this;
 
     return (
-      <main className="App">
+      <main className="component">
         <h2>New God Page</h2>
 
         <form onSubmit={ submitForm }>
@@ -82,6 +84,7 @@ class NewDogPage extends Component {
                 // required
               />
             </div>
+           
             <div>
               <label htmlFor="breed">
                 Breed:
@@ -96,6 +99,22 @@ class NewDogPage extends Component {
                 // required
               />
             </div>
+
+            <div>
+              <label htmlFor="species">
+                Species:
+              </label>
+              <input
+                type="text"
+                name="species"
+                placeholder="enter species"
+                autoComplete="off"
+                value={ species }
+                onChange={ handleValue }
+                // required
+              />
+            </div>
+
             <div>
               <label htmlFor="gender">
                 Gender:
@@ -110,6 +129,7 @@ class NewDogPage extends Component {
                 // required
               />
             </div>
+           
             <div>
               <label htmlFor="age">
                 Age:
@@ -124,6 +144,7 @@ class NewDogPage extends Component {
                 // required
               />
             </div>
+            
             <div>
               <label htmlFor="weight">
                 Weight:
@@ -138,6 +159,7 @@ class NewDogPage extends Component {
                 // required
               />
             </div>
+           
             <div>
               <label htmlFor="spayed_neutered">
                 Spayed/Neutered:
@@ -150,6 +172,7 @@ class NewDogPage extends Component {
                 // required
               />
             </div>
+           
             <div>
               <label htmlFor="personality">
                 Personality:
@@ -183,8 +206,10 @@ class NewDogPage extends Component {
 export default NewDogPage
 
 
+
 /* 
 = Dog Model =
 - images ???
 - vaccines []
+- species---
 */

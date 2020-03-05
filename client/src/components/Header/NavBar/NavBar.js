@@ -1,4 +1,4 @@
-import React from 'react' // , { useState }
+import React , { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './NavBar.css'
 
@@ -6,48 +6,87 @@ import './NavBar.css'
 
 function NavBar () {
 
+  const toggleNav = (event) => {
+    const $menuBar = event.currentTarget.querySelector('i');
+    $menuBar.classList.toggle('fa-bars')
+    $menuBar.classList.toggle('fa-times') 
+    document.querySelector('.navbar').classList.toggle('active')
+  };
+
+  const escKeyNav = (event) => {
+    if (event.key === 'Escape') {
+      const $menuBar = document.querySelector('.menu-bar i'); 
+      $menuBar.classList.remove('fa-times')
+      $menuBar.classList.add('fa-bars')
+      document.querySelector('.navbar').classList.remove('active')
+    }
+  };
+
+  const unDetectNav = (event) => {
+    const $menuBar = document.querySelector('.menu-bar i');
+    if ( !$menuBar.contains(event.target) ) {
+      $menuBar.classList.remove('fa-times')
+      $menuBar.classList.add('fa-bars')
+      document.querySelector('.navbar').classList.remove('active')
+    }
+  };
+
+  const winSizeNav = () => {
+    const $menuBar = document.querySelector('.menu-bar i');
+    if ( $menuBar.classList.contains('fa-times') ) { 
+      $menuBar.classList.remove('fa-times')
+      $menuBar.classList.add('fa-bars')
+      document.querySelector('.navbar').classList.remove('active')
+    }
+  };
+
+
+
+  useEffect( () => {
+    document.addEventListener('keyup', escKeyNav)
+    document.addEventListener('mouseup', unDetectNav)
+    window.addEventListener('resize', winSizeNav)
+    return () => { 
+      document.removeEventListener('keyup', escKeyNav)
+      document.removeEventListener('mouseup', unDetectNav)
+      window.removeEventListener('resize', winSizeNav)
+    };
+  }, [  ])
+
+  
+  
   return (
-    <nav className="navbar">
-      <ul className="nav-opts">
-        <li>
-          <Link 
-            className="anchor" 
-            to="/"
-          >Home
-          </Link>
-        </li>
-        <li>
-          <Link 
-            className="anchor" 
-            to="/main"
-          >Main
-          </Link>
-        </li>
-{/* 
-        <li>
-          <Link 
-            className="anchor" 
-            to="/landing"
-          >Landing
-          </Link>
-        </li>
-*/}
-        <li>
-          <Link 
-            className="anchor" 
-            to="/sign-in"
-          >Sign-In
-          </Link>
-        </li>
-        <li>
-          <Link 
-            className="anchor" 
-            to="/sign-up"
-          >Sign-Up
-          </Link>
-        </li>
-      </ul>
-    </nav>
+    <>
+      <nav className="navbar">
+        <ul className="nav-opts">
+          <li>
+            <Link to="/">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/main">
+              Main
+            </Link>
+          </li>
+          <li>
+            <Link to="/user/sign-in">
+              Sign-In
+            </Link>
+          </li>
+          <li>
+            <Link to="/user/sign-up">
+              Sign-Up
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      <div 
+        className="menu-bar" 
+        onClick={ toggleNav }
+      ><i className="fas fa-bars"></i>
+      </div> 
+    </>
   );
 
 }

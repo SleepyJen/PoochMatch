@@ -1,8 +1,5 @@
 .navbar {
     border: 2px solid red;
-    /* width: 200px; */
-
-    /* display: none; */
 }
     .navbar ul {
         border: 2px solid blue;
@@ -12,7 +9,7 @@
     .navbar li {
         border: 2px solid lightblue;
     }
-    .navbar .anchor {
+    .navbar a {
         background: white;
         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         border: 2px solid green;
@@ -26,11 +23,14 @@
         height: 100%;
         padding: 0 10px;
     }
-    .navbar .anchor:hover {
+    .navbar a:hover {
         background: antiquewhite;
         color: black;
     }
-
+    .navbar a:active {
+        background: cornsilk;
+        color: black;
+    }
 /*  */
 
 .menu-bar {
@@ -38,51 +38,46 @@
     border: 2px solid red;
     display: flex;
     align-items: center;
-
-    /* display: none; */
 }
-    .nav-btn,
-    .exit-btn
-    {
-        /* border: 2px solid pink; */
-        color: black;
-        display: flex;
-        align-items: center;
-        height: 100%;
-    }
-    .exit-btn {
-        display: none;
-    }
-        .nav-btn:hover,
-        .exit-btn:hover
-        {
-            color: gray;            
-        }
-        .nav-btn:active,
-        .exit-btn:active
-        {
-            color: black;
-        }
     .menu-bar i {
         color: black;
         font-size: 1.5em;
         padding: 0 10px;
     }
+    .menu-bar i:hover {
+        color: darkred;
+    }
+    .menu-bar i:active {
+        color: darkblue;
+    }
 /*  */
 
+@media screen and (min-width: 550px) {
+    .menu-bar { display: none; }
+}
 
 
+@media screen and (max-width: 550px) {
+    .navbar { display: none; }
+
+    .navbar {
+        width: 200px;
+        /* width: 100%; */
+        height: auto;
+
+        position: absolute;
+        top: 100%;
+        right: 0;
+    }
+    .navbar ul {
+        flex-flow: column;
+    }
+    .navbar a {
+        padding: 10px 0;
+    }
+}
+
 /*  */
-/* .active-nav { */
-    /* left: 0; */
-/* } */
-/* .active-flex { */
-    /* display: flex; */
-/* } */
-/* .active-block { */
-    /* display: block; */
-/* } */
-/* .hidden { */
-    /* display: none; */
-/* } */
-/*  */
+
+.active { display: block; }
+.hidden { display: none; }

@@ -8,7 +8,7 @@ import Preview from "../../components/Preview/Preview";
 
 function HomePage () {
   return (
-    <main className="placeholder">
+    <main className="">
       <h2>HOME PAGE</h2>
       <Banner />
       <Preview />

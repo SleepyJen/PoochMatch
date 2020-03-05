@@ -1,6 +1,7 @@
 header {
     border: 2px solid lightgray;
     width: 100%;
+
 }
 
 header .container-wrapper {
@@ -15,24 +16,16 @@ header .container-wrapper {
     max-width: 960px;
     height: 10;
     margin: 0 auto;
-}
 
-.header-logo,
-.navbar
-/* .menu-bar  */
-{
-    /* min-height: 100%; */
-    height: 7vh;
+    position: relative;
 }
 
 /*  */
 
-@media screen and (max-width: 335px) {
-    .header-logo h1 {
-        display: none;
-    }
-
-    .navbar {
-        width: 100%;
-    }
+.header-logo,
+.navbar,
+.menu-bar
+{
+    /* min-height: 100%; */
+    height: 7vh;
 }

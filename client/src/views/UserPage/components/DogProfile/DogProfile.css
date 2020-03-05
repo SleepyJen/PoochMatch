@@ -1,3 +1,7 @@
+.component {
+    text-align: center;
+}
+
 form label {
     width: 110px;
     display: inline-block;
