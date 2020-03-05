@@ -4,15 +4,16 @@ import './SignInPage.css'
 
 
 
+const initState = {
+  email: '',
+  password: ''
+};
+
 class SignInPage extends Component {
 
   constructor () {
     super()
-
-    this.state = {
-      email: '',
-      password: ''
-    };
+    this.state = initState;
   }
 
 
@@ -34,7 +35,7 @@ class SignInPage extends Component {
     // if (user) { console.log('User:', user, '√') }
     /*  */
     
-    this.setState({ email:'' , password:'' })
+    this.setState({ initState })
   };
 
 
@@ -87,8 +88,9 @@ class SignInPage extends Component {
 
           <input
             type="submit"
-            name="submit"
-            value="SUBMIT"
+            name="login"
+            className="login-btn"
+            value="Login"
           />
         </form>
         <div className="img-comp">

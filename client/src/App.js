@@ -32,14 +32,10 @@ function App() {
           <Route exact path="/main">
             <MainPage />
           </Route>
-
-          {/*  */}
-
-          <Route exact path="/user">
-            <UserPage />
-          </Route>
           
-          {/*  */}
+
+
+          
 
           <Route exact path="/user/sign-in">
             <SignInPage />
@@ -47,6 +43,10 @@ function App() {
 
           <Route exact path="/user/sign-up">
             <SignUpPage />
+          </Route>
+
+          <Route path="/user">
+            <UserPage />
           </Route>
           
           {/*  */}

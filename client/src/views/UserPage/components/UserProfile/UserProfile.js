@@ -145,8 +145,9 @@ class UserProfile extends Component {
 
             <input
               type="submit"
-              name="submit"
-              value="SUBMIT"
+              name="save"
+              className="save-btn"
+              value="SAVE"
             />
           </fieldset>
         </form>

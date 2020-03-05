@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './NewDogPage.css'
+import './DogProfile.css'
 
 
 
@@ -53,8 +53,8 @@ class NewDogPage extends Component {
   render () {
 
     const {
-      name   , breed , species,
-      gender , age   , weight,
+      name   , breed  , species,
+      gender , age    , weight,
       spayed_neutered , personality
     } = this.state;
     const {
@@ -63,11 +63,11 @@ class NewDogPage extends Component {
 
     return (
       <main className="component">
-        <h2>New God Page</h2>
+        <h2>Dog Profile</h2>
 
         <form onSubmit={ submitForm }>
           <fieldset>
-            <legend>God Form</legend>
+            <legend>Dog Form</legend>
             
             <div>
               <label htmlFor="name">
@@ -190,8 +190,9 @@ class NewDogPage extends Component {
 
             <input
               type="submit"
-              name="submit"
-              value="SUBMIT"
+              name="save"
+              className="save-btn"
+              value="SAVE"
             />
           </fieldset>
         </form>
