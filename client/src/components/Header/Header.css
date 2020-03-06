@@ -1,12 +1,14 @@
 header {
-    border: 2px solid lightgray;
+    /* border: 2px solid lightgray; */
+    background: #cebaa7;
     width: 100%;
 
 }
 
 header .container-wrapper {
-    border: 2px solid darkgray;
-    background: rgba(0, 0, 0, 0);
+    /* border: 2px solid darkgray; */
+    /* background: rgba(0, 0, 0, 0); */
+    background: #cebaa7;
 
     display: flex;
     flex-wrap: wrap;

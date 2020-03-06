@@ -1,18 +1,17 @@
-.navbar {
-    border: 2px solid red;
-}
+/* .navbar { */
+    /* border: 2px solid red; */
+/* } */
     .navbar ul {
-        border: 2px solid blue;
+        /* border: 2px solid blue; */
         display: flex;
         height: 100%;
     }   
-    .navbar li {
-        border: 2px solid lightblue;
-    }
+    /* .navbar li { */
+        /* border: 2px solid lightblue; */
+    /* } */
     .navbar a {
-        background: white;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        border: 2px solid green;
+        background: #cebaa7;
+        /* border: 2px solid green; */
         /* color: white; */
 
         display: flex;
@@ -24,7 +23,7 @@
         padding: 0 10px;
     }
     .navbar a:hover {
-        background: antiquewhite;
+        background: #c0977a;
         color: black;
     }
     .navbar a:active {
@@ -35,7 +34,7 @@
 
 .menu-bar {
     cursor: pointer;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     display: flex;
     align-items: center;
 }
@@ -61,13 +60,15 @@
     .navbar { display: none; }
 
     .navbar {
-        width: 200px;
-        /* width: 100%; */
-        height: auto;
-
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        
         position: absolute;
         top: 100%;
         right: 0;
+
+        width: 200px;
+        /* width: 100%; */
+        height: auto;
     }
     .navbar ul {
         flex-flow: column;
