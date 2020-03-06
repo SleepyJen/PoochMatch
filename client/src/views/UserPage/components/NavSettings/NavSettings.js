@@ -6,9 +6,6 @@ import './NavSettings.css'
 
 function NavSettings () {
 
-  // const url = match.url;
-  // console.log(match, url)
-
   return (
     <div className="component">
       <h2>User Settings Page</h2>

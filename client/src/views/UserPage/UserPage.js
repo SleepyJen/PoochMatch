@@ -14,7 +14,7 @@ import TestComp from './components/TestComp/TestComp.js'
 function UserPage () {
 
   return (
-    <div className="component">
+    <main className="component">
       <h2>User Page</h2>
       <div>
         <i className="fas fa-user-alt"></i>
@@ -30,7 +30,7 @@ function UserPage () {
       <Route exact path="/user" component={ TestComp } />
       <Route exact path="/user/user-profile" component={ UserProfile } />
       <Route exact path="/user/dog-profile" component={ DogProfile } />
-    </div>
+    </main>
   );
 
 }

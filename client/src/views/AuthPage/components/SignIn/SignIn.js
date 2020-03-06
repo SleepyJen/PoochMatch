@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import './SignInPage.css'
+import './SignIn.css'
 // import db from '../../data.json'
 
 
 
 const initState = {
-  email: '',
-  password: ''
+  email    : '',
+  password : ''
 };
 
-class SignInPage extends Component {
+class SignIn extends Component {
 
   constructor () {
     super()
@@ -20,7 +20,7 @@ class SignInPage extends Component {
 
   handleValue = (event) => {
     const { name , value } = event.target;
-    // console.log('Target:', name, value)
+    // console.log('Target:', name, '—', value)
     this.setState({ [name] : value })
   };
 
@@ -90,7 +90,7 @@ class SignInPage extends Component {
             type="submit"
             name="login"
             className="login-btn"
-            value="Login"
+            value="LOGIN"
           />
         </form>
         <div className="img-comp">
@@ -107,7 +107,7 @@ class SignInPage extends Component {
 
 
 
-export default SignInPage
+export default SignIn
 
 
 

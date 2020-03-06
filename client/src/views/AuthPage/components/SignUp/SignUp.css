@@ -1,10 +1,10 @@
-main.login-page {
+main.register-page {
     border: 2px solid black;
     width: 300px;
     min-height: 100px;
     margin: 0 auto;
 }
-main.login-page h2 {
+main.register-page h2 {
     text-align: center;
 }
 
@@ -89,4 +89,26 @@ input.input:not([value=""]):not(:focus):optional + .border .text
     color: green;
     top: 0;
     font-size: 8pt;
+}
+/*  */
+
+.sign-up-btn {
+    border: 2px solid black;
+
+    border-radius: 0.5em;
+    transition: 0.3s background ease;
+
+    padding: 1em;
+}
+
+.sign-up-btn:hover {
+    border: 2px solid skyblue;
+    background: skyblue;
+    color: white;
+}
+
+.sign-up-btn:active {
+    border: 2px solid lightgreen;
+    background: lightgreen;
+    color: white;
 }

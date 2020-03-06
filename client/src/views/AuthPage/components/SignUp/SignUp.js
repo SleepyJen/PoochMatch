@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
-import './SignUpPage.css'
+import './SignUp.css'
 // import db from '../../data.json'
+import allStatesList from './all-states-list.json'
 import axios from 'axios';
 
 
 
 const initState = {
-  email: '',
-  password: '',
-  first_name: '',
-  last_name: '',
-  city: '',
-  state: '',
-  phone: '',
-  // c_password: ''
+  first_name : '',
+  last_name  : '',
+  email      : '',
+  password   : '',
+  city       : '',
+  states     : '',
+  phone      : '',
+  // c_password : ''
 };
 
-class SignUpPage extends Component {
+class SignUp extends Component {
 
   constructor () {
     super()
@@ -25,12 +26,22 @@ class SignUpPage extends Component {
 
 
 
+  statesListOpt = () => {
+    return allStatesList.map( (state,id) => (
+      <option 
+        key={ id }
+        value={ state.abbreviation }  
+      >{ state.name }
+      </option>
+    ));
+  };
+
   createUser = async (data) => {
     try {
       const result = await axios.post(
         '/user/createNewUser' , data
       );
-      console.log('API Test:',result.data)
+      console.log('API Result:',result.data)
     } catch (err) {
       console.log(err)
     }
@@ -45,9 +56,8 @@ class SignUpPage extends Component {
   submitForm = (event) => {
     event.preventDefault()
 
-    // const { email , password } = this.state;
     const user_data = this.state;
-    console.log('Client Data:', { ...user_data })
+    console.log('Client Data:' , user_data)
 
     /*  */
     // let user = db.find( user => (user.email === email));
@@ -58,7 +68,7 @@ class SignUpPage extends Component {
     // }
     /*  */
 
-    this.createUser(user_data)
+    // this.createUser(user_data)
     this.setState({ ...initState  })
   };
 
@@ -66,11 +76,18 @@ class SignUpPage extends Component {
 
   render () {
     const { 
-      email      , password, 
-      first_name , last_name, 
-      city , state , phone  
+      first_name, 
+      last_name, 
+      email, 
+      password, 
+      city, 
+      states,
+      phone
     } = this.state;
-    const { handleValue, submitForm } = this;
+    const { 
+      handleValue, 
+      submitForm 
+    } = this;
 
     return (
       <main className="register-page">
@@ -160,21 +177,20 @@ class SignUpPage extends Component {
             </label>
           </div>
 
-          <div className="group">
-            <input 
-              type="text" 
-              name="state" 
-              className="state input"
-              autoComplete="off"
-              value={ state }
-              onChange={ handleValue }
-            />
-            <label htmlFor="state" className="border">
-              <span className="text">
-                State *
-              </span>
-            </label>
-          </div>
+          <select
+            form="states"
+            name="states"
+            className="states"
+            defaultValue={ states }
+            onChange={ handleValue }
+          >
+            <option hidden>
+              — Select State * —
+            </option>
+            { 
+              this.statesListOpt() 
+            }
+          </select>
 
           <div className="group">
             <input 
@@ -197,7 +213,7 @@ class SignUpPage extends Component {
           <input
             type="submit"
             name="sign_up"
-            className="sign-up"
+            className="sign-up-btn"
             value="SIGN-UP"
           />
         </form>
@@ -215,13 +231,7 @@ class SignUpPage extends Component {
 
 
 
-export default SignUpPage
-
-
-
-/* 
-< value=""    onchange="this.setAttribute('value', this.value);" />
-*/
+export default SignUp
 
 
 
@@ -242,3 +252,22 @@ export default SignUpPage
               </label>
             </div>
 */
+
+
+/* 
+<div className="group">
+<input 
+  type="text" 
+  name="state" 
+  className="state input"
+  autoComplete="off"
+  value={ state }
+  onChange={ handleValue }
+/>
+<label htmlFor="state" className="border">
+  <span className="text">
+    State *
+  </span>
+</label>
+</div>
+ */
