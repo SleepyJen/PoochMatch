@@ -3,20 +3,21 @@ import './UserProfile.css'
 
 
 
+const initState = {
+  first_name : '',
+  last_name  : '',
+  email      : '',
+  password   : '',
+  city       : '',
+  states     : '',
+  phone      : '',
+};
+
 class UserProfile extends Component {
  
   constructor () {
     super()
-
-    this.state = {
-      // email: '',
-      // password: '',
-      first_name: '',
-      last_name: '',
-      city: '',
-      state: '',
-      phone: '',
-    };
+    this.state = initState;
   }
 
 
@@ -30,17 +31,9 @@ class UserProfile extends Component {
   submitForm = (event) => {
     event.preventDefault()
 
-    console.log('User:', this.state)
+    console.log('User Data:', this.state)
     
-    this.setState({ 
-      // email: '', 
-      password: '',
-      first_name: '', 
-      last_name: '',
-      city: '',
-      state: '',
-      phone: ''
-    })
+    this.setState({ ...initState })
   };
 
 
@@ -48,19 +41,22 @@ class UserProfile extends Component {
 
   render () {
 
-    // email ,
-    // password,
     const { 
-      first_name , last_name,
-      city , state, phone
+      first_name, 
+      last_name,
+      city,  
+      state,
+      phone
     } = this.state;
     const { 
-      handleValue , submitForm 
+      handleValue, 
+      submitForm 
     } = this;
 
 
+
     return (
-      <main className="component">
+      <section className="component">
         <h2>New User Page</h2>
 
         <form onSubmit={ submitForm }>
@@ -151,7 +147,7 @@ class UserProfile extends Component {
             />
           </fieldset>
         </form>
-      </main>
+      </section>
     );
 
   }

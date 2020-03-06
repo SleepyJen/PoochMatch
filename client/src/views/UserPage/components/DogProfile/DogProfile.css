@@ -14,7 +14,12 @@ input {
     padding: 5px 0;
 }
 
-label[for="spayed_neutered"] {
+input[type="checkbox"] {
+    background: black;
+}
+
+input[type="checkbox"] + label {
     width: inherit;
-    /* vertical-align: middle; */
+    padding-left: 10px;
+    /* border: 2px solid black; */
 }

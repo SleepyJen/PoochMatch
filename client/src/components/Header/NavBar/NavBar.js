@@ -65,8 +65,8 @@ function NavBar () {
             </Link>
           </li>
           <li>
-            <Link to="/main">
-              Main
+            <Link to="/user">
+              User
             </Link>
           </li>
           <li>

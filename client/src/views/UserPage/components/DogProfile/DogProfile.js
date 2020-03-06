@@ -3,66 +3,74 @@ import './DogProfile.css'
 
 
 
+const initState = {
+  name    : '',
+  breed   : '',
+  species : '',
+  gender  : '',
+  age     : '',
+  weight  : '',
+  spayedNeutered    : '',
+  rabiesVaccine     : '',
+  bordatellaVaccine : '',
+  parvovirusVaccine : '',
+  distemperVaccine  : '',
+  personality : '',
+};
+
 class NewDogPage extends Component {
  
   constructor () {
     super()
-
-    this.state = {
-      name: '',
-      breed: '',
-      species: '',
-      gender: '',
-      age: '',
-      weight: '',
-      spayed_neutered: '',
-      personality: '',
-    };
+    this.state = initState;
   }
 
 
 
   handleValue = (event) => {
-    const { name , value } = event.target;
-    // console.log('Target:', name, '—', value)
-    this.setState({ [name] : value })
-  };
-
-  handleCheck = (event) => {
-    this.setState({ spayed_neutered : event.target.checked })
+    const { name , type , checked , value } = event.target;
+    const valType = (type === 'checkbox') ? checked : value;
+    
+    // console.log('Target:', name, '—', checked, '—', value)
+    // console.log( 'Input:' , valType )
+    
+    this.setState({ [name] : valType })
   };
 
   submitForm = (event) => {
     event.preventDefault()
     
-    console.log('Dog:', this.state)
-    
-    this.setState({
-      name: '',
-      breed: '',
-      species: '',
-      gender: '',
-      age: '',
-      weight: '',
-      spayed_neutered: '',
-      personality: '',
-    })
+    console.log('Dog Data:', this.state)
+    this.setState({ ...initState })
   };
+
 
 
   render () {
 
     const {
-      name   , breed  , species,
-      gender , age    , weight,
-      spayed_neutered , personality
+      name,
+      breed,
+      species,
+      gender,
+      age,
+      weight,
+      spayedNeutered,
+      rabiesVaccine,
+      bordatellaVaccine,
+      parvovirusVaccine,
+      distemperVaccine,
+      personality,
     } = this.state;
     const {
-      handleValue , handleCheck , submitForm
+      handleValue, 
+      submitForm
     } = this;
 
+
+    
     return (
-      <main className="component">
+      <section className="component">
         <h2>Dog Profile</h2>
 
         <form onSubmit={ submitForm }>
@@ -161,16 +169,68 @@ class NewDogPage extends Component {
             </div>
            
             <div>
-              <label htmlFor="spayed_neutered">
-                Spayed/Neutered:
-              </label>
               <input
                 type="checkbox"
-                name="spayed_neutered"
-                value={ spayed_neutered }
-                onChange={ handleCheck }
+                name="spayedNeutered"
+                value={ spayedNeutered }
+                onChange={ handleValue }
                 // required
               />
+              <label htmlFor="spayedNeutered">
+                Spayed/Neutered
+              </label>
+            </div>
+
+            <div>
+              <input
+                type="checkbox"
+                name="rabiesVaccine"
+                value={ rabiesVaccine }
+                onChange={ handleValue }
+                // required
+              />
+              <label htmlFor="rabiesVaccine">
+                Rabies Vaccine
+              </label>
+            </div>
+
+            <div>
+              <input
+                type="checkbox"
+                name="bordatellaVaccine"
+                value={ bordatellaVaccine }
+                onChange={ handleValue }
+                // required
+              />
+              <label htmlFor="bordatellaVaccine">
+                Bordatella Vaccine
+              </label>
+            </div>
+
+            <div>
+              <input
+                type="checkbox"
+                name="parvovirusVaccine"
+                value={ parvovirusVaccine }
+                onChange={ handleValue }
+                // required
+              />
+              <label htmlFor="parvovirusVaccine">
+                Parvovirus Vaccine
+              </label>
+            </div>
+
+            <div>
+              <input
+                type="checkbox"
+                name="distemperVaccine"
+                value={ distemperVaccine }
+                onChange={ handleValue }
+                // required
+              />
+              <label htmlFor="distemperVaccine">
+                Distemper Vaccine
+              </label>
             </div>
            
             <div>
@@ -196,7 +256,7 @@ class NewDogPage extends Component {
             />
           </fieldset>
         </form>
-      </main>
+      </section>
     );
   }
 
