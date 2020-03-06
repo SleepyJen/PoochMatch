@@ -4,8 +4,7 @@ import "./Preview.css";
 function Preview() {
   return (
     <section className="preview">
-      {/* <h2>Preview Card</h2> */}
-      <div className="card">
+      {/* <div className="card">
         <div>
           <div>
             <img alt="pat-dog" />
@@ -70,7 +69,7 @@ function Preview() {
           </div>
           <button>view more</button>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }
