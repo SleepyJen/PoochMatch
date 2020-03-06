@@ -32,6 +32,8 @@ app.use('/addImage', imageRoutes);
 const dogRoutes = require('./controller/dogRoutes');
 app.use('/dog', dogRoutes);
 
+const commentsRoutes = require('./controller/commentsRoutes');
+app.use('/comments', commentsRoutes);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//add email
 const UserSchema = new Schema({
     firstName: {
         type: String,
@@ -20,6 +21,10 @@ const UserSchema = new Schema({
     State: {
         type: String
     },
+    email: {
+        type: String,
+        required: 'Must input email'
+    },
     Interests: {
         type: [Schema.Types.String],
         default: []
@@ -32,7 +37,8 @@ const UserSchema = new Schema({
         type: String
     },
     phone: {
-        type: String
+        type: String,
+        default: ""
     },
     Subscriptions: {
         type: {
@@ -49,6 +55,10 @@ const UserSchema = new Schema({
         status: {
             type: String
         }
+    },
+    comments: {
+        type: [],
+        default: []
     }
 });
 
