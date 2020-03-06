@@ -1,8 +1,8 @@
 import React from "react"; // , { useState }
 import "./HomePage.css";
 
-import Banner from "../../components/Banner/Banner";
-import Preview from "../../components/Preview/Preview";
+import Banner from "./components/Banner/Banner";
+import Preview from "./components/Preview/Preview";
 
 
 
