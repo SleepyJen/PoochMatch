@@ -17,7 +17,7 @@ function NavSettings () {
             </Link>
           </li>
           <li>
-            <Link to={`/user/${ 'account' }` }>
+            <Link to={`/user/${ 'user-settings' }` }>
               Account
             </Link>
           </li>

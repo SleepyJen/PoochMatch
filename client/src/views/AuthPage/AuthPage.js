@@ -10,8 +10,8 @@ function AuthPage () {
 
   return (
     <>
-      <Route exact path="/user/sign-in" component={ SignIn } />
-      <Route exact path="/user/sign-up" component={ SignUp } />
+      <Route exact path="/user/auth/sign-in" component={ SignIn } />
+      <Route exact path="/user/auth/sign-up" component={ SignUp } />
     </>
   );
 

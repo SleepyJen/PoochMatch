@@ -149,6 +149,7 @@ class NewDogPage extends Component {
                 autoComplete="off"
                 value={ age }
                 onChange={ handleValue }
+                min="0"
                 // required
               />
             </div>
@@ -164,10 +165,43 @@ class NewDogPage extends Component {
                 autoComplete="off"
                 value={ weight }
                 onChange={ handleValue }
+                min="0"
                 // required
               />
             </div>
-           
+
+ 
+{/*  
+            <div>
+              <label htmlFor="text" className="text-group">
+                text:
+              </label>
+              <input
+                type="text"
+                name="text"
+                className="text input"
+                placeholder="text"
+                autoComplete="off"
+                defaultValue="text"
+                // onChange={ handleValue }
+                // required
+              />
+            </div>
+
+            <label htmlFor="S-N" className="check-group">
+              <input 
+                type="checkbox"
+                name="S---N"
+                className="S-N check"
+                id="S-N"
+                value="button"
+              />
+              <span className="check-text">
+                DOG
+              </span>
+            </label>
+*/}
+
             <div>
               <input
                 type="checkbox"

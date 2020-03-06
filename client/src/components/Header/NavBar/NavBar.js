@@ -70,12 +70,12 @@ function NavBar () {
             </Link>
           </li>
           <li>
-            <Link to="/user/sign-in">
+            <Link to="/user/auth/sign-in">
               Sign-In
             </Link>
           </li>
           <li>
-            <Link to="/user/sign-up">
+            <Link to="/user/auth/sign-up">
               Sign-Up
             </Link>
           </li>

@@ -4,10 +4,11 @@ import './UserPage.css'
 
 // import ___ from './components/___/___.js'
 import NavSettings from './components/NavSettings/NavSettings.js'
+import Dashboard from './components/Dashboard/Dashboard.js'
 import DogProfile from './components/DogProfile/DogProfile.js'
 import UserProfile from './components/UserProfile/UserProfile.js'
+import UserSettings from './components/UserSettings/UserSettings.js'
 
-import TestComp from './components/TestComp/TestComp.js'
 
 
 
@@ -27,9 +28,11 @@ function UserPage () {
       
       <br />
 
-      <Route exact path="/user" component={ TestComp } />
+      <Route exact path="/user" component={ Dashboard } />
+      <Route exact path="/user/dashboard" component={ Dashboard } />
       <Route exact path="/user/user-profile" component={ UserProfile } />
       <Route exact path="/user/dog-profile" component={ DogProfile } />
+      <Route exact path="/user/user-settings" component={ UserSettings } />
     </main>
   );
 
