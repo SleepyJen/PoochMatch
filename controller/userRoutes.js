@@ -28,9 +28,7 @@ router.post('/addInterests/:id', (req, res) => {
     },
         {
             $push: {
-                Interests: {
-                    Interests: req.body.Interests
-                }
+                Interests: req.body.Interests
             }
         }).then(result => {
             res.send(result);
@@ -48,6 +46,16 @@ router.post('/addPet/:id', (req, res) => {
         }).then(result => {
             res.send(result);
         });
+});
+
+router.post('/addComment/:id', (req, res) => {
+    db.User.findOneAndUpdate({
+        _id: req.params.id
+    }, {
+        $push: {
+            comments: req.params.comments
+        }
+    });
 });
 
 module.exports = router;
