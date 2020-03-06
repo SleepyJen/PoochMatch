@@ -32,7 +32,7 @@ function App() {
             <MainPage />
           </Route>
 
-          <Route path="/user/:auth">
+          <Route exact path="/user/auth/:entry">
             <AuthPage />
           </Route>
 
