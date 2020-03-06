@@ -5,8 +5,9 @@
     justify-content: center;
     align-items: center;
     height: 90vh;
-    background: url("/assets/images/dogsPlaying.jpeg") no-repeat fixed;
-    background-size: cover;
+    background: url("/assets/images/dogsPlaying.jpeg");
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .banner-button {
@@ -16,11 +17,12 @@
     border-radius: 10px;
     border: 2px solid black;
     border: none;
-    background-color: antiquewhite;
+    background-color: #CEBAA7;
+    color: white;
 }
 
 .banner-button:hover {
-    background-color: aquamarine;
+    background-color: #C0977A;
 }
 
 .banner-button:active {
