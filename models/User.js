@@ -21,6 +21,10 @@ const UserSchema = new Schema({
     State: {
         type: String
     },
+    email: {
+        type: String,
+        required: 'Must input email'
+    },
     Interests: {
         type: [Schema.Types.String],
         default: []

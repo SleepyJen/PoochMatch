@@ -16,7 +16,8 @@ router.post('/createNewUser', (req, res) => {
         password: req.body.password,
         City: req.body.City,
         State: req.body.State,
-        phone: req.body.phone
+        phone: req.body.phone,
+        email: req.body.email
     }).then(result => {
         res.json(result);
     });
