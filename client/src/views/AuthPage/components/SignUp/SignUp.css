@@ -3,6 +3,7 @@ main.register-page {
     width: 300px;
     min-height: 100px;
     margin: 0 auto;
+    background-color: white;
 }
 main.register-page h2 {
     text-align: center;

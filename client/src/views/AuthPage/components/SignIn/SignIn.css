@@ -3,7 +3,15 @@ main.login-page {
     width: 300px;
     min-height: 100px;
     margin: 0 auto;
+    background-color: white;
 }
 main.login-page h2 {
     text-align: center;
+}
+
+.main-body {
+    background: url(/assets/images/bubbles-two.jpeg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 92vh;
 }

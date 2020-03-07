@@ -4,7 +4,7 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 92vh;
     background: url("/assets/images/dogsPlaying.jpeg");
     background-size: 100%;
     background-repeat: no-repeat;
@@ -29,7 +29,8 @@
     background-color: red;
 }
 
-.banner-text {
+.banner-text,
+.banner-adoption {
     font-size: 30pt;
     color: whitesmoke;
 }

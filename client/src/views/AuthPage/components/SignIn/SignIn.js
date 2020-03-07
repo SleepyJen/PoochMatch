@@ -45,6 +45,7 @@ class SignIn extends Component {
     const { handleValue , submitForm } = this;
 
     return (
+      <div className="main-body">
       <main className="login-page">
         <h2>Login Page</h2>
         <form 
@@ -93,13 +94,14 @@ class SignIn extends Component {
             value="LOGIN"
           />
         </form>
-        <div className="img-comp">
+        {/* <div className="img-comp">
           <img 
             src="/assets/images/photo-1518020382113-a7e8fc38eac9.jfif" 
             alt="register-img"
           />
-        </div>
+        </div> */}
       </main>
+    </div>
     );
   }
 

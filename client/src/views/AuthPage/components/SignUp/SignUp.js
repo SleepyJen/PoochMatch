@@ -94,6 +94,7 @@ class SignUp extends Component {
     } = this;
 
     return (
+      <div className="main-body">
       <main className="register-page">
         <h2>Register Page</h2>
         <form
@@ -221,13 +222,16 @@ class SignUp extends Component {
             value="SIGN-UP"
           />
         </form>
-        <div className="img-comp">
-          <img
-            src="/assets/images/photo-1534351450181-ea9f78427fe8.jfif"
+
+        {/* <div className="img-comp">
+          <img 
+            src="/assets/images/photo-1534351450181-ea9f78427fe8.jfif" 
+
             alt="register-img"
           />
-        </div>
+        </div> */}
       </main>
+      </div>
     );
   }
 
