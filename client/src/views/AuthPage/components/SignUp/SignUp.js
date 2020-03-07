@@ -34,6 +34,7 @@ class SignUp extends Component {
 
   createUser = async (data) => {
     try {
+
       const result = await axios.post(
         '/user/createNewUser', {
         firstName: data.firstName,
