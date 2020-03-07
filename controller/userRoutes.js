@@ -130,4 +130,13 @@ router.post('/updateState/:id', (req, res) => {
     });
 });
 
+//DELETE
+router.delete('/delete/:id', (req, res) => {
+    db.User.findOneAndDelete({
+        _id: req.params.id
+    }).then(result => {
+        res.send(result);
+    });
+});
+
 module.exports = router;

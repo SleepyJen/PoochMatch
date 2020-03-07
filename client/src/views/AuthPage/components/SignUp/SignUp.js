@@ -34,19 +34,25 @@ class SignUp extends Component {
 
   createUser = async (data) => {
     try {
-
-      const result = await axios.post(
-        '/user/createNewUser', {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        password: data.password,
-        email: data.email,
-        City: data.City,
-        State: data.states,
-        phone: data.phone
+      let em = data.email;
+      const lookupEmail = await axios.get(`/user/getByEmail/${em}`);
+      console.log(lookupEmail);
+      if (lookupEmail) {
+        alert('email already registered');
+      } else {
+        const result = await axios.post(
+          '/user/createNewUser', {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          password: data.password,
+          email: data.email,
+          City: data.City,
+          State: data.states,
+          phone: data.phone
+        }
+        );
+        console.log('API Result:', result.data);
       }
-      );
-      console.log('API Result:', result.data)
     } catch (err) {
       console.log(err.message)
     }
@@ -95,142 +101,142 @@ class SignUp extends Component {
 
     return (
       <div className="main-body">
-      <main className="register-page">
-        <h2>Register Page</h2>
-        <form
-          className="form"
-          onSubmit={submitForm}
-        >
-          <div className="group">
-            <input
-              type="text"
-              name="email"
-              className="email input"
-              autoComplete="off"
-              autoFocus
-              value={email}
-              onChange={handleValue}
-            />
-            <label htmlFor="email" className="border">
-              <span className="text">
-                Email *
-              </span>
-            </label>
-          </div>
-
-          <div className="group">
-            <input
-              type="text"
-              name="password"
-              className="password input"
-              autoComplete="off"
-              value={password}
-              onChange={handleValue}
-            />
-            <label htmlFor="password" className="border">
-              <span className="text">
-                Password *
-              </span>
-            </label>
-          </div>
-
-          <div className="group">
-            <input
-              type="text"
-              name="firstName"
-              className="firstName input"
-              autoComplete="off"
-              value={firstName}
-              onChange={handleValue}
-            />
-            <label htmlFor="firstName" className="border">
-              <span className="text">
-                First Name *
-              </span>
-            </label>
-          </div>
-
-          <div className="group">
-            <input
-              type="text"
-              name="lastName"
-              className="lastName input"
-              autoComplete="off"
-              value={lastName}
-              onChange={handleValue}
-            />
-            <label htmlFor="lastName" className="border">
-              <span className="text">
-                Last Name *
-              </span>
-            </label>
-          </div>
-
-          <div className="group">
-            <input
-              type="text"
-              name="City"
-              className="City input"
-              autoComplete="off"
-              value={City}
-              onChange={handleValue}
-            />
-            <label htmlFor="City" className="border">
-              <span className="text">
-                City *
-              </span>
-            </label>
-          </div>
-
-          <select
-            form="states"
-            name="states"
-            className="states"
-            defaultValue={states}
-            onChange={handleValue}
+        <main className="register-page">
+          <h2>Register Page</h2>
+          <form
+            className="form"
+            onSubmit={submitForm}
           >
-            <option hidden>
-              — Select State * —
-            </option>
-            {
-              this.statesListOpt()
-            }
-          </select>
-
-          <div className="group">
-            <input
-              type="text"
-              name="phone"
-              className="phone input"
-              autoComplete="off"
-              value={phone}
-              onChange={handleValue}
-            />
-            <label htmlFor="phone" className="border">
-              <span className="text">
-                Phone
+            <div className="group">
+              <input
+                type="text"
+                name="email"
+                className="email input"
+                autoComplete="off"
+                autoFocus
+                value={email}
+                onChange={handleValue}
+              />
+              <label htmlFor="email" className="border">
+                <span className="text">
+                  Email *
               </span>
-            </label>
-          </div>
+              </label>
+            </div>
 
-          <br />
+            <div className="group">
+              <input
+                type="text"
+                name="password"
+                className="password input"
+                autoComplete="off"
+                value={password}
+                onChange={handleValue}
+              />
+              <label htmlFor="password" className="border">
+                <span className="text">
+                  Password *
+              </span>
+              </label>
+            </div>
 
-          <input
-            type="submit"
-            name="sign_up"
-            className="sign-up-btn"
-            value="SIGN-UP"
-          />
-        </form>
+            <div className="group">
+              <input
+                type="text"
+                name="firstName"
+                className="firstName input"
+                autoComplete="off"
+                value={firstName}
+                onChange={handleValue}
+              />
+              <label htmlFor="firstName" className="border">
+                <span className="text">
+                  First Name *
+              </span>
+              </label>
+            </div>
 
-        {/* <div className="img-comp">
+            <div className="group">
+              <input
+                type="text"
+                name="lastName"
+                className="lastName input"
+                autoComplete="off"
+                value={lastName}
+                onChange={handleValue}
+              />
+              <label htmlFor="lastName" className="border">
+                <span className="text">
+                  Last Name *
+              </span>
+              </label>
+            </div>
+
+            <div className="group">
+              <input
+                type="text"
+                name="City"
+                className="City input"
+                autoComplete="off"
+                value={City}
+                onChange={handleValue}
+              />
+              <label htmlFor="City" className="border">
+                <span className="text">
+                  City *
+              </span>
+              </label>
+            </div>
+
+            <select
+              form="states"
+              name="states"
+              className="states"
+              defaultValue={states}
+              onChange={handleValue}
+            >
+              <option hidden>
+                — Select State * —
+            </option>
+              {
+                this.statesListOpt()
+              }
+            </select>
+
+            <div className="group">
+              <input
+                type="text"
+                name="phone"
+                className="phone input"
+                autoComplete="off"
+                value={phone}
+                onChange={handleValue}
+              />
+              <label htmlFor="phone" className="border">
+                <span className="text">
+                  Phone
+              </span>
+              </label>
+            </div>
+
+            <br />
+
+            <input
+              type="submit"
+              name="sign_up"
+              className="sign-up-btn"
+              value="SIGN-UP"
+            />
+          </form>
+
+          {/* <div className="img-comp">
           <img 
             src="/assets/images/photo-1534351450181-ea9f78427fe8.jfif" 
 
             alt="register-img"
           />
         </div> */}
-      </main>
+        </main>
       </div>
     );
   }
