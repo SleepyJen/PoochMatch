@@ -1,162 +1,211 @@
-import React, { Component } from 'react'
-import './UserProfile.css'
-
-
+import React, { Component } from "react";
+import "./UserProfile.css";
 
 const initState = {
-  first_name: '',
-  last_name: '',
-  email: '',
-  password: '',
-  city: '',
-  states: '',
-  phone: '',
+  firstName: "",
+  lastName: "",
+  password: "",
+  City: "",
+  State: "",
+  email: "",
+  Interests: "",
+  Pets: "",
+  imgs: "",
+  phone: ""
 };
 
 class UserProfile extends Component {
-
   constructor() {
-    super()
+    super();
     this.state = initState;
   }
 
-
-
-  handleValue = (event) => {
+  handleValue = event => {
     const { name, value } = event.target;
     // console.log('Target:', name, '—', value)
-    this.setState({ [name]: value })
+    this.setState({ [name]: value });
   };
 
-  submitForm = (event) => {
-    event.preventDefault()
+  submitForm = event => {
+    event.preventDefault();
 
-    console.log('User Data:', this.state)
+    console.log("User Data:", this.state);
 
-    this.setState({ ...initState })
+    this.setState({ ...initState });
   };
-
-
-
 
   render() {
-
     const {
-      first_name,
-      last_name,
-      city,
-      state,
+      firstName,
+      lastName,
+      password,
+      City,
+      State,
+      email,
+      Interests,
+      Pets,
+      imgs,
       phone
     } = this.state;
-    const {
-      handleValue,
-      submitForm
-    } = this;
-
-
+    const { handleValue, submitForm } = this;
 
     return (
       <section className="component">
-        <h2>This page displays your information.</h2>
+        {/* <h2>This page displays your information.</h2> */}
 
         <form onSubmit={submitForm}>
           <fieldset>
-            <legend>User Form</legend>
-
             <div>
-              <label htmlFor="first_name">
-                *First Name:
-              </label>
+              <legend>User Profile</legend>
+              <label htmlFor="firstName">*First Name:</label>
               <input
                 type="text"
-                name="first_name"
-                placeholder="enter here"
+                name="firstName"
+                placeholder="enter name"
                 autoComplete="off"
-                value={first_name}
+                value={firstName}
                 onChange={handleValue}
                 autoFocus
-              // required
+                // required
               />
             </div>
 
             <div>
-              <label htmlFor="last_name">
-                *Last Name:
-              </label>
+              <label htmlFor="lastName">*Last Name:</label>
               <input
                 type="text"
-                name="last_name"
-                placeholder="enter here"
+                name="lastName"
+                placeholder="enter name"
                 autoComplete="off"
-                value={last_name}
+                value={lastName}
                 onChange={handleValue}
-              // required
+                // required
               />
             </div>
 
             <div>
-              <label htmlFor="city">
-                *City:
-              </label>
+              <label htmlFor="password">*Password:</label>
               <input
                 type="text"
-                name="city"
+                name="password"
+                placeholder="enter password"
+                autoComplete="off"
+                value={password}
+                onChange={handleValue}
+                // required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="City">*City:</label>
+              <input
+                type="text"
+                name="City"
                 placeholder="enter city"
                 autoComplete="off"
-                value={city}
+                value={City}
                 onChange={handleValue}
-              // required
+                // required
               />
             </div>
 
             <div>
-              <label htmlFor="state">
-                *State:
-              </label>
+              <label htmlFor="State">*State:</label>
               <input
                 type="text"
-                name="state"
+                name="State"
                 placeholder="enter state"
                 autoComplete="off"
-                value={state}
+                value={State}
                 onChange={handleValue}
-              // required
+                // required
               />
             </div>
 
             <div>
-              <label htmlFor="phone">
-                Phone:
-              </label>
+              <label htmlFor="email">*Email:</label>
+              <input
+                type="text"
+                name="email"
+                placeholder="enter email"
+                autoComplete="off"
+                value={email}
+                onChange={handleValue}
+                // required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="Interests">*Interests:</label>
+              <input
+                type="text"
+                name="Interest"
+                placeholder="enter interests"
+                autoComplete="off"
+                value={Interests}
+                onChange={handleValue}
+                // required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="Pets">*Pets:</label>
+              <input
+                type="text"
+                name="Pet"
+                placeholder="enter pets"
+                autoComplete="off"
+                value={Pets}
+                onChange={handleValue}
+                // required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="imgs">*Images:</label>
+              <input
+                type="text"
+                name="imgs"
+                placeholder="enter image"
+                autoComplete="off"
+                value={imgs}
+                onChange={handleValue}
+                // required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="phone">Phone:</label>
               <input
                 type="text"
                 name="phone"
-                placeholder="enter your phone #"
+                placeholder="enter phone #"
                 autoComplete="off"
                 value={phone}
                 onChange={handleValue}
-              // required
+                // required
               />
             </div>
 
-            <input
+            <button
+              onClick="save-btn"
               type="submit"
               name="save"
               className="save-btn"
-              value="SAVE"
-            />
+              value="Save"
+            >
+              Save
+            </button>
+
+            <button onClick="edit-btn">Edit</button>
           </fieldset>
         </form>
       </section>
     );
-
   }
-
 }
 
-
-
-export default UserProfile
+export default UserProfile;
 
 /*
 = User Model =
