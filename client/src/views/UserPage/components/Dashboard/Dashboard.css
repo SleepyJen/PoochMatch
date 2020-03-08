@@ -7,9 +7,10 @@
 }
 
 .card {
-    display: flex;
-    justify-content: space-evenly;
-    height: 150px;
+    /* display: flex;
+    justify-content: space-evenly; */
+    margin-left: 50px;
+    height: 350px;
 }
 
 .pats-dog {
