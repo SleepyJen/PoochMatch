@@ -5,7 +5,7 @@ import { Tabs } from 'react-bootstrap'
 import { Tab } from 'react-bootstrap'
 import './UserTabs.css'
 import Dashboard from '../Dashboard/Dashboard'
-import DogProfile from '../DogProfile/DogProfile'
+import PoochProfile from '../PoochProfile/PoochProfile'
 import UserProfile from '../UserProfile/UserProfile'
 
 
@@ -25,11 +25,11 @@ function UserTabs() {
             <Messages />
           </div>
         </Tab> */}
-        <Tab eventKey="userSettings" title="Account Settings">
+        <Tab eventKey="userProfile" title="User Profile">
           <UserProfile />
         </Tab>
-        <Tab eventKey="petInformation" title="Pet Information">
-          <DogProfile />
+        <Tab eventKey="poochProfile" title="Pooch Profile">
+          <PoochProfile />
         </Tab>
       </Tabs>
     </div>

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './CreateDog.css'
 
-
-
 const initState = {
   name: '',
   breed: '',
