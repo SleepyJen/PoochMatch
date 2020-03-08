@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './UserProfile.css'
+import './CreateUser.css'
 
 
 
@@ -13,7 +13,7 @@ const initState = {
   phone: '',
 };
 
-class UserProfile extends Component {
+class CreateUser extends Component {
 
   constructor() {
     super()
@@ -156,7 +156,7 @@ class UserProfile extends Component {
 
 
 
-export default UserProfile
+export default CreateUser
 
 /*
 = User Model =
