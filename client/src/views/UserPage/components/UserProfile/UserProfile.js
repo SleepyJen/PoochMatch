@@ -61,13 +61,16 @@ class UserProfile extends Component {
               <input
                 type="text"
                 name="firstName"
-                placeholder="enter name"
+                placeholder=""
                 autoComplete="off"
                 value={firstName}
                 onChange={handleValue}
                 autoFocus
                 // required
               />
+              <button className="icon">
+                <i class="far fa-edit"></i>
+              </button>
             </div>
 
             <div>
@@ -75,12 +78,15 @@ class UserProfile extends Component {
               <input
                 type="text"
                 name="lastName"
-                placeholder="enter name"
+                placeholder=""
                 autoComplete="off"
                 value={lastName}
                 onChange={handleValue}
                 // required
               />
+              <button className="icon">
+                <i class="far fa-edit"></i>
+              </button>
             </div>
 
             <div>
@@ -88,12 +94,15 @@ class UserProfile extends Component {
               <input
                 type="text"
                 name="password"
-                placeholder="enter password"
+                placeholder=""
                 autoComplete="off"
                 value={password}
                 onChange={handleValue}
                 // required
               />
+              <button className="icon">
+                <i class="far fa-edit"></i>
+              </button>
             </div>
 
             <div>
@@ -101,12 +110,15 @@ class UserProfile extends Component {
               <input
                 type="text"
                 name="City"
-                placeholder="enter city"
+                placeholder=""
                 autoComplete="off"
                 value={City}
                 onChange={handleValue}
                 // required
               />
+              <button className="icon">
+                <i class="far fa-edit"></i>
+              </button>
             </div>
 
             <div>
@@ -114,12 +126,15 @@ class UserProfile extends Component {
               <input
                 type="text"
                 name="State"
-                placeholder="enter state"
+                placeholder=""
                 autoComplete="off"
                 value={State}
                 onChange={handleValue}
                 // required
               />
+              <button className="icon">
+                <i class="far fa-edit"></i>
+              </button>
             </div>
 
             <div>
@@ -127,12 +142,15 @@ class UserProfile extends Component {
               <input
                 type="text"
                 name="email"
-                placeholder="enter email"
+                placeholder=""
                 autoComplete="off"
                 value={email}
                 onChange={handleValue}
                 // required
               />
+              <button className="icon">
+                <i class="far fa-edit"></i>
+              </button>
             </div>
 
             <div>
@@ -140,12 +158,15 @@ class UserProfile extends Component {
               <input
                 type="text"
                 name="Interest"
-                placeholder="enter interests"
+                placeholder=""
                 autoComplete="off"
                 value={Interests}
                 onChange={handleValue}
                 // required
               />
+              <button className="icon">
+                <i class="far fa-edit"></i>
+              </button>
             </div>
 
             <div>
@@ -153,12 +174,15 @@ class UserProfile extends Component {
               <input
                 type="text"
                 name="Pet"
-                placeholder="enter pets"
+                placeholder=""
                 autoComplete="off"
                 value={Pets}
                 onChange={handleValue}
                 // required
               />
+              <button className="icon">
+                <i class="far fa-edit"></i>
+              </button>
             </div>
 
             <div>
@@ -166,12 +190,15 @@ class UserProfile extends Component {
               <input
                 type="text"
                 name="imgs"
-                placeholder="enter image"
+                placeholder=""
                 autoComplete="off"
                 value={imgs}
                 onChange={handleValue}
                 // required
               />
+              <button className="icon">
+                <i class="far fa-edit"></i>
+              </button>
             </div>
 
             <div>
@@ -179,12 +206,15 @@ class UserProfile extends Component {
               <input
                 type="text"
                 name="phone"
-                placeholder="enter phone #"
+                placeholder=""
                 autoComplete="off"
                 value={phone}
                 onChange={handleValue}
                 // required
               />
+              <button className="icon">
+                <i class="far fa-edit"></i>
+              </button>
             </div>
 
             <button
@@ -197,7 +227,9 @@ class UserProfile extends Component {
               Save
             </button>
 
-            <button onClick="edit-btn">Edit</button>
+            <button onClick="edit-btn" className="edit-btn">
+              Edit
+            </button>
           </fieldset>
         </form>
       </section>
