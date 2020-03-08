@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './DogProfile.css'
+import './PoochProfile.css'
 
 
 function PetInfo() {
