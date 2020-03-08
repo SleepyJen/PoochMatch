@@ -1,0 +1,22 @@
+.component {
+    text-align: center;
+    /* border: 2px solid black; */
+    
+}
+
+.nav.nav-tabs {
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    background-color:rgba(209, 191, 191, 0.5);
+    flex-wrap: wrap;
+    /* padding: 5px; */
+}
+
+.tab-content {
+    margin-top: 20px;  
+}
+
+
+
+
