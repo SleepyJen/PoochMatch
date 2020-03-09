@@ -2,60 +2,42 @@
     text-align: center;
 }
 
-label.text-group {
-    width: 100px;
-    display: inline-block;
+.cardTitle{ 
+    background-color: rgba(170, 143, 70, 0.678);
+    padding: 12px;
+    margin: 0px;
+}
+
+.cardTitle2{
+    font-size: large;
+    background-color: rgba(170, 143, 70, 0.678);
     text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    margin: 0px;
 }
 
-input.input {
-    border-bottom: 2px solid #aaa;
-    margin: 10px 0;
-    padding: 5px 0;
+.cardMain{
+background-color: rgba(177, 167, 140, 0.418);
 }
 
-
-/*  */
-
-
-label.check-group {
-    cursor:pointer;
-    
-    border: 1px solid #ccc;
-    color: #666;
-    
-    display: block; 
-    
-    margin: 0 0 10px;
+.cardFooter{
     padding: 10px;
-}
-   
-label.check-group:hover {
-    background:#eee;
-    color: #000;
+    background-color: rgba(177, 167, 140, 0.418);
 }
 
-input.check {
-    display: none;
-    cursor: pointer;
-    /* font: normal normal normal initial/1 "FontAwesome"; */
+.dogImage {
+    height: 100%;
+    background: url(../../../../assets/images/IMG_5981.jpg) center no-repeat;
+    background-size: cover;
 }
 
-span.check-text::before {
-    content: '\f0c8';
-    font-family: "Font Awesome 5 Free"; 
-    font-weight: 0;
-    color: #000;
-    /* transition: 1.0s all ease; */
+.editDog, .saveDog {
+    background-color:  rgb(202, 160, 126);
 }
 
-input.check:checked + span.check-text::before {
-    content: '\f14a';
-    font-weight: 900;
-    color: blue;
-    /* animation: tick 1.5s ease-in; */
+.editDog:hover, .saveDog:hover {
+    background-color: rgba(209, 191, 191, 0.5);
 }
 
-input.check:disabled + span.check-text::before {
-    content: '\f0c8';
-}
