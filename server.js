@@ -35,6 +35,8 @@ app.use('/dog', dogRoutes);
 const commentsRoutes = require('./controller/commentsRoutes');
 app.use('/comments', commentsRoutes);
 
+app.use('/uploads', express.static('./uploads'));
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
     app.get('*', (req, res) => {

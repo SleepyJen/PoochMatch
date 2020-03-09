@@ -28,6 +28,24 @@ var upload = multer({
     fileFilter: fileFilter
 });
 
+router.get('/:id', async (req, res) => {
+    let image = await Image.find({ _id: req.params.id });
+
+    if (!image) {
+        return res.status(404).send({ message: 'not found Images' })
+    }
+    image = image[0].images
+    res.send({
+        data: image
+    });
+});
+
+router.get('/', (req, res) => {
+    Image.find({}).then(result => {
+        res.send(result);
+    });
+});
+
 router.post('/file', upload.single('image'), async (req, res) => { //use 'image'
     try {
         let image = new Image({
