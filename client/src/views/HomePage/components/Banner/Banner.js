@@ -1,13 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Banner.css";
 
 function Banner() {
   return (
     <section className="banner">
-      <h2 className="banner-text">Woof you play with me?</h2>
-      {/* <h2 className="banner-adoption">Interested in adopting?</h2> */}
-      <button onClick={() => console.log("working?")} className="banner-button">
-        <h2>Create an account</h2>
+      <button className="create-button">
+        <Link to="/user/auth/sign-up" className="signBtn">
+          Sign-Up
+        </Link>
+      </button>
+      <button className="login-button">
+        <Link to="/user/auth/sign-in" className="loginBtn">
+          Login to Account
+        </Link>
       </button>
     </section>
   );

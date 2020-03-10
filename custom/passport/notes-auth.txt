@@ -1,0 +1,15 @@
+< Auth Flow >
+
+^ login
+- submit Fn
+    - validate format
+- axios Fn
+    - DB check error
+
+^ register
+
+^ UX error handling (opt)
+- after onSubmit fn
+- after onBlur of target
+- right underneath input box
+- group up at bottom
