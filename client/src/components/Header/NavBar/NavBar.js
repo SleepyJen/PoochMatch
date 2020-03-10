@@ -5,7 +5,10 @@ import './NavBar.css'
 import Auth from '../../../auth/Auth.js'
 
 
+
 function NavBar () {
+
+  // const [Auth, setAuth] = useState();
 
   const toggleNav = (event) => {
     const $menuBar = event.currentTarget.querySelector('i');
@@ -68,6 +71,15 @@ function NavBar () {
                   <Link to="/user">
                     User
                   </Link>
+                </li>
+                <li>
+                  <a 
+                    to="/user/logout/" 
+                    onClick={ () => {
+                      Auth.signOut();
+                    } }
+                  >Logout
+                  </a>
                 </li>
               </>
             )

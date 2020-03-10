@@ -1,9 +1,13 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { 
+  BrowserRouter as Router, 
+  Route , Switch , Redirect 
+} from "react-router-dom";
 import React from "react";
 
 import "./assets/reset.css";
 import "./assets/App.css";
 
+import Auth from './auth/Auth.js'
 import { RouteAuthenticate , RoutePrivate } from './auth/Route.js';
 
 // import ___ from "./components/___/___.js";
@@ -29,6 +33,10 @@ function App() {
 
           <Route exact path="/main">
             <MainPage />
+          </Route>
+
+          <Route exact path="/user/logout">
+            <Redirect to="/" />
           </Route>
 
           <RouteAuthenticate 

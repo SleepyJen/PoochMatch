@@ -109,6 +109,17 @@ router.post('/login', (req,res,next) =>{
 
     }
 })
+
+router.get('/logout', (req, res) => {
+    console.log('— LOGOUT —')
+    console.log('Logout Session:', req.user)
+    
+    req.logout()
+
+    console.log(req.session)
+    req.session = null;
+    res.send(req.isAuthenticated())
+})
 /*  */
 
 router.get('/getByEmail/:email', (req, res) => {
@@ -241,6 +252,3 @@ router.delete('/delete/:id', (req, res) => {
 });
 
 module.exports = router;
-
-
-

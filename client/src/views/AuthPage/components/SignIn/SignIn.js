@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import './SignIn.css'
 // import db from '../../data.json'
 import axios from 'axios';
+import Auth from '../../../../auth/Auth.js';
 
+import Header from "../../../../components/Header/Header"
 
 const initState = {
   email    : '',
@@ -29,7 +31,8 @@ class SignIn extends Component {
       } else {
 
         const localAuth = result.data.isAuth;
-        window.localStorage.setItem('localAuth',localAuth);
+        Auth.updateLocalAuth( localAuth )
+        // localStorage.setItem('localAuth',localAuth);
 
         this.setState({ ...initState })  
         // console.log('props:', this.props.history)
@@ -66,6 +69,7 @@ class SignIn extends Component {
 
     return (
       <div className="main-body">
+       <Header />
       <main className="login-page">
         <h2>Login Page</h2>
         <form 
