@@ -6,10 +6,14 @@ function Banner() {
   return (
     <section className="banner">
       <button className="create-button">
-        <Link to="/user/auth/sign-up">Sign-Up</Link>
+        <Link to="/user/auth/sign-up" className="signBtn">
+          Sign-Up
+        </Link>
       </button>
       <button className="login-button">
-        <Link to="/user/auth/sign-in">Login to Account</Link>
+        <Link to="/user/auth/sign-in" className="loginBtn">
+          Login to Account
+        </Link>
       </button>
     </section>
   );

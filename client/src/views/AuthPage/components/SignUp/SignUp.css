@@ -5,6 +5,11 @@ main.register-page {
     margin: 0 auto;
     background-color: white;
 }
+
 main.register-page h2 {
     text-align: center;
+}
+
+.main-body {
+    overflow: auto;
 }
