@@ -64,7 +64,7 @@ class UserProfile extends Component {
                 value={firstName}
                 onChange={handleValue}
                 autoFocus
-              // required
+                // required
               />
               <button className="icon">
                 <i className="far fa-edit"></i>
@@ -80,7 +80,7 @@ class UserProfile extends Component {
                 autoComplete="off"
                 value={lastName}
                 onChange={handleValue}
-              // required
+                // required
               />
               <button className="icon">
                 <i className="far fa-edit"></i>
@@ -96,7 +96,7 @@ class UserProfile extends Component {
                 autoComplete="off"
                 value={password}
                 onChange={handleValue}
-              // required
+                // required
               />
               <button className="icon">
                 <i className="far fa-edit"></i>
@@ -112,7 +112,7 @@ class UserProfile extends Component {
                 autoComplete="off"
                 value={City}
                 onChange={handleValue}
-              // required
+                // required
               />
               <button className="icon">
                 <i className="far fa-edit"></i>
@@ -128,7 +128,7 @@ class UserProfile extends Component {
                 autoComplete="off"
                 value={State}
                 onChange={handleValue}
-              // required
+                // required
               />
               <button className="icon">
                 <i className="far fa-edit"></i>
@@ -144,7 +144,7 @@ class UserProfile extends Component {
                 autoComplete="off"
                 value={email}
                 onChange={handleValue}
-              // required
+                // required
               />
               <button className="icon">
                 <i className="far fa-edit"></i>
@@ -160,7 +160,7 @@ class UserProfile extends Component {
                 autoComplete="off"
                 value={Interests}
                 onChange={handleValue}
-              // required
+                // required
               />
               <button className="icon">
                 <i className="far fa-edit"></i>
@@ -176,7 +176,7 @@ class UserProfile extends Component {
                 autoComplete="off"
                 value={Pets}
                 onChange={handleValue}
-              // required
+                // required
               />
               <button className="icon">
                 <i className="far fa-edit"></i>
@@ -192,7 +192,7 @@ class UserProfile extends Component {
                 autoComplete="off"
                 value={imgs}
                 onChange={handleValue}
-              // required
+                // required
               />
               <button className="icon">
                 <i className="far fa-edit"></i>
@@ -208,7 +208,7 @@ class UserProfile extends Component {
                 autoComplete="off"
                 value={phone}
                 onChange={handleValue}
-              // required
+                // required
               />
               <button className="icon">
                 <i className="far fa-edit"></i>

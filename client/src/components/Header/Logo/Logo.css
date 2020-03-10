@@ -2,23 +2,31 @@
     /* border: 2px solid red; */
     display: flex;
     align-items: center;
-   
+
     /* height: 8vh; */
     padding: 0 10px;
 }
-    .header-logo img {
-        width: 30px;
-        height: auto;
-    }
 
-    .header-logo h1 {
-        color: black;
-        font-size: 1.5em;
-        padding: 0 5px;
-    }
+.header-logo img {
+    width: 30px;
+    height: auto;
+}
+
+.header-logo h1 {
+    color: black;
+    font-size: 1.5em;
+    padding: 0 5px;
+}
+
+.logoBtn:hover {
+    text-decoration: none;
+}
+
 /*  */
 
 
 @media screen and (max-width: 550px) {
-    .header-logo h1 { display: none; }
+    .header-logo h1 {
+        display: none;
+    }
 }
