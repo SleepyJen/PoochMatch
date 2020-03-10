@@ -1,32 +1,26 @@
-import React from 'react' // , { useState }
-import { Link } from 'react-router-dom'
-import './Logo.css'
+import React from "react"; // , { useState }
+import { Link } from "react-router-dom";
+import "./Logo.css";
 
-
-
-function Logo () {
-
+function Logo() {
   return (
     <div className="header-logo">
-      <img 
-        src="/assets/images/favicon/favicon.png" 
+      <img
+        src="/assets/images/favicon/favicon.png"
         alt="Logo"
         className="icon"
       />
       <h1 className="title-lg">
-        <Link to="/">
+        <Link to="/" className="logoBtn">
           Pooch Match
         </Link>
-        
+
         {/* <a href="/"> */}
-          {/* Pooch Match */}
+        {/* Pooch Match */}
         {/* </a> */}
       </h1>
     </div>
   );
-
 }
 
-
-
-export default Logo
+export default Logo;

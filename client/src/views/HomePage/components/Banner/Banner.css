@@ -1,42 +1,43 @@
 .banner {
-    width: 100%;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    height: 92vh;
-    background: url("/assets/images/dogsPlaying.jpeg");
-    background-size: 100%;
-    background-repeat: no-repeat;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 92vh;
+  background: url("/assets/images/dogsPlaying.jpeg");
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .create-button,
 .login-button {
-    cursor: pointer;
-    padding: 20px;
-    font-size: 10pt;
-    border-radius: 10px;
-    border: 2px solid black;
-    border: none;
-    background-color: #CEBAA7;
-    color: white;
+  cursor: pointer;
+  padding: 20px;
+  font-size: 15pt;
+  border-radius: 10px;
+  border: 2px solid black;
+  border: none;
+  background-color: #cebaa7;
+  color: white;
+}
+
+.signBtn:hover,
+.loginBtn:hover {
+  text-decoration: none;
 }
 
 .create-button:hover,
 .login-button:hover {
-    background-color: #C0977A;
+  background-color: #c0977a;
 }
-
-/* .banner-button:active {
-    background-color: red;
-} */
 
 .banner-text,
 .banner-adoption {
-    font-size: 30pt;
-    color: whitesmoke;
+  font-size: 30pt;
+  color: whitesmoke;
 }
 
-.banner>* {
-    margin: 15px;
+.banner > * {
+  margin: 15px;
 }
