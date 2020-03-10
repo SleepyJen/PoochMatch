@@ -4,19 +4,29 @@ import './SignIn.css'
 import axios from 'axios';
 import Auth from '../../../../auth/Auth.js';
 
-import Header from "../../../../components/Header/Header"
+// import Header from "../../../../components/Header/Header"
 
 const initState = {
   email    : '',
-  password : ''
+  password : '',
+  // checkAuth: false
 };
 
 class SignIn extends Component {
 
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = initState;
   }
+
+
+  // componentDidMount () {
+    // if (this.state.checkAuth === true) {
+      // this.props.history.push('/user')
+    // }
+  // }
+
+
 
   loginUser = async (data) => {
     try {
@@ -33,9 +43,10 @@ class SignIn extends Component {
         const localAuth = result.data.isAuth;
         Auth.updateLocalAuth( localAuth )
         // localStorage.setItem('localAuth',localAuth);
+        console.log('Client Auth:' , Auth.getAuth())
 
-        this.setState({ ...initState })  
-        // console.log('props:', this.props.history)
+        this.setState({ ...initState, checkAuth : true })
+        console.log('props:', this.props.history)
         this.props.history.push('/user')
       
       }

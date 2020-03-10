@@ -17,7 +17,7 @@ export const RoutePrivate = ({component:Component,...rest}) => {
     const comp = (props) => (
         ( Auth.getAuth() ) 
         ? (<Component {...props} />) 
-        : (<Redirect to="/user" />)
+        : (<Redirect to="/" />)
     );
     return ( <Route {...rest}  render={ comp } /> );
 }
