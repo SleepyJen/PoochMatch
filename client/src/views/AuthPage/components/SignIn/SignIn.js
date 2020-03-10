@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './SignIn.css'
 // import db from '../../data.json'
-
+import axios from 'axios';
 
 
 const initState = {
@@ -16,6 +16,30 @@ class SignIn extends Component {
     this.state = initState;
   }
 
+  loginUser = async (data) => {
+    try {
+
+      const result = await axios.post('/user/login' , data);
+      console.log('API Result:', result.data)
+
+      if ( result.data.error ) {
+        console.log('Denied:', result.data.error)
+      } else if ( ! result.data.user ) {
+        console.log('Denied:', result.data.info.message)
+      } else {
+
+        const localAuth = result.data.isAuth;
+        window.localStorage.setItem('localAuth',localAuth);
+
+        this.setState({ ...initState })  
+        // console.log('props:', this.props.history)
+        this.props.history.push('/user')
+      
+      }
+
+    } catch (err) { console.log(err.message) }
+  };
+
 
 
   handleValue = (event) => {
@@ -29,13 +53,9 @@ class SignIn extends Component {
     
     const { email , password } = this.state;
     console.log('Client Data:' , { email , password })
-
-    /*  */
-    // let user = db.find( user => (user.email === email));
-    // if (user) { console.log('User:', user, '√') }
-    /*  */
     
-    this.setState({ ...initState })
+    this.loginUser({ email , password })
+    // this.setState({ ...initState })
   };
 
 
@@ -94,12 +114,6 @@ class SignIn extends Component {
             value="LOGIN"
           />
         </form>
-        {/* <div className="img-comp">
-          <img 
-            src="/assets/images/photo-1518020382113-a7e8fc38eac9.jfif" 
-            alt="register-img"
-          />
-        </div> */}
       </main>
     </div>
     );
@@ -110,22 +124,3 @@ class SignIn extends Component {
 
 
 export default SignIn
-
-
-
-/* 
-            <div class="group">
-              <input 
-                type="text" 
-                name="text" 
-                class="text input"
-                autocomplete="off"
-                autofocus
-              />
-              <label for="text" class="border">
-                <span class="text">
-                  Text
-                </span>
-              </label>
-            </div>
-*/
