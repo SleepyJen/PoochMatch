@@ -74,7 +74,7 @@ function NavBar () {
                 </li>
                 <li>
                   <a 
-                    to="/user/logout/" 
+                    href="/user/logout" 
                     onClick={ () => {
                       Auth.signOut();
                     } }

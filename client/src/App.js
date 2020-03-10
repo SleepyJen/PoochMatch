@@ -7,7 +7,7 @@ import React from "react";
 import "./assets/reset.css";
 import "./assets/App.css";
 
-import Auth from './auth/Auth.js'
+// import Auth from './auth/Auth.js'
 import { RouteAuthenticate , RoutePrivate } from './auth/Route.js';
 
 // import ___ from "./components/___/___.js";
