@@ -14,10 +14,7 @@ import AuthPage from "./views/AuthPage/AuthPage.js";
 import UserPage from "./views/UserPage/UserPage.js";
 import ErrorPage from "./views/ErrorPage/ErrorPage.js";
 
-
-
 function App() {
-
   return (
     <>
       <Router>
@@ -39,17 +36,12 @@ function App() {
           <Route path="/user">
             <UserPage />
           </Route>
-          
-          
 
-          <Route component={ ErrorPage } />
+          <Route component={ErrorPage} />
         </Switch>
       </Router>
     </>
   );
-
 }
-
-
 
 export default App;
