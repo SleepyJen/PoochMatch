@@ -15,5 +15,9 @@ module.exports = {
         return localStorage.getItem('localAuth') !== null;
     },
 
+    updateLocalAuth: (update) => {
+        localStorage.setItem('localAuth', JSON.stringify(update))
+    },
+
     getAuth: function () { return this.isAuthenticated }
 };
