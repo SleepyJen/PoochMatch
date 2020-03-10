@@ -1,7 +1,7 @@
 import React , { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './NavBar.css'
-
+import Auth from '../../../auth/Auth.js'
 
 
 function NavBar () {
@@ -64,21 +64,34 @@ function NavBar () {
               Home
             </Link>
           </li>
-          <li>
-            <Link to="/user">
-              User
-            </Link>
-          </li>
-          <li>
-            <Link to="/user/auth/sign-in">
-              Sign-In
-            </Link>
-          </li>
-          <li>
-            <Link to="/user/auth/sign-up">
-              Sign-Up
-            </Link>
-          </li>
+          
+          {
+            ( Auth.getAuth() )
+            ? (
+              <>
+                <li>
+                  <Link to="/user">
+                    User
+                  </Link>
+                </li>
+              </>
+            )
+            : (
+              <>
+                <li>
+                  <Link to="/user/auth/sign-in">
+                    Sign-In
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to="/user/auth/sign-up">
+                    Sign-Up
+                  </Link>
+                </li>
+              </>   
+            )
+          }
         </ul>
       </nav>
       <div 

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 const fs = require('fs');
+const passport = require('../custom/');
 
 //GET REQUESTS 
 router.get('/', (req, res) => {
@@ -9,6 +10,106 @@ router.get('/', (req, res) => {
         res.json(result);
     });
 });
+
+/*  */
+router.post('/sign-up', (req,res,next) =>{ 
+    console.log('— REGISTER —')
+    console.log('Server Data:', req.body)
+
+    passport.authenticate('local-signup', userRegister)(req,res,next)
+    
+    function userRegister (err,user,info) {
+
+        if (err) {
+            console.log('Auth Error:', err)
+
+            res.status = 500;
+            return res.json({
+                info , user , error: (
+                    err || 'internal server problem'
+                )
+            });
+        }
+
+        if (!user) {
+            console.log('User Error:', user)
+            
+            res.status = 500;
+            return res.json({
+                info , user , error: err 
+            });
+        } 
+        
+
+
+        console.log('User:', user)
+        
+        res.json({
+            message: info,
+            user: { 
+                email: user.email,
+                firstName: user.firstName
+            }
+        })
+
+    }
+    
+})
+
+router.post('/login', (req,res,next) =>{ 
+    console.log('— LOGIN —')
+    console.log('Server Data:', req.body)
+
+    passport.authenticate('local-signin', userLogin)(req,res,next)
+    
+    function userLogin (err,user,info) {
+  
+        if (err) {
+            console.log('Auth Error:', err)
+
+            res.status = 500;
+            return res.json({
+                info , user , error: (
+                    err.message || 'internal server problem'
+                )
+            });
+        }
+
+        if (!user) {
+            console.log('User Error:', user)
+            
+            res.status = 500;
+            return res.json({
+                info , user , error: err
+            });
+        }
+        
+
+
+        console.log('User:', user)
+
+        req.login( user , (error) => {
+            if (error) {
+                console.log('Login Error:', error)
+    
+                return res.json({
+                    error: error || 'internal server problem'
+                });
+            } else {
+                console.log('Auth User:', user)
+
+                return res
+                .json({
+                    message: info,
+                    user: { email : user.email },
+                    isAuth: req.isAuthenticated()
+                });
+            }
+        })
+
+    }
+})
+/*  */
 
 router.get('/getByEmail/:email', (req, res) => {
     db.User.findOne({
