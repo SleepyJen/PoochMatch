@@ -4,6 +4,8 @@ import React from "react";
 import "./assets/reset.css";
 import "./assets/App.css";
 
+import { RouteAuthenticate , RoutePrivate } from './auth/Route.js';
+
 // import ___ from "./components/___/___.js";
 import Header from "./components/Header/Header.js";
 
@@ -29,13 +31,16 @@ function App() {
             <MainPage />
           </Route>
 
-          <Route exact path="/user/auth/:entry">
-            <AuthPage />
-          </Route>
+          <RouteAuthenticate 
+            exact 
+            path="/user/auth/:entry" 
+            component={ AuthPage } 
+          />
 
-          <Route path="/user">
-            <UserPage />
-          </Route>
+          <RoutePrivate 
+            path="/user" 
+            component={ UserPage }
+          />
 
           <Route component={ErrorPage} />
         </Switch>

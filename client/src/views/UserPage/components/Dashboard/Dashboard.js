@@ -35,7 +35,4 @@ class Dashboard extends Component {
 }
 
 // export default SimpleMap;
-
-
-
 export default Dashboard

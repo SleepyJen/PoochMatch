@@ -9,6 +9,18 @@ const MONGO_URI =
     process.env.MONGODB_URI || "mongodb://localhost/pooch_match";
 const multer = require('multer');
 const bodyParser = require('body-parser');
+const session = require("cookie-session");
+const passport = require("./custom/");
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+    name: "session",
+    keys: ["key1", "key2"]
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
@@ -18,10 +30,6 @@ mongoose.connect(MONGO_URI, {
     console.log('Connected to Database'.red);
     console.log('------------------------------'.rainbow);
 }).catch(err => console.log(err));
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 const userRoutes = require('./controller/userRoutes');
 app.use('/user', userRoutes);

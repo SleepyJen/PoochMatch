@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./NavBar.css";
 
-function NavBar() {
-  const toggleNav = event => {
-    const $menuBar = event.currentTarget.querySelector("i");
-    $menuBar.classList.toggle("fa-bars");
-    $menuBar.classList.toggle("fa-times");
-    document.querySelector(".navbar").classList.toggle("active");
+import React , { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import './NavBar.css'
+import Auth from '../../../auth/Auth.js'
+
+
+function NavBar () {
+
+  const toggleNav = (event) => {
+    const $menuBar = event.currentTarget.querySelector('i');
+    $menuBar.classList.toggle('fa-bars')
+    $menuBar.classList.toggle('fa-times') 
+    document.querySelector('.navbar').classList.toggle('active')
   };
 
   const escKeyNav = event => {
@@ -55,15 +59,34 @@ function NavBar() {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/user">User</Link>
-          </li>
-          <li>
-            <Link to="/user/auth/sign-in">Sign-In</Link>
-          </li>
-          <li>
-            <Link to="/user/auth/sign-up">Sign-Up</Link>
-          </li>
+          
+          {
+            ( Auth.getAuth() )
+            ? (
+              <>
+                <li>
+                  <Link to="/user">
+                    User
+                  </Link>
+                </li>
+              </>
+            )
+            : (
+              <>
+                <li>
+                  <Link to="/user/auth/sign-in">
+                    Sign-In
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to="/user/auth/sign-up">
+                    Sign-Up
+                  </Link>
+                </li>
+              </>   
+            )
+          }
         </ul>
       </nav>
       <div className="menu-bar" onClick={toggleNav}>

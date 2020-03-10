@@ -10,78 +10,93 @@ const initState = {
   email: '',
   password: '',
   City: '',
-  states: '',
+  State: '',
   phone: '',
 };
 
 class SignUp extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = initState;
   }
 
   //gets all states from the json file for States in USA
-  statesListOpt = () => {
-    return allStatesList.map((states, id) => (
+  statesListOption = () => {
+    return allStatesList.map((state, id) => (
       <option
         key={id}
-        value={states.abbreviation}
-      >{states.name}
+        value={state.abbreviation}
+      >{state.name}
       </option>
     ));
   };
 
+  // createUser = async (data) => {
+  //   try {
+      
+  //     let em = data.email;
+  //     const lookupEmail = await axios.get(`/user/getByEmail/${em}`);
+  //     console.log(lookupEmail);
+  //     if (lookupEmail) {
+  //       alert('email already registered');
+  //     } else {
+  //       const result = await axios.post(
+  //         '/user/createNewUser', {
+  //         firstName: data.firstName,
+  //         lastName: data.lastName,
+  //         password: data.password,
+  //         email: data.email,
+  //         City: data.City,
+  //         State: data.states,
+  //         phone: data.phone
+  //       });
+  //       console.log('API Result:', result.data);
+  //     }
+
+  //   } catch (err) { 
+  //     console.log(err.message) 
+  //   }
+  // };
+
+/*  */
   createUser = async (data) => {
     try {
-      let em = data.email;
-      const lookupEmail = await axios.get(`/user/getByEmail/${em}`);
-      console.log(lookupEmail);
-      if (lookupEmail) {
-        alert('email already registered');
+
+      const result = await axios.post('/user/sign-up', data);
+      console.log('API Result:', result.data)
+
+      if ( result.data.error ) {
+        console.log('Denied:', result.data.error)
+      } else if ( ! result.data.user ) {
+        console.log('Denied:', result.data.info.message)
       } else {
-        const result = await axios.post(
-          '/user/createNewUser', {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          password: data.password,
-          email: data.email,
-          City: data.City,
-          State: data.states,
-          phone: data.phone
-        }
-        );
-        console.log('API Result:', result.data);
+
+        this.setState({ ...initState }) 
+        console.log('props:', this.props.history)
+        this.props.history.push('/user/auth/sign-in')
+
       }
-    } catch (err) {
-      console.log(err.message)
-    }
+    
+    } catch (err) { console.log(err) }
   };
+/*  */
 
   //handles every on change value
-  handleValue = (event) => {
+  handleValueChange = (event) => {
     const { name, value } = event.target;
     // console.log('Target:', name, '—', value)
-    this.setState({ [name]: value })
+    this.setState({ [name] : value })
   };
 
   submitForm = (event) => {
     event.preventDefault()
 
-    const user_data = this.state;
-    console.log('Client Data:', user_data)
+    const userData = this.state;
+    console.log('Client Data:', userData)
 
-    /*  */
-    // let user = db.find( user => (user.email === email));
-    // if (!user) {
-    //   console.log('User: ——— √')
-    //   db.push({ id:++db.length , email , password })
-    //   console.log(db)
-    // }
-    /*  */
-
-    this.createUser(user_data)
-    this.setState({ ...initState })
+    this.createUser(userData)
+    // this.setState({ ...initState })
   };
 
   render() {
@@ -91,11 +106,11 @@ class SignUp extends Component {
       email,
       password,
       City,
-      states,
+      States,
       phone
     } = this.state;
     const {
-      handleValue,
+      handleValueChange,
       submitForm
     } = this;
 
@@ -115,7 +130,7 @@ class SignUp extends Component {
                 autoComplete="off"
                 autoFocus
                 value={email}
-                onChange={handleValue}
+                onChange={handleValueChange}
               />
               <label htmlFor="email" className="border">
                 <span className="text">
@@ -131,7 +146,7 @@ class SignUp extends Component {
                 className="password input"
                 autoComplete="off"
                 value={password}
-                onChange={handleValue}
+                onChange={handleValueChange}
               />
               <label htmlFor="password" className="border">
                 <span className="text">
@@ -147,7 +162,7 @@ class SignUp extends Component {
                 className="firstName input"
                 autoComplete="off"
                 value={firstName}
-                onChange={handleValue}
+                onChange={handleValueChange}
               />
               <label htmlFor="firstName" className="border">
                 <span className="text">
@@ -163,7 +178,7 @@ class SignUp extends Component {
                 className="lastName input"
                 autoComplete="off"
                 value={lastName}
-                onChange={handleValue}
+                onChange={handleValueChange}
               />
               <label htmlFor="lastName" className="border">
                 <span className="text">
@@ -179,7 +194,7 @@ class SignUp extends Component {
                 className="City input"
                 autoComplete="off"
                 value={City}
-                onChange={handleValue}
+                onChange={handleValueChange}
               />
               <label htmlFor="City" className="border">
                 <span className="text">
@@ -189,18 +204,14 @@ class SignUp extends Component {
             </div>
 
             <select
-              form="states"
-              name="states"
-              className="states"
-              defaultValue={states}
-              onChange={handleValue}
+              form="State"
+              name="State"
+              className="State"
+              defaultValue={States}
+              onChange={handleValueChange}
             >
-              <option hidden>
-                — Select State * —
-            </option>
-              {
-                this.statesListOpt()
-              }
+              <option hidden>— Select State * —</option>
+              { this.statesListOption() }
             </select>
 
             <div className="group">
@@ -210,12 +221,12 @@ class SignUp extends Component {
                 className="phone input"
                 autoComplete="off"
                 value={phone}
-                onChange={handleValue}
+                onChange={handleValueChange}
               />
               <label htmlFor="phone" className="border">
                 <span className="text">
                   Phone
-              </span>
+                </span>
               </label>
             </div>
 
@@ -228,14 +239,6 @@ class SignUp extends Component {
               value="SIGN-UP"
             />
           </form>
-
-          {/* <div className="img-comp">
-          <img 
-            src="/assets/images/photo-1534351450181-ea9f78427fe8.jfif" 
-
-            alt="register-img"
-          />
-        </div> */}
         </main>
       </div>
     );
@@ -249,39 +252,3 @@ export default SignUp
 
 
 
-/*
-            <div className="group">
-              <input
-                type="text"
-                name="___"
-                className="___ input"
-                autoComplete="off"
-                value={ ___ }
-                onChange={ handleValue }
-              />
-              <label htmlFor="___" className="border">
-                <span className="___">
-                  ___
-                </span>
-              </label>
-            </div>
-*/
-
-
-/*
-<div className="group">
-<input
-  type="text"
-  name="state"
-  className="state input"
-  autoComplete="off"
-  value={ state }
-  onChange={ handleValue }
-/>
-<label htmlFor="state" className="border">
-  <span className="text">
-    State *
-  </span>
-</label>
-</div>
- */
