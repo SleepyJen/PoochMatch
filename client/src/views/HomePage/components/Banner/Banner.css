@@ -10,7 +10,8 @@
     background-repeat: no-repeat;
 }
 
-.banner-button {
+.create-button,
+.login-button {
     cursor: pointer;
     padding: 20px;
     font-size: 10pt;
@@ -21,13 +22,14 @@
     color: white;
 }
 
-.banner-button:hover {
+.create-button:hover,
+.login-button:hover {
     background-color: #C0977A;
 }
 
-.banner-button:active {
+/* .banner-button:active {
     background-color: red;
-}
+} */
 
 .banner-text,
 .banner-adoption {

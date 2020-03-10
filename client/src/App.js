@@ -1,9 +1,13 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { 
+  BrowserRouter as Router, 
+  Route , Switch , Redirect 
+} from "react-router-dom";
 import React from "react";
 
 import "./assets/reset.css";
 import "./assets/App.css";
 
+// import Auth from './auth/Auth.js'
 import { RouteAuthenticate , RoutePrivate } from './auth/Route.js';
 
 // import ___ from "./components/___/___.js";
@@ -16,10 +20,7 @@ import AuthPage from "./views/AuthPage/AuthPage.js";
 import UserPage from "./views/UserPage/UserPage.js";
 import ErrorPage from "./views/ErrorPage/ErrorPage.js";
 
-
-
 function App() {
-
   return (
     <>
       <Router>
@@ -34,6 +35,10 @@ function App() {
             <MainPage />
           </Route>
 
+          <Route exact path="/user/logout">
+            <Redirect to="/" />
+          </Route>
+
           <RouteAuthenticate 
             exact 
             path="/user/auth/:entry" 
@@ -45,14 +50,11 @@ function App() {
             component={ UserPage }
           />
 
-          <Route component={ ErrorPage } />
+          <Route component={ErrorPage} />
         </Switch>
       </Router>
     </>
   );
-
 }
-
-
 
 export default App;

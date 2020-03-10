@@ -4,6 +4,8 @@ import './SignUp.css'
 import allStatesList from './all-states-list.json'
 import axios from 'axios';
 
+import Header from '../../../../components/Header/Header'
+
 const initState = {
   firstName: '',
   lastName: '',
@@ -116,6 +118,7 @@ class SignUp extends Component {
 
     return (
       <div className="main-body">
+        {/* <Header /> */}
         <main className="register-page">
           <h2>Register Page</h2>
           <form

@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import './SignIn.css'
 // import db from '../../data.json'
 import axios from 'axios';
+import Auth from '../../../../auth/Auth.js';
 
+import Header from "../../../../components/Header/Header"
 
 const initState = {
   email: '',
@@ -29,8 +31,8 @@ class SignIn extends Component {
       } else {
 
         const localAuth = result.data.isAuth;
-        window.localStorage.setItem('localAuth', localAuth);
-
+        Auth.updateLocalAuth( localAuth )
+        // localStorage.setItem('localAuth',localAuth);
         this.setState({ ...initState })
         // console.log('props:', this.props.history)
         const user = await axios.get(`/user/getByEmail/${result.data.email}`);
@@ -68,25 +70,27 @@ class SignIn extends Component {
 
     return (
       <div className="main-body">
-        <main className="login-page">
-          <h2>Login Page</h2>
-          <form
-            className="form"
-            onSubmit={submitForm}
-          >
-            <div className="group">
-              <input
-                type="text"
-                name="email"
-                className="email input"
-                autoComplete="off"
-                autoFocus
-                value={email}
-                onChange={handleValue}
-              />
-              <label htmlFor="email" className="border">
-                <span className="text">
-                  Email
+
+       {/* <Header /> */}
+      <main className="login-page">
+        <h2>Login Page</h2>
+        <form 
+          className="form" 
+          onSubmit={ submitForm } 
+        >
+          <div className="group">
+            <input 
+              type="text" 
+              name="email" 
+              className="email input"
+              autoComplete="off"
+              autoFocus
+              value={ email }
+              onChange={ handleValue }
+            />
+            <label htmlFor="email" className="border">
+              <span className="text">
+                Email
               </span>
               </label>
             </div>
@@ -126,3 +130,6 @@ class SignIn extends Component {
 
 
 export default SignIn
+
+
+
