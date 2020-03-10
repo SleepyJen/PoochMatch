@@ -69,7 +69,7 @@ class SignIn extends Component {
 
     return (
       <div className="main-body">
-       <Header />
+       {/* <Header /> */}
       <main className="login-page">
         <h2>Login Page</h2>
         <form 
