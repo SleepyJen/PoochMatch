@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./UserProfile.css";
 
+
 const initState = {
   firstName: "",
   lastName: "",
@@ -20,214 +21,108 @@ class UserProfile extends Component {
     this.state = initState;
   }
 
-  handleValue = event => {
-    const { name, value } = event.target;
-    // console.log('Target:', name, '—', value)
-    this.setState({ [name]: value });
-  };
+  // handleValue = event => {
+  //   const { name, value } = event.target;
+  //   // console.log('Target:', name, '—', value)
+  //   this.setState({ [name]: value });
+  // };
 
-  submitForm = event => {
-    event.preventDefault();
-    console.log("User Data:", this.state);
-    this.setState({ ...initState });
-  };
+  // submitForm = event => {
+  //   event.preventDefault();
+  //   console.log("User Data:", this.state);
+  //   this.setState({ ...initState });
+  // };
 
   render() {
-    const {
-      firstName,
-      lastName,
-      password,
-      City,
-      State,
-      email,
-      Interests,
-      Pets,
-      imgs,
-      phone
-    } = this.state;
-    const { handleValue, submitForm } = this;
+    // const {
+    //   firstName,
+    //   lastName,
+    //   password,
+    //   City,
+    //   State,
+    //   email,
+    //   Interests,
+    //   Pets,
+    //   imgs,
+    //   phone
+    // } = this.state;
+    // const { handleValue, submitForm } = this;
 
     return (
       <section className="component">
         {/* <h2>This page displays your information.</h2> */}
 
-        <form onSubmit={submitForm}>
+        <form>
           <fieldset>
             <div>
               <legend>User Profile</legend>
-              <label htmlFor="firstName">*First Name:</label>
-              <input
-                type="text"
-                name="firstName"
-                placeholder=""
-                autoComplete="off"
-                value={firstName}
-                onChange={handleValue}
-                autoFocus
-                // required
-              />
-              <button className="icon">
-                <i className="far fa-edit"></i>
-              </button>
+            </div>
+            <div className="userProfileForm">
+              <div className="firstName" id="firstName"><strong>First Name: </strong> The first name goes here
+              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Modify
+                </button>
+              </div>
+            </div>
+            <div>
+              <div className="lastName" id="lastName"><strong>Last Name: </strong> The last name goes here
+              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Modify
+                </button>
+              </div>
+            </div>
+            <div>
+              <div className="password" id="password"><strong>Password: </strong> The password goes here
+              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Modify
+                </button>
+              </div>
+            </div>
+            <div>
+              <div className="city" id="city"><strong>City: </strong> The city goes here
+              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Modify
+                </button>
+              </div>
+            </div>
+            <div>
+              <div className="state" id="state"><strong>State: </strong> The state goes here
+              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Modify
+                </button>
+              </div>
+            </div>
+            <div>
+              <div className="email" id="email"><strong>Email: </strong> The email goes here
+              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Modify
+                </button>
+              </div>
             </div>
 
             <div>
-              <label htmlFor="lastName">*Last Name:</label>
-              <input
-                type="text"
-                name="lastName"
-                placeholder=""
-                autoComplete="off"
-                value={lastName}
-                onChange={handleValue}
-                // required
-              />
-              <button className="icon">
-                <i className="far fa-edit"></i>
-              </button>
+              <div className="interests" id="interests"><strong>Interests: </strong> The interests goes here
+              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Modify
+                </button>
+              </div>
             </div>
 
             <div>
-              <label htmlFor="password">*Password:</label>
-              <input
-                type="text"
-                name="password"
-                placeholder=""
-                autoComplete="off"
-                value={password}
-                onChange={handleValue}
-                // required
-              />
-              <button className="icon">
-                <i className="far fa-edit"></i>
-              </button>
+              <div className="pets" id="pets"><strong>Pets: </strong> The pets go here
+              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Modify
+                </button>
+              </div>
             </div>
 
             <div>
-              <label htmlFor="City">*City:</label>
-              <input
-                type="text"
-                name="City"
-                placeholder=""
-                autoComplete="off"
-                value={City}
-                onChange={handleValue}
-                // required
-              />
-              <button className="icon">
-                <i className="far fa-edit"></i>
-              </button>
+              <div className="phone" id="phone"><strong>Phone #: </strong> The phone # goes here
+              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Modify
+                </button>
+              </div>
             </div>
-
-            <div>
-              <label htmlFor="State">*State:</label>
-              <input
-                type="text"
-                name="State"
-                placeholder=""
-                autoComplete="off"
-                value={State}
-                onChange={handleValue}
-                // required
-              />
-              <button className="icon">
-                <i className="far fa-edit"></i>
-              </button>
-            </div>
-
-            <div>
-              <label htmlFor="email">*Email:</label>
-              <input
-                type="text"
-                name="email"
-                placeholder=""
-                autoComplete="off"
-                value={email}
-                onChange={handleValue}
-                // required
-              />
-              <button className="icon">
-                <i className="far fa-edit"></i>
-              </button>
-            </div>
-
-            <div>
-              <label htmlFor="Interests">*Interests:</label>
-              <input
-                type="text"
-                name="Interest"
-                placeholder=""
-                autoComplete="off"
-                value={Interests}
-                onChange={handleValue}
-                // required
-              />
-              <button className="icon">
-                <i className="far fa-edit"></i>
-              </button>
-            </div>
-
-            <div>
-              <label htmlFor="Pets">*Pets:</label>
-              <input
-                type="text"
-                name="Pet"
-                placeholder=""
-                autoComplete="off"
-                value={Pets}
-                onChange={handleValue}
-                // required
-              />
-              <button className="icon">
-                <i className="far fa-edit"></i>
-              </button>
-            </div>
-
-            <div>
-              <label htmlFor="imgs">*Images:</label>
-              <input
-                type="text"
-                name="imgs"
-                placeholder=""
-                autoComplete="off"
-                value={imgs}
-                onChange={handleValue}
-                // required
-              />
-              <button className="icon">
-                <i className="far fa-edit"></i>
-              </button>
-            </div>
-
-            <div>
-              <label htmlFor="phone">Phone:</label>
-              <input
-                type="text"
-                name="phone"
-                placeholder=""
-                autoComplete="off"
-                value={phone}
-                onChange={handleValue}
-                // required
-              />
-              <button className="icon">
-                <i className="far fa-edit"></i>
-              </button>
-            </div>
-
-            <button
-              onClick="save-btn"
-              type="submit"
-              name="save"
-              className="save-btn"
-              value="Save"
-            >
-              Save
-            </button>
-
-            <button onClick="edit-btn" className="edit-btn">
-              Edit
-            </button>
           </fieldset>
         </form>
       </section>
@@ -236,11 +131,3 @@ class UserProfile extends Component {
 }
 
 export default UserProfile;
-
-/*
-= User Model =
-- interests []
-- pets []
-- image ???
-- subscription ...
-*/
