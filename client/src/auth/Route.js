@@ -5,20 +5,21 @@ import Auth from './Auth.js'
 
 
 export const RouteAuthenticate = ({ component: Component, ...rest }) => {
-    const comp = (props) => (
-        (!Auth.getAuth())
+    const comp = (props) => {
+        console.log(props)
+        return (!Auth.getAuth())
             ? (<Component {...props} />)
             : (<Redirect to="/user" />)
-    );
+    };
     return (<Route {...rest} render={comp} />);
 }
 
 export const RoutePrivate = ({ component: Component, ...rest }) => {
     const comp = (props) => (
 
-        ( Auth.getAuth() ) 
-        ? (<Component {...props} />) 
-        : (<Redirect to="/user" />)
+        (Auth.getAuth())
+            ? (<Component {...props} />)
+            : (<Redirect to="/user" />)
     );
     return (<Route {...rest} render={comp} />);
 }

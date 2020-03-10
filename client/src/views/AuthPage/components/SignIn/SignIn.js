@@ -31,7 +31,7 @@ class SignIn extends Component {
       } else {
 
         const localAuth = result.data.isAuth;
-        Auth.updateLocalAuth( localAuth )
+        Auth.updateLocalAuth(localAuth)
         // localStorage.setItem('localAuth',localAuth);
         this.setState({ ...initState })
         // console.log('props:', this.props.history)
@@ -54,10 +54,8 @@ class SignIn extends Component {
 
   submitForm = (event) => {
     event.preventDefault()
-
     const { email, password } = this.state;
     console.log('Client Data:', { email, password })
-
     this.loginUser({ email, password })
     // this.setState({ ...initState })
   };
@@ -71,26 +69,26 @@ class SignIn extends Component {
     return (
       <div className="main-body">
 
-       {/* <Header /> */}
-      <main className="login-page">
-        <h2>Login Page</h2>
-        <form 
-          className="form" 
-          onSubmit={ submitForm } 
-        >
-          <div className="group">
-            <input 
-              type="text" 
-              name="email" 
-              className="email input"
-              autoComplete="off"
-              autoFocus
-              value={ email }
-              onChange={ handleValue }
-            />
-            <label htmlFor="email" className="border">
-              <span className="text">
-                Email
+        {/* <Header /> */}
+        <main className="login-page">
+          <h2>Login Page</h2>
+          <form
+            className="form"
+            onSubmit={submitForm}
+          >
+            <div className="group">
+              <input
+                type="text"
+                name="email"
+                className="email input"
+                autoComplete="off"
+                autoFocus
+                value={email}
+                onChange={handleValue}
+              />
+              <label htmlFor="email" className="border">
+                <span className="text">
+                  Email
               </span>
               </label>
             </div>

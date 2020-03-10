@@ -12,20 +12,20 @@ router.get('/', (req, res) => {
 });
 
 /*  */
-router.post('/sign-up', (req,res,next) =>{ 
+router.post('/sign-up', (req, res, next) => {
     console.log('— REGISTER —')
     console.log('Server Data:', req.body)
 
-    passport.authenticate('local-signup', userRegister)(req,res,next)
-    
-    function userRegister (err,user,info) {
+    passport.authenticate('local-signup', userRegister)(req, res, next)
+
+    function userRegister(err, user, info) {
 
         if (err) {
             console.log('Auth Error:', err)
 
             res.status = 500;
             return res.json({
-                info , user , error: (
+                info, user, error: (
                     err || 'internal server problem'
                 )
             });
@@ -33,43 +33,42 @@ router.post('/sign-up', (req,res,next) =>{
 
         if (!user) {
             console.log('User Error:', user)
-            
+
             res.status = 500;
             return res.json({
-                info , user , error: err 
+                info, user, error: err
             });
-        } 
-        
+        }
+
 
 
         console.log('User:', user)
-        
+
         res.json({
             message: info,
-            user: { 
+            user: {
                 email: user.email,
                 firstName: user.firstName
             }
         })
 
     }
-    
+
 })
 
-router.post('/login', (req,res,next) =>{ 
+router.post('/login', (req, res, next) => {
     console.log('— LOGIN —')
     console.log('Server Data:', req.body)
 
-    passport.authenticate('local-signin', userLogin)(req,res,next)
-    
-    function userLogin (err,user,info) {
-  
+    passport.authenticate('local-signin', userLogin)(req, res, next);
+
+    function userLogin(err, user, info) {
         if (err) {
             console.log('Auth Error:', err)
 
             res.status = 500;
             return res.json({
-                info , user , error: (
+                info, user, error: (
                     err.message || 'internal server problem'
                 )
             });
@@ -77,21 +76,21 @@ router.post('/login', (req,res,next) =>{
 
         if (!user) {
             console.log('User Error:', user)
-            
+
             res.status = 500;
             return res.json({
-                info , user , error: err
+                info, user, error: err
             });
         }
-        
+
 
 
         console.log('User:', user)
 
-        req.login( user , (error) => {
+        req.login(user, (error) => {
             if (error) {
                 console.log('Login Error:', error)
-    
+
                 return res.json({
                     error: error || 'internal server problem'
                 });
@@ -99,11 +98,11 @@ router.post('/login', (req,res,next) =>{
                 console.log('Auth User:', user)
 
                 return res
-                .json({
-                    message: info,
-                    user: { email : user.email },
-                    isAuth: req.isAuthenticated()
-                });
+                    .json({
+                        message: info,
+                        user: { email: user.email },
+                        isAuth: req.isAuthenticated()
+                    });
             }
         })
 
@@ -113,7 +112,7 @@ router.post('/login', (req,res,next) =>{
 router.get('/logout', (req, res) => {
     console.log('— LOGOUT —')
     console.log('Logout Session:', req.user)
-    
+
     req.logout()
 
     console.log(req.session)
