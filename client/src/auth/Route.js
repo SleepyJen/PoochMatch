@@ -21,3 +21,6 @@ export const RoutePrivate = ({component:Component,...rest}) => {
     );
     return ( <Route {...rest}  render={ comp } /> );
 }
+
+
+
