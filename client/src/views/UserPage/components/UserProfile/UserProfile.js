@@ -67,7 +67,7 @@ class UserProfile extends Component {
               // required
               />
               <button className="icon">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
               </button>
             </div>
 
@@ -83,7 +83,7 @@ class UserProfile extends Component {
               // required
               />
               <button className="icon">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
               </button>
             </div>
 
@@ -99,7 +99,7 @@ class UserProfile extends Component {
               // required
               />
               <button className="icon">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
               </button>
             </div>
 
@@ -115,7 +115,7 @@ class UserProfile extends Component {
               // required
               />
               <button className="icon">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
               </button>
             </div>
 
@@ -131,7 +131,7 @@ class UserProfile extends Component {
               // required
               />
               <button className="icon">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
               </button>
             </div>
 
@@ -147,7 +147,7 @@ class UserProfile extends Component {
               // required
               />
               <button className="icon">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
               </button>
             </div>
 
@@ -163,7 +163,7 @@ class UserProfile extends Component {
               // required
               />
               <button className="icon">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
               </button>
             </div>
 
@@ -179,7 +179,7 @@ class UserProfile extends Component {
               // required
               />
               <button className="icon">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
               </button>
             </div>
 
@@ -195,7 +195,7 @@ class UserProfile extends Component {
               // required
               />
               <button className="icon">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
               </button>
             </div>
 
@@ -211,7 +211,7 @@ class UserProfile extends Component {
               // required
               />
               <button className="icon">
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
               </button>
             </div>
 
