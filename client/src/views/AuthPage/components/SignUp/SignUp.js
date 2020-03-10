@@ -4,7 +4,7 @@ import './SignUp.css'
 import allStatesList from './all-states-list.json'
 import axios from 'axios';
 
-import Header from '../../../../components/Header/Header'
+// import Header from '../../../../components/Header/Header'
 
 const initState = {
   firstName: '',

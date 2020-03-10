@@ -4,7 +4,7 @@ import './SignIn.css'
 import axios from 'axios';
 import Auth from '../../../../auth/Auth.js';
 
-import Header from "../../../../components/Header/Header"
+// import Header from "../../../../components/Header/Header"
 
 const initState = {
   email: '',
@@ -13,10 +13,19 @@ const initState = {
 
 class SignIn extends Component {
 
-  constructor() {
-    super()
+  constructor (props) {
+    super(props)
     this.state = initState;
   }
+
+
+  // componentDidMount () {
+    // if (this.state.checkAuth === true) {
+      // this.props.history.push('/user')
+    // }
+  // }
+
+
 
   loginUser = async (data) => {
     try {
