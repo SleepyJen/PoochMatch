@@ -16,9 +16,10 @@ export const RouteAuthenticate = ({ component: Component, ...rest }) => {
 
 export const RoutePrivate = ({ component: Component, ...rest }) => {
     const comp = (props) => {
+        console.log(props);
         return (Auth.getAuth())
             ? (<Component {...props} />)
-            : (<Redirect to={`/user?User_id=${props.location}`} />)
+            : (<Redirect to={`/user`} />)
     };
     return (<Route {...rest} render={comp} />);
 }

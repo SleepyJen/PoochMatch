@@ -40,7 +40,7 @@ function App() {
             component={AuthPage}
           />
 
-          <RoutePrivate
+          <RouteAuthenticate
             path="/user"
             component={UserPage}
           />
