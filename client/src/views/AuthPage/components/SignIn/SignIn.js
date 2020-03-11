@@ -30,7 +30,7 @@ class SignIn extends Component {
   loginUser = async (data) => {
     try {
       const result = await axios.post('/user/login', data);
-      console.log('API Result:', result.data)
+      console.log(result);
 
       if (result.data.error) {
         console.log('Denied:', result.data.error)
@@ -43,7 +43,6 @@ class SignIn extends Component {
         // localStorage.setItem('localAuth',localAuth);
         this.setState({ ...initState })
         // console.log('props:', this.props.history)
-        console.log(result.data.user.email);
         const user = await axios.get(`/user/getByEmail/${result.data.user.email}`);
         console.log(user);
         this.props.location.state = user.data._id;
