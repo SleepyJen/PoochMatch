@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./UserProfile.css";
 import axios from 'axios';
+import Images from '../Images/Images';
 
 const initState = {
   firstName: "",
@@ -12,7 +13,9 @@ const initState = {
   Interests: "",
   Pets: "",
   imgs: "",
-  phone: ""
+  phone: "",
+  imgId: "",
+  imgLocation: ""
 };
 
 class UserProfile extends Component {
@@ -20,6 +23,76 @@ class UserProfile extends Component {
     super();
     this.state = initState;
   }
+
+  //when someone uploads an image
+  fileSelected = (event) => {
+    console.log(event.target.files[0]);
+    let data = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      password: this.state.password,
+      City: this.state.City,
+      State: this.state.State,
+      email: this.state.email,
+      Interests: this.state.Interests,
+      Pets: this.state.Pets,
+      imgs: event.target.files[0],
+      phone: this.state.phone,
+      imgId: "",
+      imgLocation: ""
+    }
+    this.setState(data);
+  }
+
+  //upload file
+  fileUpload = async (event) => {
+    event.preventDefault();
+    const fd = new FormData();
+    fd.append('image', this.state.imgs, this.state.imgs.name);
+    await axios.post('/addImage/file', fd).then(result => {
+      console.log(result.data.data._id);
+      let data = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        password: this.state.password,
+        City: this.state.City,
+        State: this.state.State,
+        email: this.state.email,
+        Interests: this.state.Interests,
+        Pets: this.state.Pets,
+        imgs: this.state.imgs,
+        phone: this.state.phone,
+        imgId: result.data.data._id,
+        imgLocation: ""
+      }
+      this.setState(data);
+
+    });
+    console.log(this.state);
+    const urlQuerries = new URLSearchParams(window.location.search);
+    const userId = urlQuerries.get('User_id');
+    await axios.post(`/user/addImage/${userId}`, {
+      imgs: this.state.imgId
+    });
+    let location = await axios.get(`/addImage/${this.state.imgId}`);
+    console.log(location.data.data);
+    let data = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      password: this.state.password,
+      City: this.state.City,
+      State: this.state.State,
+      email: this.state.email,
+      Interests: this.state.Interests,
+      Pets: this.state.Pets,
+      imgs: this.state.imgs,
+      phone: this.state.phone,
+      imgId: this.state.imgId,
+      imgLocation: location.data.data
+    }
+    this.setState(data);
+  }
+
 
   async componentDidMount() {
     const urlQuerries = new URLSearchParams(window.location.search);
@@ -37,7 +110,9 @@ class UserProfile extends Component {
       Interests: data.Interests,
       Pets: data.pets,
       imgs: "",
-      phone: data.phone
+      phone: data.phone,
+      imgId: "",
+      imgLocation: ""
     }
     this.setState(newState);
   }
@@ -55,19 +130,6 @@ class UserProfile extends Component {
   // };
 
   render() {
-    // const {
-    //   firstName,
-    //   lastName,
-    //   password,
-    //   City,
-    //   State,
-    //   email,
-    //   Interests,
-    //   Pets,
-    //   imgs,
-    //   phone
-    // } = this.state;
-    // const { handleValue, submitForm } = this;
 
     return (
       <section className="component">
@@ -78,45 +140,46 @@ class UserProfile extends Component {
             <div>
               <legend>User Profile</legend>
             </div>
+            <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgLocation} />
             <div className="userProfileForm">
               <div className="firstName" id="firstName"><strong>First Name: </strong> {this.state.firstName}
-                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i class="far fa-edit"></i>
+                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" name="firstName">
+                  Edit<i className="far fa-edit"></i>
                 </button>
               </div>
             </div>
             <div>
               <div className="lastName" id="lastName"><strong>Last Name: </strong> {this.state.lastName}
-                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i class="far fa-edit"></i>
+                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" name="lastName">
+                  Edit<i className="far fa-edit"></i>
                 </button>
               </div>
             </div>
             <div>
               <div className="password" id="password"><strong>Password: </strong> Hidden for privacy
-                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i class="far fa-edit"></i>
+                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" name="password">
+                  Edit<i className="far fa-edit"></i>
                 </button>
               </div>
             </div>
             <div>
               <div className="city" id="city"><strong>City: </strong> {this.state.City}
                 <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i class="far fa-edit"></i>
+                  Edit<i className="far fa-edit"></i>
                 </button>
               </div>
             </div>
             <div>
               <div className="state" id="state"><strong>State: </strong> {this.state.State}
                 <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i class="far fa-edit"></i>
+                  Edit<i className="far fa-edit"></i>
                 </button>
               </div>
             </div>
             <div>
               <div className="email" id="email"><strong>Email: </strong> {this.state.email}
                 <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i class="far fa-edit"></i>
+                  Edit<i className="far fa-edit"></i>
                 </button>
               </div>
             </div>
@@ -124,7 +187,7 @@ class UserProfile extends Component {
             <div>
               <div className="interests" id="interests"><strong>Interests: </strong> {this.state.Interests}
                 <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i class="far fa-edit"></i>
+                  Edit<i className="far fa-edit"></i>
                 </button>
               </div>
             </div>
@@ -132,7 +195,7 @@ class UserProfile extends Component {
             <div>
               <div className="pets" id="pets"><strong>Pets: </strong> {this.state.Pets}
                 <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i class="far fa-edit"></i>
+                  Edit<i className="far fa-edit"></i>
                 </button>
               </div>
             </div>
@@ -140,7 +203,7 @@ class UserProfile extends Component {
             <div>
               <div className="phone" id="phone"><strong>Phone #: </strong> {this.state.phone}
                 <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i class="far fa-edit"></i>
+                  Edit<i className="far fa-edit"></i>
                 </button>
               </div>
             </div>
