@@ -1,20 +1,21 @@
-import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Tabs } from 'react-bootstrap'
-import { Tab } from 'react-bootstrap'
-import './UserTabs.css'
-import Dashboard from '../Dashboard/Dashboard'
-import PoochProfile from '../PoochProfile/PoochProfile'
-import UserProfile from '../UserProfile/UserProfile'
-
-
-
+import { Tabs } from "react-bootstrap";
+import { Tab } from "react-bootstrap";
+import "./UserTabs.css";
+import Dashboard from "../Dashboard/Dashboard";
+import PoochProfile from "../PoochProfile/PoochProfile";
+import UserProfile from "../UserProfile/UserProfile";
 
 function UserTabs() {
   return (
     <div className="component">
-      <Tabs className="dashboardTabs" defaultActiveKey="dashboard" id="uncontrolled-tabs">
+      <Tabs
+        className="dashboardTabs"
+        defaultActiveKey="dashboard"
+        id="uncontrolled-tabs"
+      >
         <Tab eventKey="dashboard" title="Dashboard">
           <div>
             <Dashboard />
@@ -36,6 +37,4 @@ function UserTabs() {
   );
 }
 
-
-
-export default UserTabs
+export default UserTabs;

@@ -8,6 +8,7 @@
   background: url("/assets/images/dogsPlaying.jpeg");
   background-size: 100%;
   background-repeat: no-repeat;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .create-button,
@@ -25,12 +26,18 @@
 .signBtn:hover,
 .loginBtn:hover {
   text-decoration: none;
+  color: black;
 }
 
-.create-button:hover,
+.signBtn,
+.loginBtn {
+  color: white;
+}
+
+/* .create-button:hover,
 .login-button:hover {
   background-color: #c0977a;
-}
+} */
 
 .banner-text,
 .banner-adoption {
@@ -38,6 +45,6 @@
   color: whitesmoke;
 }
 
-.banner > * {
+.banner>* {
   margin: 15px;
 }

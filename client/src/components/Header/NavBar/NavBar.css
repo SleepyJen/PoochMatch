@@ -1,35 +1,41 @@
 /* .navbar { */
-    /* border: 2px solid red; */
+/* border: 2px solid red; */
 /* } */
-    .navbar ul {
-        /* border: 2px solid blue; */
-        display: flex;
-        height: 100%;
-    }   
-    /* .navbar li { */
-        /* border: 2px solid lightblue; */
-    /* } */
-    .navbar a {
-        background: #cebaa7;
-        /* border: 2px solid green; */
-        /* color: white; */
+.navbar ul {
+    /* border: 2px solid blue; */
+    display: flex;
+    height: 100%;
+}
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+/* .navbar li { */
+/* border: 2px solid lightblue; */
+/* } */
+.navbar a {
+    background: #cebaa7;
+    /* border: 2px solid green; */
+    color: white;
+    font-size: 17px;
 
-        /* width: 100%; */
-        height: 100%;
-        padding: 0 10px;
-    }
-    .navbar a:hover {
-        background: #c0977a;
-        color: black;
-    }
-    .navbar a:active {
-        background: cornsilk;
-        color: black;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* width: 100%; */
+    height: 100%;
+    padding: 0 10px;
+}
+
+.navbar a:hover {
+    /* background: #c0977a; */
+    color: black;
+    text-decoration: none;
+}
+
+.navbar a:active {
+    background: cornsilk;
+    color: black;
+}
+
 /*  */
 
 .menu-bar {
@@ -38,30 +44,38 @@
     display: flex;
     align-items: center;
 }
-    .menu-bar i {
-        color: black;
-        font-size: 1.5em;
-        padding: 0 10px;
-    }
-    .menu-bar i:hover {
-        color: darkred;
-    }
-    .menu-bar i:active {
-        color: darkblue;
-    }
+
+.menu-bar i {
+    color: black;
+    font-size: 1.5em;
+    padding: 0 10px;
+}
+
+.menu-bar i:hover {
+    color: darkred;
+}
+
+.menu-bar i:active {
+    color: darkblue;
+}
+
 /*  */
 
 @media screen and (min-width: 550px) {
-    .menu-bar { display: none; }
+    .menu-bar {
+        display: none;
+    }
 }
 
 
 @media screen and (max-width: 550px) {
-    .navbar { display: none; }
+    .navbar {
+        display: none;
+    }
 
     .navbar {
         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        
+
         position: absolute;
         top: 100%;
         right: 0;
@@ -70,9 +84,11 @@
         /* width: 100%; */
         height: auto;
     }
+
     .navbar ul {
         flex-flow: column;
     }
+
     .navbar a {
         padding: 10px 0;
     }
@@ -80,5 +96,10 @@
 
 /*  */
 
-.active { display: block; }
-.hidden { display: none; }
+.active {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}

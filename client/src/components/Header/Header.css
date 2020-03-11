@@ -2,7 +2,7 @@ header {
     /* border: 2px solid lightgray; */
     background: #cebaa7;
     width: 100%;
-
+    font-family: 'Roboto Mono', monospace;
 }
 
 header .container-wrapper {
@@ -26,8 +26,7 @@ header .container-wrapper {
 
 .header-logo,
 .navbar,
-.menu-bar
-{
+.menu-bar {
     /* min-height: 100%; */
     height: 7vh;
 }
