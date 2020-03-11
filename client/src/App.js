@@ -8,7 +8,7 @@ import "./assets/reset.css";
 import "./assets/App.css";
 
 // import Auth from './auth/Auth.js'
-import { RouteAuthenticate, RoutePrivate } from './auth/Route.js';
+import { RouteAuthenticate, /*RoutePrivate*/ } from './auth/Route.js';
 
 // import ___ from "./components/___/___.js";
 import Header from "./components/Header/Header.js";
@@ -40,6 +40,7 @@ function App() {
             component={AuthPage}
           />
 
+          {/* changed from RoutePrivate to this */}
           <RouteAuthenticate
             path="/user"
             component={UserPage}

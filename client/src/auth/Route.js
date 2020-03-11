@@ -6,7 +6,7 @@ import Auth from './Auth.js'
 
 export const RouteAuthenticate = ({ component: Component, ...rest }) => {
     const comp = (props) => {
-        console.log(props.location)
+        //console.log(props)
         return (!Auth.getAuth())
             ? (<Component {...props} />)
             : (<Redirect to={`/user?User_id=${props.location}`} />)

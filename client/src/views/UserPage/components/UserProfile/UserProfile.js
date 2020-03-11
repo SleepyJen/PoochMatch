@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./UserProfile.css";
-
+import axios from 'axios';
 
 const initState = {
   firstName: "",
@@ -19,6 +19,27 @@ class UserProfile extends Component {
   constructor() {
     super();
     this.state = initState;
+  }
+
+  async componentDidMount() {
+    const urlQuerries = new URLSearchParams(window.location.search);
+    const userId = urlQuerries.get('User_id');
+    let user = await axios.get(`/user/getById/${userId}`);
+    let data = user.data;
+    console.log(data);
+    const newState = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      password: data.password,
+      City: data.City,
+      State: data.State,
+      email: data.email,
+      Interests: data.Interests,
+      Pets: data.pets,
+      imgs: "",
+      phone: data.phone
+    }
+    this.setState(newState);
   }
 
   // handleValue = event => {
@@ -58,68 +79,68 @@ class UserProfile extends Component {
               <legend>User Profile</legend>
             </div>
             <div className="userProfileForm">
-              <div className="firstName" id="firstName"><strong>First Name: </strong> The first name goes here
-              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Modify
+              <div className="firstName" id="firstName"><strong>First Name: </strong> {this.state.firstName}
+                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i class="far fa-edit"></i>
                 </button>
               </div>
             </div>
             <div>
-              <div className="lastName" id="lastName"><strong>Last Name: </strong> The last name goes here
-              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Modify
+              <div className="lastName" id="lastName"><strong>Last Name: </strong> {this.state.lastName}
+                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i class="far fa-edit"></i>
                 </button>
               </div>
             </div>
             <div>
-              <div className="password" id="password"><strong>Password: </strong> The password goes here
-              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Modify
+              <div className="password" id="password"><strong>Password: </strong> Hidden for privacy
+                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i class="far fa-edit"></i>
                 </button>
               </div>
             </div>
             <div>
-              <div className="city" id="city"><strong>City: </strong> The city goes here
-              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Modify
+              <div className="city" id="city"><strong>City: </strong> {this.state.City}
+                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i class="far fa-edit"></i>
                 </button>
               </div>
             </div>
             <div>
-              <div className="state" id="state"><strong>State: </strong> The state goes here
-              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Modify
+              <div className="state" id="state"><strong>State: </strong> {this.state.State}
+                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i class="far fa-edit"></i>
                 </button>
               </div>
             </div>
             <div>
-              <div className="email" id="email"><strong>Email: </strong> The email goes here
-              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Modify
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <div className="interests" id="interests"><strong>Interests: </strong> The interests goes here
-              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Modify
+              <div className="email" id="email"><strong>Email: </strong> {this.state.email}
+                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i class="far fa-edit"></i>
                 </button>
               </div>
             </div>
 
             <div>
-              <div className="pets" id="pets"><strong>Pets: </strong> The pets go here
-              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Modify
+              <div className="interests" id="interests"><strong>Interests: </strong> {this.state.Interests}
+                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i class="far fa-edit"></i>
                 </button>
               </div>
             </div>
 
             <div>
-              <div className="phone" id="phone"><strong>Phone #: </strong> The phone # goes here
-              <button class="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Modify
+              <div className="pets" id="pets"><strong>Pets: </strong> {this.state.Pets}
+                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i class="far fa-edit"></i>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div className="phone" id="phone"><strong>Phone #: </strong> {this.state.phone}
+                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i class="far fa-edit"></i>
                 </button>
               </div>
             </div>

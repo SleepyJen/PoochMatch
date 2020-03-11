@@ -127,6 +127,14 @@ router.get('/getByEmail/:email', (req, res) => {
     });
 });
 
+router.get('/getById/:id', (req, res) => {
+    db.User.findOne({
+        _id: req.params.id
+    }).then(result => {
+        res.send(result);
+    });
+});
+
 //POST REQUESTS
 //Create new user
 router.post('/createNewUser', (req, res) => {
