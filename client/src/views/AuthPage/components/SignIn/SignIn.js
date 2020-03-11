@@ -13,23 +13,22 @@ const initState = {
 
 class SignIn extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = initState;
   }
 
 
   // componentDidMount () {
-    // if (this.state.checkAuth === true) {
-      // this.props.history.push('/user')
-    // }
+  // if (this.state.checkAuth === true) {
+  // this.props.history.push('/user')
+  // }
   // }
 
 
 
   loginUser = async (data) => {
     try {
-
       const result = await axios.post('/user/login', data);
       console.log('API Result:', result.data)
 
@@ -44,10 +43,11 @@ class SignIn extends Component {
         // localStorage.setItem('localAuth',localAuth);
         this.setState({ ...initState })
         // console.log('props:', this.props.history)
-        const user = await axios.get(`/user/getByEmail/${result.data.email}`);
+        console.log(result.data.user.email);
+        const user = await axios.get(`/user/getByEmail/${result.data.user.email}`);
         console.log(user);
-        this.props.history.push('/user')
-
+        this.props.location.state = user.data._id;
+        this.props.history.push(`/user?User_id=${user.data._id}`)
       }
 
     } catch (err) { console.log(err.message) }
@@ -68,8 +68,6 @@ class SignIn extends Component {
     this.loginUser({ email, password })
     // this.setState({ ...initState })
   };
-
-
 
   render() {
     const { email, password } = this.state;
