@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
-import './Dashboard.css'
+import React, { Component } from "react";
+import GoogleMapReact from "google-map-react";
+import "./Dashboard.css";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -13,17 +13,18 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="row justify-content-left">
-        <div className="mapContainer col-4" style={{ height: '77vh', width: '30%' }}>
+        <div
+          className="mapContainer col-4"
+          style={{ height: "77vh", width: "30%" }}
+        >
           <GoogleMapReact
-            bootstrapURLKeys={{ key: 'AIzaSyAslvs6KNkTaQS-cW6hOwrrccd4XEozlEk' }}
+            bootstrapURLKeys={{
+              key: "AIzaSyAslvs6KNkTaQS-cW6hOwrrccd4XEozlEk"
+            }}
             defaultCenter={this.props.center}
             defaultZoom={this.props.zoom}
           >
-            <AnyReactComponent
-              lat={27.20}
-              lng={77.5}
-              text="My Marker"
-            />
+            <AnyReactComponent lat={27.2} lng={77.5} text="My Marker" />
           </GoogleMapReact>
         </div>
         <div className="userCardsContainer col-7">
@@ -35,4 +36,4 @@ class Dashboard extends Component {
 }
 
 // export default SimpleMap;
-export default Dashboard
+export default Dashboard;

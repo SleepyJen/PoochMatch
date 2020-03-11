@@ -1,10 +1,11 @@
-import React from "react"; // , { useState }
-import "./Preview.css";
+// import React from "react"; // , { useState }
+// import "./Preview.css";
 
-function Preview() {
-  return (
-    <section className="preview">
-      {/* <div className="card">
+// function Preview() {
+//   return (
+//     <section className="preview">
+// {
+/* <div className="card">
         <div>
           <div>
             <img alt="pat-dog" />
@@ -69,9 +70,10 @@ function Preview() {
           </div>
           <button>view more</button>
         </div>
-      </div> */}
-    </section>
-  );
-}
+      </div> */
+// }
+//     </section>
+//   );
+// }
 
-export default Preview;
+// export default Preview;

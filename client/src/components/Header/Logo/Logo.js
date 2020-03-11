@@ -14,10 +14,6 @@ function Logo() {
         <Link to="/" className="logoBtn">
           Pooch Match
         </Link>
-
-        {/* <a href="/"> */}
-        {/* Pooch Match */}
-        {/* </a> */}
       </h1>
     </div>
   );

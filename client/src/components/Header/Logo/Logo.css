@@ -7,6 +7,10 @@
     padding: 0 10px;
 }
 
+.logoBtn {
+    color: white;
+}
+
 .header-logo img {
     width: 30px;
     height: auto;
@@ -20,6 +24,7 @@
 
 .logoBtn:hover {
     text-decoration: none;
+    color: black;
 }
 
 /*  */
