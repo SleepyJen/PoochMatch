@@ -83,8 +83,6 @@ router.post('/login', (req, res, next) => {
             });
         }
 
-
-
         console.log('User:', user)
 
         req.login(user, (error) => {
