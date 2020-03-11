@@ -64,6 +64,11 @@ router.post('/file', upload.single('image'), async (req, res) => { //use 'image'
     }
 });
 
-
-
+router.delete('/delete/:id', (req, res) => {
+    db.Image.findOneAndDelete({
+        _id: req.params.id
+    }).then(result => {
+        res.send(result);
+    });
+});
 module.exports = router;

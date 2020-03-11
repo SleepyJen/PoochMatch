@@ -151,6 +151,17 @@ router.post('/createNewUser', (req, res) => {
     });
 });
 
+//add Image
+router.post('/addImage/:id', (req, res) => {
+    db.User.findOneAndUpdate({
+        _id: req.params.id
+    },
+        { imgs: req.body.imgs }
+    ).then(result => {
+        res.send(result);
+    });
+});
+
 //pushing interests
 router.post('/addInterests/:id', (req, res) => {
     db.User.findOneAndUpdate({
