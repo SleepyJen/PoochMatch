@@ -26,7 +26,6 @@ class UserProfile extends Component {
 
   //when someone uploads an image
   fileSelected = (event) => {
-    console.log(event.target.files[0]);
     let data = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -50,7 +49,6 @@ class UserProfile extends Component {
     const fd = new FormData();
     fd.append('image', this.state.imgs, this.state.imgs.name);
     await axios.post('/addImage/file', fd).then(result => {
-      console.log(result.data.data._id);
       let data = {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
@@ -75,7 +73,6 @@ class UserProfile extends Component {
       imgs: this.state.imgId
     });
     let location = await axios.get(`/addImage/${this.state.imgId}`);
-    console.log(location.data.data);
     let data = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -99,7 +96,6 @@ class UserProfile extends Component {
     const userId = urlQuerries.get('User_id');
     let user = await axios.get(`/user/getById/${userId}`);
     let data = user.data;
-    console.log(data);
     const newState = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -140,7 +136,7 @@ class UserProfile extends Component {
             <div>
               <legend>User Profile</legend>
             </div>
-            <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgLocation} />
+            <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgId} />
             <div className="userProfileForm">
               <div className="firstName" id="firstName"><strong>First Name: </strong> {this.state.firstName}
                 <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" name="firstName">

@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './image.css';
+import axios from 'axios';
+
 
 function Images(props) {
-    let img;
-    if (props.img !== "") {
-        img = props.img;
-    } else {
-        img = "";
-    }
+    const [value, modifier] = useState({ data: "" });
+    useEffect(() => {
+        axios.get(`/addImage/${props.img}`).then(result => {
+            console.log(result.data);
+            if (result.length > 1) {
+                modifier({ data: "" });
+            } else {
+                modifier({ data: result.data.data });
+            }
+        }).catch(err => console.log(err));
+    }, [props.img]);
+    console.log(value);
+
     return (
         <div>
-            <img src="../../../../../../uploads/1583912526196530sFfh8Txq25L%nhmS6+g_thumb_10.jpg" alt="profile" className="image"></img>
+            <img src={value.data} alt="profile" className="image"></img>
             <div>
-                <label htmlfor="img">Select image:</label>
+                <label htmlFor="img">Select image:</label>
                 <input type="file" id="img" name="img" accept="image/*" onChange={props.click} />
                 <button onClick={props.upload}>Submit</button>
             </div>
