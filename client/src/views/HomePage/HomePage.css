@@ -6,5 +6,5 @@ body {
     background: url("/assets/images/dogsPlaying.jpeg");
     background-size: 100%;
     background-repeat: no-repeat;
-    /* height: 100vh; */
+    height: 0vh;
 }

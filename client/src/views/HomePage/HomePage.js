@@ -3,7 +3,7 @@ import "./HomePage.css";
 
 // import Header from "../../components/Header/Header"
 import Banner from "./components/Banner/Banner";
-import Preview from "./components/Preview/Preview";
+// import Preview from "./components/Preview/Preview";
 
 function HomePage() {
   return (
