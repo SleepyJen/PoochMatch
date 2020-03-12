@@ -9,7 +9,7 @@ function HomePage() {
   return (
     <main className="">
       {/* <Header /> */}
-      <Preview />
+      {/* <Preview /> */}
       <Banner />
     </main>
   );
