@@ -20,10 +20,11 @@ function Images(props) {
     return (
         <div>
             <img src={value.data} alt="profile" className="image"></img>
-            <div>
+            <div classname="userImage">
                 <label htmlFor="img">Select image:</label>
-                <input type="file" id="img" name="img" accept="image/*" onChange={props.click} />
-                <button onClick={props.upload}>Submit</button>
+                <input type="file" id="img" className="img" accept="image/*" onChange={props.click} />
+                <button className="btn submitBtn" type="button" onClick={props.upload}>Submit<i className="fa fa-rocket"></i></button>
+                <br></br>
             </div>
         </div>
     )

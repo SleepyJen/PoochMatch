@@ -137,71 +137,77 @@ class UserProfile extends Component {
               <legend>User Profile</legend>
             </div>
             <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgId} />
-            <div className="userProfileForm">
-              <div className="firstName" id="firstName"><strong>First Name: </strong> {this.state.firstName}
-                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" name="firstName">
+            <div className="container userProfileForm mt-3">
+              <div className="row justify-content-center mb-3">
+                <div className="firstNameData col-sm-7" id="firstName"><strong>First Name: </strong> {this.state.firstName}</div>
+                <button className="btn dropdown modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" name="firstName">
                   Edit<i className="far fa-edit"></i>
                 </button>
               </div>
-            </div>
-            <div>
-              <div className="lastName" id="lastName"><strong>Last Name: </strong> {this.state.lastName}
-                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" name="lastName">
-                  Edit<i className="far fa-edit"></i>
-                </button>
-              </div>
-            </div>
-            <div>
-              <div className="password" id="password"><strong>Password: </strong> Hidden for privacy
-                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" name="password">
-                  Edit<i className="far fa-edit"></i>
-                </button>
-              </div>
-            </div>
-            <div>
-              <div className="city" id="city"><strong>City: </strong> {this.state.City}
-                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i className="far fa-edit"></i>
-                </button>
-              </div>
-            </div>
-            <div>
-              <div className="state" id="state"><strong>State: </strong> {this.state.State}
-                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i className="far fa-edit"></i>
-                </button>
-              </div>
-            </div>
-            <div>
-              <div className="email" id="email"><strong>Email: </strong> {this.state.email}
-                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i className="far fa-edit"></i>
-                </button>
-              </div>
-            </div>
 
-            <div>
-              <div className="interests" id="interests"><strong>Interests: </strong> {this.state.Interests}
-                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+              <div className="row justify-content-center mb-3">
+                <div className="lastNameData col-sm-7" id="lastName"><strong>Last Name: </strong> {this.state.lastName}</div>
+                <button className="btn dropdown modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" name="lastName">
                   Edit<i className="far fa-edit"></i>
                 </button>
-              </div>
-            </div>
 
-            <div>
-              <div className="pets" id="pets"><strong>Pets: </strong> {this.state.Pets}
-                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
-                  Edit<i className="far fa-edit"></i>
-                </button>
               </div>
-            </div>
 
-            <div>
-              <div className="phone" id="phone"><strong>Phone #: </strong> {this.state.phone}
-                <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+              <div className="row justify-content-center mb-3">
+                <div className="passwordData col-sm-7" id="password"><strong>Password: </strong> Hidden for privacy</div>
+                <button className="btn dropdown modifyBtn " type="button" id="dropdownMenu" data-toggle="dropdown" name="password">
+                  Edit<i className="far fa-edit"></i>
+                </button>
+
+              </div>
+
+              <div className="row justify-content-center mb-3">
+                <div className="cityData col-sm-7" id="city"><strong>City: </strong> {this.state.City}</div>
+                <button className="btn dropdown modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i className="far fa-edit"></i>
+                </button>
+
+              </div>
+
+              <div className="row justify-content-center mb-3">
+                <div className="stateData col-sm-7" id="state"><strong>State: </strong> {this.state.State}</div>
+                <button className="btn dropdown modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i className="far fa-edit"></i>
+                </button>
+
+              </div>
+
+              <div className="row justify-content-center mb-3">
+                <div className="emailData col-sm-7" id="email"><strong>Email: </strong> {this.state.email}</div>
+                <button className="btn dropdown modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i className="far fa-edit"></i>
+                </button>
+
+              </div>
+
+              <div className="row justify-content-center mb-3">
+                <div className="interestsData col-sm-7" id="interests"><strong>Interests: </strong> {this.state.Interests}</div>
+                <button className="btn dropdown modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i className="far fa-edit"></i>
+                </button>
+
+              </div>
+
+              <div className="row justify-content-center mb-3">
+                <div className="petsData col-sm-7" id="pets"><strong>Pets: </strong> {this.state.Pets}</div>
+                <button className="btn dropdown modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
+                  Edit<i className="far fa-edit"></i>
+                </button>
+
+              </div>
+
+              <div className="row justify-content-center mb-3">
+                <div className="phoneData col-sm-7" id="phone"><strong>Phone #: </strong> {this.state.phone}</div>
+                <button className="btn dropdown modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" >
                   Edit<i className="far fa-edit"></i>
                 </button>
               </div>
+
             </div>
           </fieldset>
         </form>

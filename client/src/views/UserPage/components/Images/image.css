@@ -2,3 +2,11 @@
     height: 300px;
     width: 300px;
 }
+
+.submitBtn {
+    background-color: rgb(226, 151, 39);
+}
+
+.submitBtn:hover{
+    background-color: rgba(209, 191, 191, 0.5);
+  }
