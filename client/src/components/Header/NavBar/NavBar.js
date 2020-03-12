@@ -1,20 +1,16 @@
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./NavBar.css";
+import Auth from "../../../auth/Auth.js";
 
-import React , { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import './NavBar.css'
-import Auth from '../../../auth/Auth.js'
-
-
-
-function NavBar () {
-
+function NavBar() {
   // const [Auth, setAuth] = useState();
 
-  const toggleNav = (event) => {
-    const $menuBar = event.currentTarget.querySelector('i');
-    $menuBar.classList.toggle('fa-bars')
-    $menuBar.classList.toggle('fa-times') 
-    document.querySelector('.navbar').classList.toggle('active')
+  const toggleNav = event => {
+    const $menuBar = event.currentTarget.querySelector("i");
+    $menuBar.classList.toggle("fa-bars");
+    $menuBar.classList.toggle("fa-times");
+    document.querySelector(".navbar").classList.toggle("active");
   };
 
   const escKeyNav = event => {
@@ -62,43 +58,34 @@ function NavBar () {
           <li>
             <Link to="/">Home</Link>
           </li>
-          
-          {
-            ( Auth.getAuth() )
-            ? (
-              <>
-                <li>
-                  <Link to="/user">
-                    User
-                  </Link>
-                </li>
-                <li>
-                  <a 
-                    href="/user/logout" 
-                    onClick={ () => {
-                      Auth.signOut();
-                    } }
-                  >Logout
-                  </a>
-                </li>
-              </>
-            )
-            : (
-              <>
-                <li>
-                  <Link to="/user/auth/sign-in">
-                    Sign-In
-                  </Link>
-                </li>
 
-                <li>
-                  <Link to="/user/auth/sign-up">
-                    Sign-Up
-                  </Link>
-                </li>
-              </>   
-            )
-          }
+          {Auth.getAuth() ? (
+            <>
+              <li>
+                <Link to="/user">User</Link>
+              </li>
+              <li>
+                <a
+                  href="/user/logout"
+                  onClick={() => {
+                    Auth.signOut();
+                  }}
+                >
+                  Logout
+                </a>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/user/auth/sign-in">Log In</Link>
+              </li>
+
+              <li>
+                <Link to="/user/auth/sign-up">Sign Up</Link>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
       <div className="menu-bar" onClick={toggleNav}>
