@@ -1,23 +1,21 @@
-import React, { Component } from 'react'
-import './SignIn.css'
+import React, { Component } from "react";
+import "./SignIn.css";
 // import db from '../../data.json'
-import axios from 'axios';
-import Auth from '../../../../auth/Auth.js';
+import axios from "axios";
+import Auth from "../../../../auth/Auth.js";
 
 // import Header from "../../../../components/Header/Header"
 
 const initState = {
-  email: '',
-  password: ''
+  email: "",
+  password: ""
 };
 
 class SignIn extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = initState;
   }
-
 
   // componentDidMount () {
   // if (this.state.checkAuth === true) {
@@ -25,44 +23,42 @@ class SignIn extends Component {
   // }
   // }
 
-
-
-  loginUser = async (data) => {
+  loginUser = async data => {
     try {
-      const result = await axios.post('/user/login', data);
+      const result = await axios.post("/user/login", data);
       if (result.data.error) {
-        console.log('Denied:', result.data.error)
+        console.log("Denied:", result.data.error);
       } else if (!result.data.user) {
-        console.log('Denied:', result.data.info.message)
+        console.log("Denied:", result.data.info.message);
       } else {
-
         const localAuth = result.data.isAuth;
-        Auth.updateLocalAuth(localAuth)
+        Auth.updateLocalAuth(localAuth);
         // localStorage.setItem('localAuth',localAuth);
-        this.setState({ ...initState })
+        this.setState({ ...initState });
         // console.log('props:', this.props.history)
-        const user = await axios.get(`/user/getByEmail/${result.data.user.email}`);
+        const user = await axios.get(
+          `/user/getByEmail/${result.data.user.email}`
+        );
         console.log(user);
         this.props.history.location.state = user.data._id;
-        this.props.history.push(`/user?User_id=${user.data._id}`)
+        this.props.history.push(`/user?User_id=${user.data._id}`);
       }
-
-    } catch (err) { console.log(err.message) }
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
-
-
-  handleValue = (event) => {
+  handleValue = event => {
     const { name, value } = event.target;
     // console.log('Target:', name, '—', value)
-    this.setState({ [name]: value })
+    this.setState({ [name]: value });
   };
 
-  submitForm = (event) => {
-    event.preventDefault()
+  submitForm = event => {
+    event.preventDefault();
     const { email, password } = this.state;
-    console.log('Client Data:', { email, password })
-    this.loginUser({ email, password })
+    console.log("Client Data:", { email, password });
+    this.loginUser({ email, password });
     // this.setState({ ...initState })
   };
 
@@ -72,14 +68,10 @@ class SignIn extends Component {
 
     return (
       <div className="main-body">
-
         {/* <Header /> */}
         <main className="login-page">
-          <h2>Login Page</h2>
-          <form
-            className="form"
-            onSubmit={submitForm}
-          >
+          <h2>Log In Page</h2>
+          <form className="form" onSubmit={submitForm}>
             <div className="group">
               <input
                 type="text"
@@ -91,9 +83,7 @@ class SignIn extends Component {
                 onChange={handleValue}
               />
               <label htmlFor="email" className="border">
-                <span className="text">
-                  Email
-              </span>
+                <span className="text">Email</span>
               </label>
             </div>
 
@@ -107,9 +97,7 @@ class SignIn extends Component {
                 onChange={handleValue}
               />
               <label htmlFor="password" className="border">
-                <span className="text">
-                  Password
-              </span>
+                <span className="text">Password</span>
               </label>
             </div>
 
@@ -119,19 +107,13 @@ class SignIn extends Component {
               type="submit"
               name="login"
               className="login-btn"
-              value="LOGIN"
+              value="Log In"
             />
           </form>
         </main>
       </div>
     );
   }
-
 }
 
-
-
-export default SignIn
-
-
-
+export default SignIn;

@@ -14,5 +14,18 @@ main.login-page h2 {
     background: url(/assets/images/bubbles-two.jpeg);
     background-size: 100%;
     background-repeat: no-repeat;
-    height: 92vh;
+    height: 92.25vh;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.login-btn {
+    border: 1.5px solid black;
+    border-radius: 10px;
+    height: 60px;
+    width: 85px;
+}
+
+.login-btn:hover {
+    background-color: #cebaa7;
+    border-color: #cebaa7;
 }

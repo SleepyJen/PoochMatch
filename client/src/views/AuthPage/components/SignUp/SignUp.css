@@ -13,3 +13,12 @@ main.register-page h2 {
 .main-body {
     overflow: auto;
 }
+
+.State {
+    width: 255px;
+}
+
+.sign-up-btn:hover {
+    background-color: #cebaa7;
+    border-color: #cebaa7;
+}
