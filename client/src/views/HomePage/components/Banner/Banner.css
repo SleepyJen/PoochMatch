@@ -1,13 +1,11 @@
 .banner {
   width: 100%;
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
   justify-content: center;
   align-items: center;
+  padding-top: 25%;
   height: 92vh;
-  background: url("/assets/images/dogsPlaying.jpeg");
-  background-size: 100%;
-  background-repeat: no-repeat;
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -21,6 +19,8 @@
   border: none;
   background-color: #cebaa7;
   color: white;
+  width: 200px;
+  height: 100px;
 }
 
 .signBtn:hover,
@@ -33,11 +33,6 @@
 .loginBtn {
   color: white;
 }
-
-/* .create-button:hover,
-.login-button:hover {
-  background-color: #c0977a;
-} */
 
 .banner-text,
 .banner-adoption {
