@@ -12,6 +12,8 @@ fieldset {
   width: 50%;
   background-color: white;
   margin-left: 25%;
+  border: 2px solid rgb(134, 139, 134);
+
 }
 
 input {
@@ -20,11 +22,12 @@ input {
   padding: 5px 0;
 }
 
-.save-btn,
-.edit-btn {
-  border: 2px solid #aaa;
-  border-radius: 3px;
-  width: 50px;
+.modifyBtn{
+  background-color: rgb(202, 160, 126);
+  margin-left: 35px;
+}
+.modifyBtn:hover{
+  background-color: rgba(209, 191, 191, 0.5);
 }
 
 .fa-edit {
@@ -35,3 +38,12 @@ input {
 .icon {
   border: none;
 }
+
+.firstNameData, .lastNameData, .passwordData, .cityData, .stateData, .emailData, .interestsData, .petsData, .phoneData{
+  border: 1px solid rgb(134, 139, 134);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+
