@@ -1,9 +1,11 @@
 main.register-page {
-    border: 2px solid black;
+    border: 2px solid rgb(134, 139, 134);
     width: 300px;
     min-height: 100px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     background-color: white;
+    margin-top: 5%;
+    color:rgb(160, 105, 55)
 }
 
 main.register-page h2 {
@@ -16,6 +18,13 @@ main.register-page h2 {
 
 .State {
     width: 255px;
+}
+
+.sign-up-btn {
+    border: 1.5px solid #cebaa7;
+    border-radius: 10px;
+    color:rgb(134, 139, 134);
+    font-size: large;
 }
 
 .sign-up-btn:hover {
