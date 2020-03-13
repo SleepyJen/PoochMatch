@@ -15,7 +15,8 @@ const initState = {
   imgs: "",
   phone: "",
   imgId: "",
-  imgLocation: ""
+  imgLocation: "",
+  _id: ""
 };
 
 class UserProfile extends Component {
@@ -37,8 +38,9 @@ class UserProfile extends Component {
       Pets: this.state.Pets,
       imgs: event.target.files[0],
       phone: this.state.phone,
-      imgId: "",
-      imgLocation: ""
+      imgId: this.state.imgId,
+      imgLocation: this.state.imgLocation,
+      _id: this.state._id
     }
     this.setState(data);
   }
@@ -49,6 +51,7 @@ class UserProfile extends Component {
     const fd = new FormData();
     fd.append('image', this.state.imgs, this.state.imgs.name);
     await axios.post('/addImage/file', fd).then(result => {
+      axios.post(`/user/addImage/${this.state._id}`, { imgs: result.data.data._id });
       let data = {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
@@ -61,7 +64,8 @@ class UserProfile extends Component {
         imgs: this.state.imgs,
         phone: this.state.phone,
         imgId: result.data.data._id,
-        imgLocation: ""
+        imgLocation: this.state.imgLocation,
+        _id: this.state._id
       }
       this.setState(data);
 
@@ -85,7 +89,8 @@ class UserProfile extends Component {
       imgs: this.state.imgs,
       phone: this.state.phone,
       imgId: this.state.imgId,
-      imgLocation: location.data.data
+      imgLocation: location.data.data,
+      _id: this.state._id
     }
     this.setState(data);
   }
@@ -93,9 +98,11 @@ class UserProfile extends Component {
 
   async componentDidMount() {
     const urlQuerries = new URLSearchParams(window.location.search);
-    const userId = urlQuerries.get('User_id');
+    const userId = urlQuerries.get('user_id');
     let user = await axios.get(`/user/getById/${userId}`);
     let data = user.data;
+    console.log(data);
+    let image = await axios.get(`/addImage/${data.imgs}`);
     const newState = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -105,12 +112,14 @@ class UserProfile extends Component {
       email: data.email,
       Interests: data.Interests,
       Pets: data.pets,
-      imgs: "",
+      imgs: data.imgs,
       phone: data.phone,
-      imgId: "",
-      imgLocation: ""
+      imgId: data.imgs,
+      imgLocation: image.data.data,
+      _id: data._id
     }
     this.setState(newState);
+    console.log(this.state);
   }
 
   // handleValue = event => {
