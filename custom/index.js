@@ -4,16 +4,17 @@ const User = require('../models/User');
 
 
 passport.serializeUser((user, done) => {
-    console.log('Serialize User:', user)
+    console.log('Serialize User:', user.id)
 
     done(null, user.id)
 })
 
 passport.deserializeUser(async (id, done) => {
     try {
-        const data = await User.findOne({ _id: id });
-        console.log('Deserialize User:', id, data)
-        done(null, data)
+
+        const user = await User.findById(id);
+        console.log('Deserialize User:', id, user._id)
+        done(null, user)
 
     } catch (err) {
 

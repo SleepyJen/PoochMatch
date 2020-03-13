@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import "./SignUp.css";
-// import db from '../../data.json'
-import allStatesList from "./all-states-list.json";
-import axios from "axios";
+import React, { Component } from 'react'
+import './SignUp.css'
+import allStatesList from './all-states-list.json'
+import axios from 'axios';
 
-// import Header from '../../../../components/Header/Header'
+
 
 const initState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  City: "",
-  State: "",
-  phone: ""
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  City: '',
+  State: '',
+  phone: '',
+  error: ''
 };
 
 class SignUp extends Component {
@@ -22,78 +22,90 @@ class SignUp extends Component {
     this.state = initState;
   }
 
-  //gets all states from the json file for States in USA
-  statesListOption = () => {
-    return allStatesList.map((state, id) => (
-      <option key={id} value={state.abbreviation}>
-        {state.name}
-      </option>
-    ));
-  };
 
-  // createUser = async (data) => {
-  //   try {
-
-  //     let em = data.email;
-  //     const lookupEmail = await axios.get(`/user/getByEmail/${em}`);
-  //     console.log(lookupEmail);
-  //     if (lookupEmail) {
-  //       alert('email already registered');
-  //     } else {
-  //       const result = await axios.post(
-  //         '/user/createNewUser', {
-  //         firstName: data.firstName,
-  //         lastName: data.lastName,
-  //         password: data.password,
-  //         email: data.email,
-  //         City: data.City,
-  //         State: data.states,
-  //         phone: data.phone
-  //       });
-  //       console.log('API Result:', result.data);
-  //     }
-
-  //   } catch (err) {
-  //     console.log(err.message)
-  //   }
-  // };
-
-  /*  */
-  createUser = async data => {
+  /* POST request - register new user */
+  createUser = async (data) => {
     try {
       const result = await axios.post("/user/sign-up", data);
       console.log("API Result:", result.data);
 
-      if (result.data.error) {
-        console.log("Denied:", result.data.error);
-      } else if (!result.data.user) {
-        console.log("Denied:", result.data.info.message);
+      if ( result.data.error ) {
+      
+        console.log(
+          'Denied:' , result.data.error.errors
+        )
+        this.setState({ 
+          error : result.data.error.errors 
+        })
+
+      } else if ( ! result.data.user ) {
+         
+        console.log(
+          'Denied:' , result.data.info.message
+        )
+        this.setState({ 
+          error : result.data.info.message
+        })
+
       } else {
-        this.setState({ ...initState });
-        console.log("props:", this.props.history);
-        this.props.history.push("/user/auth/sign-in");
+
+        this.setState({ ...initState })
+        this.props.history.push('/user/auth/sign-in')
+
       }
     } catch (err) {
       console.log(err);
     }
   };
-  /*  */
 
-  //handles every on change value
-  handleValueChange = event => {
+  /* displays all states in <option> tag */
+  displayStatesListOption = () => {
+    return allStatesList.map( (state , id) => (
+      <option
+        key={id}
+        value={state.abbreviation}
+      >{state.name}
+      </option>
+    ));
+  };
+
+  /* displays correct error message */
+  displayErrors = (err) => {
+    if ( Array.isArray(err) ) {
+      return (
+        <ul>
+          { 
+            err.map( (error , id) => (
+              <li key={id}>
+                { error.msg }
+              </li>
+            ))
+          }
+        </ul>
+      );
+    } 
+    
+    if ( err && (typeof err === 'string') ) {
+      return (<p>{ err }</p>);
+    }
+  };
+
+  /* targets & handles each value change */
+  handleValueChange = event => {  
     const { name, value } = event.target;
     // console.log('Target:', name, '—', value)
     this.setState({ [name]: value });
   };
 
-  submitForm = event => {
-    event.preventDefault();
+
+  /* submit user data to axios */
+  submitForm = (event) => {
+    event.preventDefault()
 
     const userData = this.state;
     console.log("Client Data:", userData);
 
-    this.createUser(userData);
-    // this.setState({ ...initState })
+    this.createUser(userData)
   };
 
   render() {
@@ -103,10 +115,14 @@ class SignUp extends Component {
       email,
       password,
       City,
-      States,
-      phone
+      State,
+      phone,
+      error
     } = this.state;
-    const { handleValueChange, submitForm } = this;
+    const { 
+      handleValueChange, 
+      submitForm 
+    } = this;
 
     return (
       <div className="main-body">
@@ -190,11 +206,11 @@ class SignUp extends Component {
                 form="State"
                 name="State"
                 className="State"
-                defaultValue={States}
+                defaultValue={State}
                 onChange={handleValueChange}
               >
                 <option hidden>— Select State * —</option>
-                {this.statesListOption()}
+                {this.displayStatesListOption()}
               </select>
 
               <div className="group">
@@ -220,6 +236,7 @@ class SignUp extends Component {
                 value="Sign Up"
               />
             </form>
+            {  this.displayErrors(error) }
           </main>
         </div>
       </div>

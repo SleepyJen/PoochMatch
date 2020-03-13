@@ -1,23 +1,23 @@
 module.exports = {
-    isAuthenticated: JSON.parse(localStorage.getItem('localAuth')),
+    auth: JSON.parse(localStorage.getItem('localAuth')),
+    // auth: true,
+    
+    isAuth () { 
+        console.log('Auth:' , this.auth)
+        return this.auth;
+    },
 
-    toDeAuthenticate: () => { localStorage.removeItem('localAuth') },
-
-    signIn: () => {
+    signIn (cb) {
         localStorage.setItem('localAuth' , JSON.stringify(true))
+        // this.auth = true;
+        console.log('Auth:' , this.auth)
+        cb()
     },
 
-    signOut: () => {
+    signOut (cb) {
         localStorage.setItem('localAuth' , JSON.stringify(false))
-    },
-
-    checkLocalAuth: () => {
-        return localStorage.getItem('localAuth') !== null;
-    },
-
-    updateLocalAuth: (update) => {
-        localStorage.setItem('localAuth', JSON.stringify(update))
-    },
-
-    getAuth: function () { return this.isAuthenticated }
+        // this.auth = false;
+        console.log('Auth:' , this.auth)
+        cb()
+    }
 };

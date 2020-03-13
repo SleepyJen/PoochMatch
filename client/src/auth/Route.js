@@ -1,25 +1,49 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom';
-import Auth from './Auth.js'
+// import Auth from './Auth.js'
+/* Custom Routes */
 
-
-
-export const RouteAuthenticate = ({ component: Component, ...rest }) => {
+/* 
+- if user is not logged in
+- access to SignInPage & SignUpPage 
+- deny access to UserPage
+- or redirect to SignInPage 
+*/
+export const RouteAuthenticate = ({ auth , setAuth , component: Component , ...rest }) => {
     const comp = (props) => {
-        //console.log(props)
-        return (!Auth.getAuth())
-            ? (<Component {...props} />)
-            : (<Redirect to={`/user?User_id=${props.location}`} />)
+        // console.log('Auth Props:' , props , auth)
+        return (!auth)
+        ? (
+            <Component 
+                {...rest} 
+                {...props} 
+                auth={ auth } 
+                setAuth={ setAuth } 
+            />
+        )
+        : (<Redirect to={`/user${''}`} />);
+        // ?user_id=${props.location}
     };
     return (<Route {...rest} render={comp} />);
 }
 
-export const RoutePrivate = ({ component: Component, ...rest }) => {
+/* 
+- if current user is logged in 
+- access to UserPage
+- deny access to SignInPage & SignUpPage
+- redirect to UserPage
+*/
+export const RouteProtected = ({ auth , component: Component , ...rest }) => {
     const comp = (props) => {
-        console.log(props);
-        return (Auth.getAuth())
-            ? (<Component {...props} />)
-            : (<Redirect to={`/user`} />)
+        // console.log('Prot Props:' , props, auth)
+        return ( auth )
+        ? (
+            <Component 
+                {...rest} 
+                {...props} 
+            />
+        )
+        : (<Redirect to={`/user/auth/sign-in`} />);
     };
     return (<Route {...rest} render={comp} />);
 }
