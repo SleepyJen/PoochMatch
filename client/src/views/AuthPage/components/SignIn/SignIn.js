@@ -1,14 +1,13 @@
-import React, { Component } from "react";
-import "./SignIn.css";
-// import db from '../../data.json'
-import axios from "axios";
-import Auth from "../../../../auth/Auth.js";
+import React, { Component } from 'react'
+import './SignIn.css'
+import axios from 'axios';
 
-// import Header from "../../../../components/Header/Header"
+
 
 const initState = {
-  email: "",
-  password: ""
+  email: '',
+  password: '',
+  message: ''
 };
 
 class SignIn extends Component {
@@ -18,61 +17,74 @@ class SignIn extends Component {
   }
 
   // componentDidMount () {
-  // if (this.state.checkAuth === true) {
-  // this.props.history.push('/user')
-  // }
+  //   console.log('Login Props:' , this.props)
   // }
 
-  loginUser = async data => {
+  /* POST Request - login valid user */
+  loginUser = async (data) => {
     try {
-      const result = await axios.post("/user/login", data);
-      if (result.data.error) {
-        console.log("Denied:", result.data.error);
-      } else if (!result.data.user) {
-        console.log("Denied:", result.data.info.message);
+      
+      const result = await axios.post('/user/login', data);
+      console.log('API Result:' , result.data)
+      
+      if ( result.data.error ) {
+      
+        console.log('Denied:' , result.data.error)
+      
+      } else if ( !result.data.user ) {
+        console.log('Denied:' , result.data.info.message)
+        this.setState({ 
+          message : result.data.info.message
+        })
       } else {
-        const localAuth = result.data.isAuth;
-        Auth.updateLocalAuth(localAuth);
-        // localStorage.setItem('localAuth',localAuth);
-        this.setState({ ...initState });
-        // console.log('props:', this.props.history)
-        const user = await axios.get(
-          `/user/getByEmail/${result.data.user.email}`
-        );
-        console.log(user);
-        this.props.history.location.state = user.data._id;
-        this.props.history.push(`/user?User_id=${user.data._id}`);
+
+        this.setState({ ...initState })
+        const query = `?user_id=${ result.data.user._id }`;
+        this.props.setAuth( result.data.auth )
+        this.props.history.push(`/user${ query }`)
+
+
+        // const user = await axios.get(`/user/getByEmail/${result.data.user.email}`);
+        // console.log(user);
+        // this.props.history.location.state = user.data._id;
+        // this.props.history.push(`/user?User_id=${user.data._id}`)
+      
       }
-    } catch (err) {
-      console.log(err.message);
-    }
+
+    } catch (err) { console.log(err) }
   };
 
-  handleValue = event => {
+
+  /* targets & handles each value change */
+  handleValueChange = (event) => {
     const { name, value } = event.target;
     // console.log('Target:', name, '—', value)
     this.setState({ [name]: value });
   };
 
-  submitForm = event => {
-    event.preventDefault();
+  /* submit user data to axios */
+  submitForm = (event) => {
+    event.preventDefault()
     const { email, password } = this.state;
-    console.log("Client Data:", { email, password });
-    this.loginUser({ email, password });
-    // this.setState({ ...initState })
+    console.log('Client Data:', { email , password })
+    this.loginUser({ email , password })
   };
 
   render() {
-    const { email, password } = this.state;
-    const { handleValue, submitForm } = this;
+    const { email , password , message } = this.state;
+    const { handleValueChange , submitForm } = this;
+
+
 
     return (
       <div className="main-body">
-        {/* <Header /> */}
         <div className="container" align="center">
           <main className="login-page">
-            <h2>User Login</h2>
-            <form className="form" onSubmit={submitForm}>
+            <h2>Login Page</h2>
+            <form
+              className="form"
+              onSubmit={ submitForm }
+            >
               <div className="group">
                 <input
                   type="text"
@@ -80,25 +92,29 @@ class SignIn extends Component {
                   className="email input"
                   autoComplete="off"
                   autoFocus
-                  value={email}
-                  onChange={handleValue}
+                  value={ email }
+                  onChange={ handleValueChange }
                 />
                 <label htmlFor="email" className="border">
-                  <span className="text">Email</span>
+                  <span className="text">
+                    Email
+                </span>
                 </label>
               </div>
-
-              <div className="group">
+              
+              <div>
                 <input
                   type="text"
                   name="password"
                   className="password input"
                   autoComplete="off"
-                  value={password}
-                  onChange={handleValue}
+                  value={ password }
+                  onChange={ handleValueChange }
                 />
                 <label htmlFor="password" className="border">
-                  <span className="text">Password</span>
+                  <span className="text">
+                    Password
+                </span>
                 </label>
               </div>
 
@@ -111,11 +127,12 @@ class SignIn extends Component {
                 value="Log In"
               />
             </form>
+            { message && <p>{ message }</p> }
           </main>
-        </div >
-      </div >
+        </div>
+      </div>
     );
   }
 }
 
-export default SignIn;
+export default SignIn

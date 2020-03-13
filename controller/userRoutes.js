@@ -3,6 +3,9 @@ const router = express.Router();
 const db = require('../models');
 const fs = require('fs');
 const passport = require('../custom/');
+const { 
+    check , validationResult , matchedData
+} = require('express-validator');
 
 //GET REQUESTS 
 router.get('/', (req, res) => {
@@ -12,50 +15,86 @@ router.get('/', (req, res) => {
 });
 
 /*  */
-router.post('/sign-up', (req, res, next) => {
-    console.log('— REGISTER —')
-    console.log('Server Data:', req.body)
+/* 
+- register new user with passport
+- returns user (obj) from callback
+*/
+router.post(
+    '/sign-up', 
+    [
+        check('email')
+        .trim().isEmail().normalizeEmail()
+        .withMessage('Email requires "@" & "." symbols'),
+        
+        check('password')
+        .trim().isLength({ min: 5 , max: 15 })
+        .withMessage('Password requires 5-15 characters'),
+    ],
+    (req, res, next) => {
+        console.log('— REGISTER —')
+        console.log('Server Data:', req.body)
 
-    passport.authenticate('local-signup', userRegister)(req, res, next)
+        const errors = validationResult(req);
+        const userData = matchedData(req);
 
-    function userRegister(err, user, info) {
-
-        if (err) {
-            console.log('Auth Error:', err)
-
+        if ( !errors.isEmpty() ) {
+            console.log(
+                'Error:', errors , '\n' , userData
+            )
+            
             res.status = 500;
             return res.json({
-                info, user, error: (
-                    err || 'internal server problem'
-                )
-            });
+                error: errors,
+                user: userData
+            })
+        } else {
+            passport.authenticate(
+                'local-signup', userRegister
+            )(req, res, next)
         }
 
-        if (!user) {
-            console.log('User Error:', user)
+        function userRegister(err, user, info) {
 
-            res.status = 500;
-            return res.json({
-                info, user, error: err
-            });
-        }
+            if (err) {
+                console.log('Auth Error:', err)
 
-
-
-        console.log('User:', user)
-
-        res.json({
-            message: info,
-            user: {
-                email: user.email,
-                firstName: user.firstName
+                res.status = 500;
+                return res.json({
+                    info , user , error: (
+                        err || 'internal server problem'
+                    )
+                });
             }
-        })
 
+            if (!user) {
+                console.log('User Error:', user)
+
+                res.status = 500;
+                return res.json({
+                    info , user , error: err
+                });
+            }
+
+            console.log('Reg. User:', user._id, user.id)
+
+            res.json({
+                message: info,
+                user: {
+                    _id: user._id,
+                    email: user.email
+                }
+            })
+
+        }
     }
+)
 
-})
-
+/* 
+- login user with passport
+- returns user (obj) from callback
+- access to login with user (obj)
+- req.user | req.isAuthenticated() | req.session
+*/
 router.post('/login', (req, res, next) => {
     console.log('— LOGIN —')
     console.log('Server Data:', req.body)
@@ -83,9 +122,9 @@ router.post('/login', (req, res, next) => {
             });
         }
 
-        console.log('User:', user)
+        console.log('User:', user._id)
 
-        req.login(user, (error) => {
+        req.login(user , (error) => {
             if (error) {
                 console.log('Login Error:', error)
 
@@ -93,29 +132,62 @@ router.post('/login', (req, res, next) => {
                     error: error || 'internal server problem'
                 });
             } else {
-                console.log('Auth User:', user)
+                console.log('Auth User:', user._id)
 
                 return res
-                    .json({
-                        message: info,
-                        user: { email: user.email },
-                        isAuth: req.isAuthenticated()
-                    });
+                .json({
+                    info: info,
+                    user: {
+                        _id: user._id, 
+                        email: user.email 
+                    },
+                    auth: req.isAuthenticated()
+                });
             }
         })
 
     }
 })
 
+/* 
+- logout existing user 
+- delete cookie session
+- remove from passport
+*/
 router.get('/logout', (req, res) => {
     console.log('— LOGOUT —')
-    console.log('Logout Session:', req.user)
+    console.log('Logout Session:', (req.user)?true:false)
 
     req.logout()
-
-    console.log(req.session)
     req.session = null;
-    res.send(req.isAuthenticated())
+    console.log('Logout User:', (req.user)?true:false)
+    
+    return res
+    .json({
+        user: req.user,
+        session: req.session,
+        auth: req.isAuthenticated()
+    });
+})
+
+/* check user auth state */
+router.get('/check-user', (req,res) => {
+    console.log('— USER —')
+    console.log('Check Session:', (req.user)?true:false)
+    
+    return res
+    .json({
+        user: (
+            (req.user)
+            ? { 
+                _id: req.user._id, 
+                email: req.user.email 
+            }
+            : null
+        ),
+        session: req.session,
+        auth: req.isAuthenticated()
+    })
 })
 /*  */
 

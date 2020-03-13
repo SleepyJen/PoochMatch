@@ -5,13 +5,16 @@ import NavBar from './NavBar/NavBar.js'
 
 
 
-function Header () {
+function Header (props) {
 
   return (
     <header>
       <div className="container-wrapper">
         <Logo />
-        <NavBar />
+        <NavBar 
+          auth={ props.auth } 
+          setAuth={ props.setAuth } 
+        />
       </div>
     </header>
   );

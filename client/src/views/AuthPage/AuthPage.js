@@ -10,18 +10,24 @@ import SignUp from "./components/SignUp/SignUp.js";
 
 
 
-function AuthPage () {
+function AuthPage (props) {
 
   return (
     <>
       <RouteAuthenticate 
         exact 
+        // { ...props }
+        auth={ props.auth } 
+        setAuth={ props.setAuth }
         path="/user/auth/sign-in" 
         component={ SignIn } 
       />
       
       <RouteAuthenticate 
         exact 
+        // { ...props }
+        // auth={ auth }
+        auth={ props.auth }
         path="/user/auth/sign-up" 
         component={ SignUp } 
       />

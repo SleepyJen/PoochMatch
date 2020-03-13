@@ -1,11 +1,10 @@
 const Strategy = require('passport-local').Strategy;
-bcrypt = require('bcryptjs');
-// const DB = require('../database.js');
+const bcrypt = require('bcryptjs');
 const { User } = require('../models/');
 
 
 
-
+/* Sign-Up Strategy */
 const SignUpStrategy = new Strategy(
     { 
         usernameField : 'email',
@@ -16,102 +15,91 @@ const SignUpStrategy = new Strategy(
 );
 
 
-
-function authUser (req, email, password, done) {
+/* check user in DB & each input requirements */
+async function authUser (req, email, password, done) {
+    delete req.body['error'];
+    req.body.firstName = req.body.firstName
+    .trim().replace( /^\w/, cap => cap.toUpperCase() );
+    req.body.lastName = req.body.firstName
+    .trim().replace( /^\w/, cap => cap.toUpperCase() );
+    
     console.log('REQ:' , req.body)
-    const data = req.body;
+    const userData = req.body;
 
-    // let checkUser = DB.find( user => (user.email === email));
-    // console.log('Check User:', checkUser)
+    try {
 
-    User
-    .findOne({ email })
-    .then( user => {
-        console.log('Check User:' , user)
-
+        const user = await User.findOne({ email });
+        console.log('Check User:' , (user)?true:false)
+        
         if (user) {
             return done(
-                null,false,{
-                    message : `${user.email} already exists` 
+                null , false, { 
+                    message : `${user.email} already exists`
+                }
+            );
+        } else if ( !missingData(userData) ) {
+            return done(
+                null , false, { 
+                    message : 'missing required information'
                 }
             );
         } else {
-            registerUser(data)
-        }
-    })
-    .catch( err => {
-        console.log('Send Error:' , err)
-        // return done(err , false);
-        registerUser(data)
-    })
-
-    function registerUser (data) {
-        console.log(data);
-       function isEmpty(obj){
-            for(var key in obj) {
-                if (
-                    obj.hasOwnProperty(key) && 
-                    obj[key].length >0) 
-                {
-                    return false;
-                }
-            }
-            return true;
+            return registerUser(userData , done)
+            // return done(
+            //     null , false, { 
+            //         message : 'all filled'
+            //     }
+            // );
         }
 
-        if ( isEmpty(data) ) {
-            return done(null,false, { message : 'missing information' })
-        } else {
-            // const encryptPass = bcrypt.hashSync(password , 8);
-            data.password = bcrypt.hashSync(password , 8);
+    } catch (err) {
+        
+        console.log('Passport Error:' , err)
+        return done(err , false);
+    
+    }
+}
 
-            User
-            // .create({ ...data , password : encryptPass })
-            .create(data)
-            .then( user => {
-                console.log('New User:' , user)
-                return done(
-                    null,user,{ 
-                        message : 
-                        `${user.email} sign-up authenticated` 
-                    }
-                );
-            })
-            .catch( err =console.log(err))
-        }
+
+/* check if all 6/7 required inputs are filled */
+/*  {...} || {} */
+function missingData (obj) {
+    let counter = 0;
+
+    for ( let key in obj ) {
+        console.log('√ - √')
+        if ( !obj.hasOwnProperty(key) ) { return false }
+        if ( !obj[key].length > 0 ) { return false }
+        if ( ++counter >= 6 ) { return true }
     }
 
-    // if (checkUser) {
-    //     return done(
-    //         null,false,{ 
-    //             message : 
-    //             `${checkUser.email} already exists` 
-    //         }
-    //     );
-    // } else {
-
-    //     const salt = bcrypt.genSaltSync(0);
-    //     const encryptPass = bcrypt.hashSync(
-    //         password , salt
-    //     );
-
-    //     DB.push({
-    //         id: Date.now().toString(),
-    //         email: email,
-    //         password: encryptPass
-    //     })
-
-    //     const newUser = DB[ DB.length - 1 ];
-    //     console.log('New User:', newUser)
-
-    //     return done(
-    //         null,newUser,{ 
-    //             message : 
-    //             `${newUser.email} sign-up authenticated` 
-    //         }
-    //     );
-    // }
+    console.log('× - ×')
+    return true;
 }
+
+
+/* encrypt password & create new user */
+async function registerUser (data , done) {
+    try {
+
+        data.password = await bcrypt.hashSync(data.password , 8);
+        const user = await User.create(data);
+        console.log('New User:' , user._id)
+        
+        return done(
+            null , user, { 
+                message : `${user.email} sign-up authenticated`
+            }
+        );
+
+    } catch (err) { 
+        
+        console.log('Passport Error:' , err)
+        return done(err , false);
+    
+    }
+}
+
 
 
 

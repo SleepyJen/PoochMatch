@@ -1,18 +1,63 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./NavBar.css";
-import Auth from "../../../auth/Auth.js";
+import React , { useState , useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import './NavBar.css'
+import axios from 'axios';
 
-function NavBar() {
-  // const [Auth, setAuth] = useState();
 
-  const toggleNav = event => {
-    const $menuBar = event.currentTarget.querySelector("i");
-    $menuBar.classList.toggle("fa-bars");
-    $menuBar.classList.toggle("fa-times");
-    document.querySelector(".navbar").classList.toggle("active");
+
+function NavBar (props) {
+
+  const [ id , setId ] = useState( getUserById );
+  const query = `?user_id=${ id }`;
+  
+  /* GET Request - add query to /use Link */
+  async function getUserById () {
+    try {
+
+      const result = await axios.get('/user/check-user');
+      console.log('ID Result:' , result.data)
+      return await (result.data.user) 
+      ? setId( result.data.user._id ) : setId( '' );
+
+    } catch (err) { console.log(err) }
   };
 
+  /*  check id hook */
+  // useEffect( () => { 
+  //   console.log('Nav ID:' , id)
+  // } , [ id ])
+
+  
+
+  /* GET Request - logout existing user */
+  const signOutAuth = async () => {
+    try {
+      
+        const result = await axios.get('/user/logout');
+        console.log('Check Logout:' , result.data)
+        
+        props.setAuth( result.data.auth )
+        // props.history.push('/')
+
+    } catch (err) { console.log(err) } 
+  }
+
+  /* check props from App > Header */
+  // useEffect( () => { 
+  //   console.log('Nav Props:' , props)
+  // } , [ props ])
+
+
+
+  /* close navbar by clicking on icon */
+  const toggleNav = (event) => {
+    const $menuBar = event.currentTarget.querySelector('i');
+    $menuBar.classList.toggle('fa-bars')
+    $menuBar.classList.toggle('fa-times') 
+    document.querySelector('.navbar').classList.toggle('active')
+  };
+
+  /* close navbar by esc. key */
   const escKeyNav = event => {
     if (event.key === "Escape") {
       const $menuBar = document.querySelector(".menu-bar i");
@@ -22,6 +67,7 @@ function NavBar() {
     }
   };
 
+  /* close navbar by clicking away from icon */
   const unDetectNav = event => {
     const $menuBar = document.querySelector(".menu-bar i");
     if (!$menuBar.contains(event.target)) {
@@ -31,6 +77,7 @@ function NavBar() {
     }
   };
 
+  /* close navbar by window size grow/shrink */
   const winSizeNav = () => {
     const $menuBar = document.querySelector(".menu-bar i");
     if ($menuBar.classList.contains("fa-times")) {
@@ -40,6 +87,7 @@ function NavBar() {
     }
   };
 
+  /* listen to event */
   useEffect(() => {
     document.addEventListener("keyup", escKeyNav);
     document.addEventListener("mouseup", unDetectNav);
@@ -58,24 +106,25 @@ function NavBar() {
           <li>
             <Link to="/">Home</Link>
           </li>
-
-          {Auth.getAuth() ? (
-            <>
-              <li>
-                <Link to="/user">User</Link>
-              </li>
-              <li>
-                <a
-                  href="/user/logout"
-                  onClick={() => {
-                    Auth.signOut();
-                  }}
-                >
-                  Logout
-                </a>
-              </li>
-            </>
-          ) : (
+          {
+            ( props.auth )
+            ? (
+              <>
+                <li>
+                  <Link to={`/user${ query }`}>
+                    User
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    to="/"
+                    onClick={ signOutAuth }
+                  >Logout
+                  </Link>
+                </li>
+              </>
+            )
+            : (
             <>
               <li>
                 <Link to="/user/auth/sign-in">Log In</Link>
@@ -85,7 +134,8 @@ function NavBar() {
                 <Link to="/user/auth/sign-up">Sign Up</Link>
               </li>
             </>
-          )}
+          )
+          }
         </ul>
       </nav>
       <div className="menu-bar" onClick={toggleNav}>
