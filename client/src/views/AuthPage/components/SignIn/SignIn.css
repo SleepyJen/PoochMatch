@@ -1,8 +1,8 @@
 main.login-page {
-    border: 2px solid black;
+    border: 2px solid rgb(134, 139, 134);
     width: 300px;
     min-height: 100px;
-    margin: 0 auto;
+    /* margin: 0 0; */
     background-color: white;
 }
 
@@ -19,13 +19,22 @@ main.login-page h2 {
 }
 
 .login-btn {
-    border: 1.5px solid black;
+    border: 1.5px solid #cebaa7;
     border-radius: 10px;
-    height: 60px;
+    height: 50px;
     width: 85px;
+    color:rgb(134, 139, 134);
+    font-size: large;
 }
 
 .login-btn:hover {
     background-color: #cebaa7;
-    border-color: #cebaa7;
+    border-color:  #cebaa7;
+    color: white
+
+}
+
+.login-page{
+    margin-top: 20%;
+    color: rgb(160, 105, 55);
 }

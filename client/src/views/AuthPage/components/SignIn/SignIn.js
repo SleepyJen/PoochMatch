@@ -69,49 +69,51 @@ class SignIn extends Component {
     return (
       <div className="main-body">
         {/* <Header /> */}
-        <main className="login-page">
-          <h2>Log In Page</h2>
-          <form className="form" onSubmit={submitForm}>
-            <div className="group">
+        <div className="container" align="center">
+          <main className="login-page">
+            <h2>User Login</h2>
+            <form className="form" onSubmit={submitForm}>
+              <div className="group">
+                <input
+                  type="text"
+                  name="email"
+                  className="email input"
+                  autoComplete="off"
+                  autoFocus
+                  value={email}
+                  onChange={handleValue}
+                />
+                <label htmlFor="email" className="border">
+                  <span className="text">Email</span>
+                </label>
+              </div>
+
+              <div className="group">
+                <input
+                  type="text"
+                  name="password"
+                  className="password input"
+                  autoComplete="off"
+                  value={password}
+                  onChange={handleValue}
+                />
+                <label htmlFor="password" className="border">
+                  <span className="text">Password</span>
+                </label>
+              </div>
+
+              <br />
+
               <input
-                type="text"
-                name="email"
-                className="email input"
-                autoComplete="off"
-                autoFocus
-                value={email}
-                onChange={handleValue}
+                type="submit"
+                name="login"
+                className="login-btn"
+                value="Log In"
               />
-              <label htmlFor="email" className="border">
-                <span className="text">Email</span>
-              </label>
-            </div>
-
-            <div className="group">
-              <input
-                type="text"
-                name="password"
-                className="password input"
-                autoComplete="off"
-                value={password}
-                onChange={handleValue}
-              />
-              <label htmlFor="password" className="border">
-                <span className="text">Password</span>
-              </label>
-            </div>
-
-            <br />
-
-            <input
-              type="submit"
-              name="login"
-              className="login-btn"
-              value="Log In"
-            />
-          </form>
-        </main>
-      </div>
+            </form>
+          </main>
+        </div >
+      </div >
     );
   }
 }

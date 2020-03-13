@@ -111,115 +111,117 @@ class SignUp extends Component {
     return (
       <div className="main-body">
         {/* <Header /> */}
-        <main className="register-page">
-          <h2>Register Page</h2>
-          <form className="form" onSubmit={submitForm}>
-            <div className="group">
-              <input
-                type="text"
-                name="email"
-                className="email input"
-                autoComplete="off"
-                autoFocus
-                value={email}
+        <div className="container" align="center">
+          <main className="register-page">
+            <h2>Register Page</h2>
+            <form className="form" onSubmit={submitForm}>
+              <div className="group">
+                <input
+                  type="text"
+                  name="email"
+                  className="email input"
+                  autoComplete="off"
+                  autoFocus
+                  value={email}
+                  onChange={handleValueChange}
+                />
+                <label htmlFor="email" className="border">
+                  <span className="text">Email *</span>
+                </label>
+              </div>
+
+              <div className="group">
+                <input
+                  type="text"
+                  name="password"
+                  className="password input"
+                  autoComplete="off"
+                  value={password}
+                  onChange={handleValueChange}
+                />
+                <label htmlFor="password" className="border">
+                  <span className="text">Password *</span>
+                </label>
+              </div>
+
+              <div className="group">
+                <input
+                  type="text"
+                  name="firstName"
+                  className="firstName input"
+                  autoComplete="off"
+                  value={firstName}
+                  onChange={handleValueChange}
+                />
+                <label htmlFor="firstName" className="border">
+                  <span className="text">First Name *</span>
+                </label>
+              </div>
+
+              <div className="group">
+                <input
+                  type="text"
+                  name="lastName"
+                  className="lastName input"
+                  autoComplete="off"
+                  value={lastName}
+                  onChange={handleValueChange}
+                />
+                <label htmlFor="lastName" className="border">
+                  <span className="text">Last Name *</span>
+                </label>
+              </div>
+
+              <div className="group">
+                <input
+                  type="text"
+                  name="City"
+                  className="City input"
+                  autoComplete="off"
+                  value={City}
+                  onChange={handleValueChange}
+                />
+                <label htmlFor="City" className="border">
+                  <span className="text">City *</span>
+                </label>
+              </div>
+
+              <select
+                form="State"
+                name="State"
+                className="State"
+                defaultValue={States}
                 onChange={handleValueChange}
-              />
-              <label htmlFor="email" className="border">
-                <span className="text">Email *</span>
-              </label>
-            </div>
+              >
+                <option hidden>— Select State * —</option>
+                {this.statesListOption()}
+              </select>
 
-            <div className="group">
+              <div className="group">
+                <input
+                  type="text"
+                  name="phone"
+                  className="phone input"
+                  autoComplete="off"
+                  value={phone}
+                  onChange={handleValueChange}
+                />
+                <label htmlFor="phone" className="border">
+                  <span className="text">Phone</span>
+                </label>
+              </div>
+
+              <br />
+
               <input
-                type="text"
-                name="password"
-                className="password input"
-                autoComplete="off"
-                value={password}
-                onChange={handleValueChange}
+                type="submit"
+                name="sign_up"
+                className="sign-up-btn"
+                value="Sign Up"
               />
-              <label htmlFor="password" className="border">
-                <span className="text">Password *</span>
-              </label>
-            </div>
-
-            <div className="group">
-              <input
-                type="text"
-                name="firstName"
-                className="firstName input"
-                autoComplete="off"
-                value={firstName}
-                onChange={handleValueChange}
-              />
-              <label htmlFor="firstName" className="border">
-                <span className="text">First Name *</span>
-              </label>
-            </div>
-
-            <div className="group">
-              <input
-                type="text"
-                name="lastName"
-                className="lastName input"
-                autoComplete="off"
-                value={lastName}
-                onChange={handleValueChange}
-              />
-              <label htmlFor="lastName" className="border">
-                <span className="text">Last Name *</span>
-              </label>
-            </div>
-
-            <div className="group">
-              <input
-                type="text"
-                name="City"
-                className="City input"
-                autoComplete="off"
-                value={City}
-                onChange={handleValueChange}
-              />
-              <label htmlFor="City" className="border">
-                <span className="text">City *</span>
-              </label>
-            </div>
-
-            <select
-              form="State"
-              name="State"
-              className="State"
-              defaultValue={States}
-              onChange={handleValueChange}
-            >
-              <option hidden>— Select State * —</option>
-              {this.statesListOption()}
-            </select>
-
-            <div className="group">
-              <input
-                type="text"
-                name="phone"
-                className="phone input"
-                autoComplete="off"
-                value={phone}
-                onChange={handleValueChange}
-              />
-              <label htmlFor="phone" className="border">
-                <span className="text">Phone</span>
-              </label>
-            </div>
-
-            <br />
-
-            <input
-              type="submit"
-              name="sign_up"
-              className="sign-up-btn"
-              value="Sign Up"
-            />
-          </form>
-        </main>
+            </form>
+          </main>
+        </div>
       </div>
     );
   }
