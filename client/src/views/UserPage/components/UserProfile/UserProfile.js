@@ -16,7 +16,8 @@ const initState = {
   phone: "",
   imgId: "",
   imgLocation: "",
-  _id: ""
+  _id: "",
+  holder: ""
 };
 
 class UserProfile extends Component {
@@ -40,7 +41,8 @@ class UserProfile extends Component {
       phone: this.state.phone,
       imgId: this.state.imgId,
       imgLocation: this.state.imgLocation,
-      _id: this.state._id
+      _id: this.state._id,
+      holder: this.state.holder
     }
     this.setState(data);
   }
@@ -65,7 +67,8 @@ class UserProfile extends Component {
         phone: this.state.phone,
         imgId: result.data.data._id,
         imgLocation: this.state.imgLocation,
-        _id: this.state._id
+        _id: this.state._id,
+        holder: this.state.holder
       }
       this.setState(data);
 
@@ -90,7 +93,8 @@ class UserProfile extends Component {
       phone: this.state.phone,
       imgId: this.state.imgId,
       imgLocation: location.data.data,
-      _id: this.state._id
+      _id: this.state._id,
+      holder: this.state.holder
     }
     this.setState(data);
   }
@@ -101,7 +105,6 @@ class UserProfile extends Component {
     const userId = urlQuerries.get('user_id');
     let user = await axios.get(`/user/getById/${userId}`);
     let data = user.data;
-    console.log(data);
     let image = await axios.get(`/addImage/${data.imgs}`);
     const newState = {
       firstName: data.firstName,
@@ -116,23 +119,22 @@ class UserProfile extends Component {
       phone: data.phone,
       imgId: data.imgs,
       imgLocation: image.data.data,
-      _id: data._id
+      _id: userId,
+      holder: this.state.holder
     }
     this.setState(newState);
-    console.log(this.state);
   }
 
-  // handleValue = event => {
-  //   const { name, value } = event.target;
-  //   // console.log('Target:', name, '—', value)
-  //   this.setState({ [name]: value });
-  // };
+  handleValue = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
 
-  // submitForm = event => {
-  //   event.preventDefault();
-  //   console.log("User Data:", this.state);
-  //   this.setState({ ...initState });
-  // };
+  submitForm = event => {
+    event.preventDefault();
+    const { name } = event.target;
+    this.setState({ [name]: this.state.holder });
+  };
 
   render() {
 
@@ -149,17 +151,30 @@ class UserProfile extends Component {
             <div className="container userProfileForm mt-3">
               <div className="row justify-content-center mb-3">
                 <div className="firstNameData col-sm-7" id="firstName"><strong>First Name: </strong> {this.state.firstName}</div>
-                <button className="btn dropdown modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" name="firstName">
-                  Edit<i className="far fa-edit"></i>
-                </button>
+                <div className="dropdown">
+                  <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenuButton" data-toggle="dropdown" name="firstName" aria-haspopup="true" aria-expanded="false">
+                    Edit<i className="far fa-edit"></i>
+                  </button>
+                  <div className="dropdown-menu p-1">
+                    <label htmlFor="changeFirstName">First Name</label>
+                    <input onChange={this.handleValue} type="text" className="form-control" id="changeFirstName" placeholder="First Name" name="holder" />
+                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="firstName">Save</button>
+                  </div>
+                </div>
               </div>
 
               <div className="row justify-content-center mb-3">
                 <div className="lastNameData col-sm-7" id="lastName"><strong>Last Name: </strong> {this.state.lastName}</div>
-                <button className="btn dropdown modifyBtn" type="button" id="dropdownMenu" data-toggle="dropdown" name="lastName">
-                  Edit<i className="far fa-edit"></i>
-                </button>
-
+                <div className="dropdown">
+                  <button className="btn dropdown-toggle modifyBtn" type="button" id="dropdownMenuButton" data-toggle="dropdown" name="lastName" aria-haspopup="true" aria-expanded="false">
+                    Edit<i className="far fa-edit"></i>
+                  </button>
+                  <div className="dropdown-menu p-1">
+                    <label htmlFor="changeLastName">Last Name</label>
+                    <input onChange={this.handleValue} type="text" className="form-control" id="changeLastName" placeholder="Last Name" name="lastName" />
+                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="lastName">Save</button>
+                  </div>
+                </div>
               </div>
 
               <div className="row justify-content-center mb-3">
