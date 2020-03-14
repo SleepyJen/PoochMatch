@@ -275,7 +275,7 @@ router.post('/addComment/:id', (req, res) => {
 
 //UPDATES
 //update first name
-router.post('/updateFirstName/:id', (req, res) => {
+router.post('/updatefirstName/:id', (req, res) => {
     db.User.findOneAndUpdate({
         _id: req.params.id
     },
@@ -287,7 +287,7 @@ router.post('/updateFirstName/:id', (req, res) => {
 });
 
 //update last name
-router.post('/updateLastName/:id', (req, res) => {
+router.post('/updatelastName/:id', (req, res) => {
     db.User.findOneAndUpdate({
         _id: req.params.id
     }, {
@@ -309,6 +309,7 @@ router.post('/updatePassword/:id', (req, res) => {
         });
 });
 
+//update City
 router.post('/updateCity/:id', (req, res) => {
     db.User.findOneAndUpdate({
         _id: req.params.id
@@ -320,6 +321,7 @@ router.post('/updateCity/:id', (req, res) => {
         });
 });
 
+//update State
 router.post('/updateState/:id', (req, res) => {
     db.User.findOneAndUpdate({
         _id: req.params.id

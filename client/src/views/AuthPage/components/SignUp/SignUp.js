@@ -29,22 +29,21 @@ class SignUp extends Component {
       const result = await axios.post("/user/sign-up", data);
       console.log("API Result:", result.data);
 
-      if ( result.data.error ) {
-      
+      if (result.data.error) {
+
         console.log(
-          'Denied:' , result.data.error.errors
+          'Denied:', result.data.error.errors
         )
-        this.setState({ 
-          error : result.data.error.errors 
+        this.setState({
+          error: result.data.error.errors
         })
 
-      } else if ( ! result.data.user ) {
-         
+      } else if (!result.data.user) {
         console.log(
-          'Denied:' , result.data.info.message
+          'Denied:', result.data.info.message
         )
-        this.setState({ 
-          error : result.data.info.message
+        this.setState({
+          error: result.data.info.message
         })
 
       } else {
@@ -60,7 +59,7 @@ class SignUp extends Component {
 
   /* displays all states in <option> tag */
   displayStatesListOption = () => {
-    return allStatesList.map( (state , id) => (
+    return allStatesList.map((state, id) => (
       <option
         key={id}
         value={state.abbreviation}
@@ -71,27 +70,27 @@ class SignUp extends Component {
 
   /* displays correct error message */
   displayErrors = (err) => {
-    if ( Array.isArray(err) ) {
+    if (Array.isArray(err)) {
       return (
         <ul>
-          { 
-            err.map( (error , id) => (
+          {
+            err.map((error, id) => (
               <li key={id}>
-                { error.msg }
+                {error.msg}
               </li>
             ))
           }
         </ul>
       );
-    } 
-    
-    if ( err && (typeof err === 'string') ) {
-      return (<p>{ err }</p>);
+    }
+
+    if (err && (typeof err === 'string')) {
+      return (<p>{err}</p>);
     }
   };
 
   /* targets & handles each value change */
-  handleValueChange = event => {  
+  handleValueChange = event => {
     const { name, value } = event.target;
     // console.log('Target:', name, '—', value)
     this.setState({ [name]: value });
@@ -119,9 +118,9 @@ class SignUp extends Component {
       phone,
       error
     } = this.state;
-    const { 
-      handleValueChange, 
-      submitForm 
+    const {
+      handleValueChange,
+      submitForm
     } = this;
 
     return (
@@ -236,7 +235,7 @@ class SignUp extends Component {
                 value="Sign Up"
               />
             </form>
-            {  this.displayErrors(error) }
+            {this.displayErrors(error)}
           </main>
         </div>
       </div>
