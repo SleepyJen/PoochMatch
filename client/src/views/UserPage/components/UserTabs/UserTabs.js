@@ -7,6 +7,7 @@ import "./UserTabs.css";
 import Dashboard from "../Dashboard/Dashboard";
 import PoochProfile from "../PoochProfile/PoochProfile";
 import UserProfile from "../UserProfile/UserProfile";
+import Messages from "../Messages/Messages";
 
 function UserTabs() {
   return (
@@ -21,11 +22,11 @@ function UserTabs() {
             <Dashboard />
           </div>
         </Tab>
-        {/* <Tab eventKey="messages" title="Messages">
+        <Tab eventKey="messages" title="Messages">
           <div>
             <Messages />
           </div>
-        </Tab> */}
+        </Tab>
         <Tab eventKey="userProfile" title="User Profile">
           <UserProfile />
         </Tab>
