@@ -16,9 +16,7 @@ class SignIn extends Component {
     this.state = initState;
   }
 
-  // componentDidMount () {
-  //   console.log('Login Props:' , this.props)
-  // }
+  // componentDidMount () { console.log('Login Props:' , this.props) }
 
   /* POST Request - login valid user */
   loginUser = async (data) => {
@@ -32,23 +30,24 @@ class SignIn extends Component {
         console.log('Denied:' , result.data.error)
       
       } else if ( !result.data.user ) {
-        console.log('Denied:' , result.data.info.message)
+        console.log(
+          'Denied:' , 
+          result.data.info.message
+        )
         this.setState({ 
           message : result.data.info.message
         })
       } else {
 
         this.setState({ ...initState })
-        const query = `?user_id=${ result.data.user._id }`;
+        const query = `?user_id=${result.data.user._id}`;
+        
         this.props.setAuth( result.data.auth )
-        this.props.history.push(`/user${ query }`)
-
-
-        // const user = await axios.get(`/user/getByEmail/${result.data.user.email}`);
-        // console.log(user);
-        // this.props.history.location.state = user.data._id;
-        // this.props.history.push(`/user?User_id=${user.data._id}`)
-      
+        this.props.history.push({
+          pathname: '/user',
+          search: query
+        })
+        
       }
 
     } catch (err) { console.log(err) }
@@ -59,7 +58,7 @@ class SignIn extends Component {
   handleValueChange = (event) => {
     const { name, value } = event.target;
     // console.log('Target:', name, '—', value)
-    this.setState({ [name]: value });
+    this.setState({ [name] : value });
   };
 
   /* submit user data to axios */
@@ -127,7 +126,9 @@ class SignIn extends Component {
                 value="Log In"
               />
             </form>
-            { message && <p>{ message }</p> }
+            <div>
+              { message && <p>{ message }</p> }
+            </div>
           </main>
         </div>
       </div>
