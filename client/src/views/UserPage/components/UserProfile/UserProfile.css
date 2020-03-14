@@ -53,3 +53,8 @@ input {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+.dropdown-menu {
+  height: 100px;
+  overflow-y: scroll;
+}
