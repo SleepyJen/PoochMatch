@@ -19,11 +19,12 @@ function Images(props) {
     return (
         <div>
             <img src={value.data} alt="profile" className="image"></img>
-            <div className="userImage">
-                <label htmlFor="img">Select image:</label>
-                <input type="file" id="img" className="img" accept="image/*" onChange={props.click} />
-                <button className="btn submitBtn" type="button" onClick={props.upload}>Submit<i className="fa fa-rocket"></i></button>
-                <br></br>
+            <div className="justify-content-center mb-3">
+                <div className="uploadImage" id="userImage">
+                    <label htmlFor="img"></label>
+                    <input type="file" id="img" className="img" accept="image/*" onChange={props.click} />
+                    <button className="btn submitBtn" type="button" onClick={props.upload}>Save Image <i className="fa fa-rocket"></i></button>
+                </div>
             </div>
         </div>
     )

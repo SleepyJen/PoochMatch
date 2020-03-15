@@ -11,7 +11,7 @@ function Logo() {
         className="icon"
       />
       <h1 className="title-lg">
-        <Link to="/" className="logoBtn">
+        <Link className="logoBtn">
           Pooch Match
         </Link>
       </h1>
