@@ -3,8 +3,8 @@ const router = express.Router();
 const db = require('../models');
 const fs = require('fs');
 const passport = require('../custom/');
-const { 
-    check , validationResult , matchedData
+const {
+    check, validationResult, matchedData
 } = require('express-validator');
 
 //GET REQUESTS 
@@ -20,15 +20,15 @@ router.get('/', (req, res) => {
 - returns user (obj) from callback
 */
 router.post(
-    '/sign-up', 
+    '/sign-up',
     [
         check('email')
-        .trim().isEmail().normalizeEmail()
-        .withMessage('Email requires "@" & "." symbols'),
-        
+            .trim().isEmail().normalizeEmail()
+            .withMessage('Email requires "@" & "." symbols'),
+
         check('password')
-        .trim().isLength({ min: 5 , max: 15 })
-        .withMessage('Password requires 5-15 characters'),
+            .trim().isLength({ min: 5, max: 15 })
+            .withMessage('Password requires 5-15 characters'),
     ],
     (req, res, next) => {
         console.log('— REGISTER —')
@@ -37,11 +37,11 @@ router.post(
         const errors = validationResult(req);
         const userData = matchedData(req);
 
-        if ( !errors.isEmpty() ) {
+        if (!errors.isEmpty()) {
             console.log(
-                'Error:', errors , '\n' , userData
+                'Error:', errors, '\n', userData
             )
-            
+
             res.status = 500;
             return res.json({
                 error: errors,
@@ -60,7 +60,7 @@ router.post(
 
                 res.status = 500;
                 return res.json({
-                    info , user , error: (
+                    info, user, error: (
                         err || 'internal server problem'
                     )
                 });
@@ -71,7 +71,7 @@ router.post(
 
                 res.status = 500;
                 return res.json({
-                    info , user , error: err
+                    info, user, error: err
                 });
             }
 
@@ -124,7 +124,7 @@ router.post('/login', (req, res, next) => {
 
         console.log('User:', user._id)
 
-        req.login(user , (error) => {
+        req.login(user, (error) => {
             if (error) {
                 console.log('Login Error:', error)
 
@@ -135,14 +135,14 @@ router.post('/login', (req, res, next) => {
                 console.log('Auth User:', user._id)
 
                 return res
-                .json({
-                    info: info,
-                    user: {
-                        _id: user._id, 
-                        email: user.email 
-                    },
-                    auth: req.isAuthenticated()
-                });
+                    .json({
+                        info: info,
+                        user: {
+                            _id: user._id,
+                            email: user.email
+                        },
+                        auth: req.isAuthenticated()
+                    });
             }
         })
 
@@ -156,38 +156,38 @@ router.post('/login', (req, res, next) => {
 */
 router.get('/logout', (req, res) => {
     console.log('— LOGOUT —')
-    console.log('Logout Session:', (req.user)?true:false)
+    console.log('Logout Session:', (req.user) ? true : false)
 
     req.logout()
     req.session = null;
-    console.log('Logout User:', (req.user)?true:false)
-    
+    console.log('Logout User:', (req.user) ? true : false)
+
     return res
-    .json({
-        user: req.user,
-        session: req.session,
-        auth: req.isAuthenticated()
-    });
+        .json({
+            user: req.user,
+            session: req.session,
+            auth: req.isAuthenticated()
+        });
 })
 
 /* check user auth state */
-router.get('/check-user', (req,res) => {
+router.get('/check-user', (req, res) => {
     console.log('— USER —')
-    console.log('Check Session:', (req.user)?true:false)
-    
+    console.log('Check Session:', (req.user) ? true : false)
+
     return res
-    .json({
-        user: (
-            (req.user)
-            ? { 
-                _id: req.user._id, 
-                email: req.user.email 
-            }
-            : null
-        ),
-        session: req.session,
-        auth: req.isAuthenticated()
-    })
+        .json({
+            user: (
+                (req.user)
+                    ? {
+                        _id: req.user._id,
+                        email: req.user.email
+                    }
+                    : null
+            ),
+            session: req.session,
+            auth: req.isAuthenticated()
+        })
 })
 /*  */
 
@@ -298,7 +298,7 @@ router.post('/updatelastName/:id', (req, res) => {
 });
 
 //update password
-router.post('/updatePassword/:id', (req, res) => {
+router.post('/updatepassword/:id', (req, res) => {
     db.User.findOneAndUpdate({
         _id: req.params.id
     },
@@ -330,6 +330,18 @@ router.post('/updateState/:id', (req, res) => {
     }).then(result => {
         res.json(result);
     });
+});
+
+//update Email
+router.post('/updateemail/:id', (req, res) => {
+    db.User.findOneAndUpdate({
+        _id: req.params.id
+    },
+        {
+            email: req.body.email
+        }).then(result => {
+            res.send(result);
+        });
 });
 
 //DELETE
