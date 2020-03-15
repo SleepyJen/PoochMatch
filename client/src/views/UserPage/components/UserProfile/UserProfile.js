@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./UserProfile.css";
-import axios from 'axios';
-import Images from '../Images/Images';
-import allStatesList from '../../../AuthPage/components/SignUp/all-states-list.json';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Dropdown, FormGroup } from 'react-bootstrap';
+import axios from "axios";
+import Images from "../Images/Images";
+import allStatesList from "../../../AuthPage/components/SignUp/all-states-list.json";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Dropdown, FormGroup } from "react-bootstrap";
 
 const initState = {
   firstName: "",
@@ -30,7 +30,7 @@ class UserProfile extends Component {
   }
 
   //when someone uploads an image
-  fileSelected = (event) => {
+  fileSelected = event => {
     let data = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -46,17 +46,19 @@ class UserProfile extends Component {
       imgLocation: this.state.imgLocation,
       _id: this.state._id,
       holder: this.state.holder
-    }
+    };
     this.setState(data);
-  }
+  };
 
   //upload file
-  fileUpload = async (event) => {
+  fileUpload = async event => {
     event.preventDefault();
     const fd = new FormData();
-    fd.append('image', this.state.imgs, this.state.imgs.name);
-    await axios.post('/addImage/file', fd).then(result => {
-      axios.post(`/user/addImage/${this.state._id}`, { imgs: result.data.data._id });
+    fd.append("image", this.state.imgs, this.state.imgs.name);
+    await axios.post("/addImage/file", fd).then(result => {
+      axios.post(`/user/addImage/${this.state._id}`, {
+        imgs: result.data.data._id
+      });
       let data = {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
@@ -72,13 +74,12 @@ class UserProfile extends Component {
         imgLocation: this.state.imgLocation,
         _id: this.state._id,
         holder: this.state.holder
-      }
+      };
       this.setState(data);
-
     });
     console.log(this.state);
     const urlQuerries = new URLSearchParams(window.location.search);
-    const userId = urlQuerries.get('User_id');
+    const userId = urlQuerries.get("User_id");
     await axios.post(`/user/addImage/${userId}`, {
       imgs: this.state.imgId
     });
@@ -98,14 +99,13 @@ class UserProfile extends Component {
       imgLocation: location.data.data,
       _id: this.state._id,
       holder: this.state.holder
-    }
+    };
     this.setState(data);
-  }
-
+  };
 
   async componentDidMount() {
     const urlQuerries = new URLSearchParams(window.location.search);
-    const userId = urlQuerries.get('user_id');
+    const userId = urlQuerries.get("user_id");
     let user = await axios.get(`/user/getById/${userId}`);
     let data = user.data;
     let image = await axios.get(`/addImage/${data.imgs}`);
@@ -124,7 +124,7 @@ class UserProfile extends Component {
       imgLocation: image.data.data,
       _id: userId,
       holder: this.state.holder
-    }
+    };
     this.setState(newState);
     console.log(this.state);
   }
@@ -140,28 +140,27 @@ class UserProfile extends Component {
     event.preventDefault();
     const { name } = await event.target;
     this.setState({ [name]: this.state.holder });
-    if (name !== 'Interests' && name !== 'Pets') {
+    if (name !== "Interests" && name !== "Pets") {
       this.updateDatabase(name);
     }
   };
 
   updateDatabase = async name => {
-    await axios.post(`/user/update${name}/${this.state._id}`, { [name]: this.state.holder });
+    await axios.post(`/user/update${name}/${this.state._id}`, {
+      [name]: this.state.holder
+    });
     let id = `change${name}`;
-    if (id !== 'changeState') {
-      document.getElementById(id).value = '';
+    if (id !== "changeState") {
+      document.getElementById(id).value = "";
     }
     console.log(this.state);
-  }
+  };
 
   /* displays all states in <option> tag */
   displayStatesListOption = () => {
     return allStatesList.map((state, id) => (
-      <option
-        key={id}
-        value={state.abbreviation}
-        name="holder"
-      >{state.name}
+      <option key={id} value={state.abbreviation} name="holder">
+        {state.name}
       </option>
     ));
   };
@@ -176,68 +175,165 @@ class UserProfile extends Component {
             <div>
               <legend>User Profile</legend>
             </div>
-            <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgId} />
+            <Images
+              click={this.fileSelected}
+              upload={this.fileUpload}
+              img={this.state.imgId}
+            />
             <div className="container userProfileForm mt-3">
               <div className="row justify-content-center mb-3">
-                <div className="firstNameData col-sm-7" id="firstName"><strong>First Name: </strong> {this.state.firstName}</div>
+                <div className="firstNameData col-sm-7" id="firstName">
+                  <strong>First Name: </strong> {this.state.firstName}
+                </div>
                 <div className="dropdown">
                   {/* id="dropdownMenuButton" */}
-                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="firstName" aria-haspopup="true" aria-expanded="false">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="firstName"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Edit<i className="far fa-edit"></i>
                   </button>
                   <div className="dropdown-menu p-1">
                     <label htmlFor="changefirstName">First Name</label>
-                    <input onChange={this.handleValue} type="text" className="form-control" id="changefirstName" placeholder="First Name" name="holder" />
-                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="firstName">Save</button>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changefirstName"
+                      placeholder="First Name"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary"
+                      name="firstName"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
               </div>
 
               <div className="row justify-content-center mb-3">
-                <div className="lastNameData col-sm-7" id="lastName"><strong>Last Name: </strong> {this.state.lastName}</div>
+                <div className="lastNameData col-sm-7" id="lastName">
+                  <strong>Last Name: </strong> {this.state.lastName}
+                </div>
                 <div className="dropdown">
-                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="lastName" aria-haspopup="true" aria-expanded="false">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="lastName"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Edit<i className="far fa-edit"></i>
                   </button>
                   <div className="dropdown-menu p-1">
                     <label htmlFor="changelastName">Last Name</label>
-                    <input onChange={this.handleValue} type="text" className="form-control" id="changelastName" placeholder="Last Name" name="holder" />
-                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="lastName">Save</button>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changelastName"
+                      placeholder="Last Name"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary"
+                      name="lastName"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
               </div>
 
               <div className="row justify-content-center mb-3">
-                <div className="passwordData col-sm-7" id="password"><strong>Password: </strong> Hidden for privacy</div>
+                <div className="passwordData col-sm-7" id="password">
+                  <strong>Password: </strong> Hidden for privacy
+                </div>
                 <div className="dropdown">
-                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="password" aria-haspopup="true" aria-expanded="false">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="password"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Edit<i className="far fa-edit"></i>
                   </button>
                   <div className="dropdown-menu p-1">
                     <label htmlFor="changepassword">New Password</label>
-                    <input onChange={this.handleValue} type="text" className="form-control" id="changepassword" placeholder="New Password" name="holder" />
-                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="password">Save</button>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changepassword"
+                      placeholder="New Password"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary"
+                      name="password"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
-
               </div>
 
               <div className="row justify-content-center mb-3">
-                <div className="cityData col-sm-7" id="city"><strong>City: </strong> {this.state.City}</div>
+                <div className="cityData col-sm-7" id="city">
+                  <strong>City: </strong> {this.state.City}
+                </div>
                 <div className="dropdown">
-                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="City" aria-haspopup="true" aria-expanded="false">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="City"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Edit<i className="far fa-edit"></i>
                   </button>
                   <div className="dropdown-menu p-1">
                     <label htmlFor="changeCity">City</label>
-                    <input onChange={this.handleValue} type="text" className="form-control" id="changeCity" placeholder="City" name="holder" />
-                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="City">Save</button>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changeCity"
+                      placeholder="City"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary"
+                      name="City"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
               </div>
 
               <div className="row justify-content-center mb-3">
-                <div className="stateData col-sm-7" id="state"><strong>State: </strong> {this.state.State}</div>
+                <div className="stateData col-sm-7" id="state">
+                  <strong>State: </strong> {this.state.State}
+                </div>
                 <div className="dropdown">
                   {/* <button className="btn dropdown modifyBtn" type="button" toggle={false} data-toggle="dropdown" name="State" aria-haspopup="true" aria-expanded="false">
                     Edit<i className="far fa-edit"></i>
@@ -276,46 +372,72 @@ class UserProfile extends Component {
                             <option hidden>— Select State * —</option>
                             {this.displayStatesListOption()}
                           </select>
-                          <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="State">Save</button>
+                          <button
+                            onClick={this.submitForm}
+                            type="submit"
+                            className="btn btn-primary"
+                            name="State"
+                          >
+                            Save
+                          </button>
                         </div>
                       </Dropdown.Menu>
                     </Dropdown>
                   </FormGroup>
                 </div>
-
               </div>
 
               <div className="row justify-content-center mb-3">
-                <div className="emailData col-sm-7" id="email"><strong>Email: </strong> {this.state.email}</div>
-                <button className="btn dropdown modifyBtn" type="button" data-toggle="dropdown" >
-                  Edit<i className="far fa-edit"></i>
-                </button>
-
-              </div>
-
-              <div className="row justify-content-center mb-3">
-                <div className="interestsData col-sm-7" id="interests"><strong>Interests: </strong> {this.state.Interests}</div>
-                <button className="btn dropdown modifyBtn" type="button" data-toggle="dropdown" >
-                  Edit<i className="far fa-edit"></i>
-                </button>
-
-              </div>
-
-              <div className="row justify-content-center mb-3">
-                <div className="petsData col-sm-7" id="pets"><strong>Pets: </strong> {this.state.Pets}</div>
-                <button className="btn dropdown modifyBtn" type="button" data-toggle="dropdown" >
-                  Edit<i className="far fa-edit"></i>
-                </button>
-
-              </div>
-
-              <div className="row justify-content-center mb-3">
-                <div className="phoneData col-sm-7" id="phone"><strong>Phone #: </strong> {this.state.phone}</div>
-                <button className="btn dropdown modifyBtn" type="button" data-toggle="dropdown" >
+                <div className="emailData col-sm-7" id="email">
+                  <strong>Email: </strong> {this.state.email}
+                </div>
+                <button
+                  className="btn dropdown modifyBtn"
+                  type="button"
+                  data-toggle="dropdown"
+                >
                   Edit<i className="far fa-edit"></i>
                 </button>
               </div>
 
+              <div className="row justify-content-center mb-3">
+                <div className="interestsData col-sm-7" id="interests">
+                  <strong>Interests: </strong> {this.state.Interests}
+                </div>
+                <button
+                  className="btn dropdown modifyBtn"
+                  type="button"
+                  data-toggle="dropdown"
+                >
+                  Edit<i className="far fa-edit"></i>
+                </button>
+              </div>
+
+              <div className="row justify-content-center mb-3">
+                <div className="petsData col-sm-7" id="pets">
+                  <strong>Pets: </strong> {this.state.Pets}
+                </div>
+                <button
+                  className="btn dropdown modifyBtn"
+                  type="button"
+                  data-toggle="dropdown"
+                >
+                  Edit<i className="far fa-edit"></i>
+                </button>
+              </div>
+
+              <div className="row justify-content-center mb-3">
+                <div className="phoneData col-sm-7" id="phone">
+                  <strong>Phone #: </strong> {this.state.phone}
+                </div>
+                <button
+                  className="btn dropdown modifyBtn"
+                  type="button"
+                  data-toggle="dropdown"
+                >
+                  Edit<i className="far fa-edit"></i>
+                </button>
+              </div>
             </div>
           </fieldset>
         </form>
