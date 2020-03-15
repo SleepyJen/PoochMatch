@@ -1,4 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Dropdown, FormGroup } from 'react-bootstrap';
+import axios from 'axios';
+import Images from '../Images/Images';
+import allStatesList from '../../../AuthPage/components/SignUp/all-states-list.json';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './CreateDog.css'
 
 const initState = {
@@ -16,7 +21,7 @@ const initState = {
   personality: '',
 };
 
-class NewDogPage extends Component {
+class CreateDog extends Component {
 
   constructor() {
     super()
@@ -69,20 +74,24 @@ class NewDogPage extends Component {
 
     return (
       <section className="component">
-        <h2>Dog Profile</h2>
+        <h2>Fill out this form to add your pooch</h2>
 
         <form onSubmit={submitForm}>
           <fieldset>
-            <legend>Dog Form</legend>
+            <legend>Pooch Form</legend>
+
+            <div>
+              <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgId} />
+            </div>
 
             <div>
               <label htmlFor="name">
-                Dog's Name:
+                Pooch's Name:
               </label>
               <input
                 type="text"
-                name="name"
-                placeholder="enter dog's name"
+                className="poochName"
+                placeholder="enter name"
                 autoComplete="off"
                 value={name}
                 onChange={handleValue}
@@ -91,31 +100,18 @@ class NewDogPage extends Component {
               />
             </div>
 
+
+
             <div>
               <label htmlFor="breed">
-                Breed:
+                Pooch's Breed:
               </label>
               <input
                 type="text"
-                name="breed"
+                className="poochBreed"
                 placeholder="enter breed"
                 autoComplete="off"
                 value={breed}
-                onChange={handleValue}
-              // required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="species">
-                Species:
-              </label>
-              <input
-                type="text"
-                name="species"
-                placeholder="enter species"
-                autoComplete="off"
-                value={species}
                 onChange={handleValue}
               // required
               />
@@ -127,7 +123,7 @@ class NewDogPage extends Component {
               </label>
               <input
                 type="text"
-                name="gender"
+                className="poochGender"
                 placeholder="enter gender"
                 autoComplete="off"
                 value={gender}
@@ -142,7 +138,7 @@ class NewDogPage extends Component {
               </label>
               <input
                 type="number"
-                name="age"
+                className="poochAge"
                 placeholder="enter age"
                 autoComplete="off"
                 value={age}
@@ -158,7 +154,7 @@ class NewDogPage extends Component {
               </label>
               <input
                 type="number"
-                name="weight"
+                className="poochWeight"
                 placeholder="enter weight"
                 autoComplete="off"
                 value={weight}
@@ -168,42 +164,10 @@ class NewDogPage extends Component {
               />
             </div>
 
-
-            {/*  
-            <div>
-              <label htmlFor="text" className="text-group">
-                text:
-              </label>
-              <input
-                type="text"
-                name="text"
-                className="text input"
-                placeholder="text"
-                autoComplete="off"
-                defaultValue="text"
-                // onChange={ handleValue }
-                // required
-              />
-            </div>
-
-            <label htmlFor="S-N" className="check-group">
-              <input 
-                type="checkbox"
-                name="S---N"
-                className="S-N check"
-                id="S-N"
-                value="button"
-              />
-              <span className="check-text">
-                DOG
-              </span>
-            </label>
-*/}
-
             <div>
               <input
                 type="checkbox"
-                name="spayedNeutered"
+                className="poochSpayedNeutered"
                 value={spayedNeutered}
                 onChange={handleValue}
               // required
@@ -216,7 +180,7 @@ class NewDogPage extends Component {
             <div>
               <input
                 type="checkbox"
-                name="rabiesVaccine"
+                className="poochRabiesVaccine"
                 value={rabiesVaccine}
                 onChange={handleValue}
               // required
@@ -229,7 +193,7 @@ class NewDogPage extends Component {
             <div>
               <input
                 type="checkbox"
-                name="bordatellaVaccine"
+                className="poochBordatellaVaccine"
                 value={bordatellaVaccine}
                 onChange={handleValue}
               // required
@@ -242,7 +206,7 @@ class NewDogPage extends Component {
             <div>
               <input
                 type="checkbox"
-                name="parvovirusVaccine"
+                className="poochParvovirusVaccine"
                 value={parvovirusVaccine}
                 onChange={handleValue}
               // required
@@ -255,7 +219,7 @@ class NewDogPage extends Component {
             <div>
               <input
                 type="checkbox"
-                name="distemperVaccine"
+                className="poochDistemperVaccine"
                 value={distemperVaccine}
                 onChange={handleValue}
               // required
@@ -271,7 +235,7 @@ class NewDogPage extends Component {
               </label>
               <input
                 type="text"
-                name="personality"
+                className="poochPersonality"
                 placeholder="enter personality"
                 autoComplete="off"
                 value={personality}
@@ -294,15 +258,4 @@ class NewDogPage extends Component {
 
 }
 
-
-
-export default NewDogPage
-
-
-
-/*
-= Dog Model =
-- images ???
-- vaccines []
-- species---
-*/
+export default CreateDog

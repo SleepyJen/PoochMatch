@@ -176,8 +176,14 @@ class UserProfile extends Component {
             <div>
               <legend>User Profile</legend>
             </div>
-            <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgId} />
+
             <div className="container userProfileForm mt-3">
+              <div className="row justify-content-center mb-3">
+                <div className="userImage col-sm-8" id="userImage">
+                  <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgId} />
+                </div>
+              </div>
+
               <div className="row justify-content-center mb-3">
                 <div className="firstNameData col-sm-7" id="firstName"><strong>First Name: </strong> {this.state.firstName}</div>
                 <div className="dropdown">
