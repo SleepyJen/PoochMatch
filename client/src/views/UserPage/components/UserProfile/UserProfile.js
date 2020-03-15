@@ -239,25 +239,6 @@ class UserProfile extends Component {
               <div className="row justify-content-center mb-3">
                 <div className="stateData col-sm-7" id="state"><strong>State: </strong> {this.state.State}</div>
                 <div className="dropdown">
-                  {/* <button className="btn dropdown modifyBtn" type="button" toggle={false} data-toggle="dropdown" name="State" aria-haspopup="true" aria-expanded="false">
-                    Edit<i className="far fa-edit"></i>
-                  </button>
-                  <div className="dropdown-menu p-1">
-                    <label htmlFor="changeState">State</label>
-                    <div>
-                      <select
-                        form="State"
-                        name="State"
-                        className="State"
-                        defaultValue=""
-                        onChange={this.handleValue}
-                      >
-                        <option hidden>— Select State * —</option>
-                        {this.displayStatesListOption()}
-                      </select>
-                    </div>
-                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="State">Save</button>
-                  </div> */}
                   <FormGroup>
                     <Dropdown>
                       <Dropdown.Toggle className="modifyBtn">
@@ -287,9 +268,16 @@ class UserProfile extends Component {
 
               <div className="row justify-content-center mb-3">
                 <div className="emailData col-sm-7" id="email"><strong>Email: </strong> {this.state.email}</div>
-                <button className="btn dropdown modifyBtn" type="button" data-toggle="dropdown" >
-                  Edit<i className="far fa-edit"></i>
-                </button>
+                <div className="dropdown">
+                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="email" aria-haspopup="true" aria-expanded="false">
+                    Edit<i className="far fa-edit"></i>
+                  </button>
+                  <div className="dropdown-menu p-1">
+                    <label htmlFor="changeemail">New Email</label>
+                    <input onChange={this.handleValue} type="text" className="form-control" id="changeemail" placeholder="email" name="holder" />
+                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="email">Save</button>
+                  </div>
+                </div>
 
               </div>
 
@@ -311,9 +299,16 @@ class UserProfile extends Component {
 
               <div className="row justify-content-center mb-3">
                 <div className="phoneData col-sm-7" id="phone"><strong>Phone #: </strong> {this.state.phone}</div>
-                <button className="btn dropdown modifyBtn" type="button" data-toggle="dropdown" >
-                  Edit<i className="far fa-edit"></i>
-                </button>
+                <div className="dropdown">
+                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="phone" aria-haspopup="true" aria-expanded="false">
+                    Edit<i className="far fa-edit"></i>
+                  </button>
+                  <div className="dropdown-menu p-1">
+                    <label htmlFor="changephone">New Phone Number</label>
+                    <input onChange={this.handleValue} type="text" className="form-control" id="changephone" placeholder="Phone Number" name="holder" />
+                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="phone">Save</button>
+                  </div>
+                </div>
               </div>
 
             </div>
