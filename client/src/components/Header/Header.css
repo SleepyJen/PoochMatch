@@ -16,7 +16,7 @@ header .container-wrapper {
     align-items: center;
 
     max-width: 960px;
-    height: 10;
+    height: 100%;
     margin: 0 auto;
 
     position: relative;

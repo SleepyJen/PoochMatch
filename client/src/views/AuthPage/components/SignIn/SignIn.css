@@ -1,40 +1,30 @@
-main.login-page {
-    border: 2px solid rgb(134, 139, 134);
-    width: 300px;
-    min-height: 100px;
-    /* margin: 0 0; */
+div.login-content {
+    border: 2px solid black;
     background-color: white;
+
+    border-radius: 1em;
+
+    max-width: 300px;
+    min-height: 100px;
+    /* margin: 0 auto; */
+    padding: 30px;
 }
 
-main.login-page h2 {
-    text-align: center;
+/*  */
+
+div.input-message p {
+    color: red;
+    margin: 0;
 }
 
+
+
+/* 
 .main-body {
     background: url(/assets/images/bubbles-two.jpeg);
     background-size: 100%;
     background-repeat: no-repeat;
     height: 92.25vh;
     font-family: 'Roboto Mono', monospace;
-}
-
-.login-btn {
-    border: 1.5px solid #cebaa7;
-    border-radius: 10px;
-    height: 50px;
-    width: 85px;
-    color:rgb(134, 139, 134);
-    font-size: large;
-}
-
-.login-btn:hover {
-    background-color: #cebaa7;
-    border-color:  #cebaa7;
-    color: white
-
-}
-
-.login-page{
-    margin-top: 20%;
-    color: rgb(160, 105, 55);
-}
+} 
+*/

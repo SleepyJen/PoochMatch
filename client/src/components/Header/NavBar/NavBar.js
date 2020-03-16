@@ -1,4 +1,4 @@
-import React , { useState , useEffect } from 'react'
+import React , { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './NavBar.css'
 import axios from 'axios';
@@ -7,27 +7,8 @@ import axios from 'axios';
 
 function NavBar (props) {
 
-  const [ id , setId ] = useState( getUserById );
-  const query = `?user_id=${ id }`;
-  
-  /* GET Request - add query to /use Link */
-  async function getUserById () {
-    try {
-
-      const result = await axios.get('/user/check-user');
-      console.log('ID Result:' , result.data)
-      return await (result.data.user) 
-      ? setId( result.data.user._id ) : setId( '' );
-
-    } catch (err) { console.log(err) }
-  };
-
-  /*  check id hook */
-  // useEffect( () => { 
-  //   console.log('Nav ID:' , id)
-  // } , [ id ])
-
-  
+  /*  check props hook */
+  // useEffect( () => { console.log('Nav Props:' , props) } , [ props ])
 
   /* GET Request - logout existing user */
   const signOutAuth = async () => {
@@ -42,11 +23,6 @@ function NavBar (props) {
     } catch (err) { console.log(err) } 
   }
 
-  /* check props from App > Header */
-  // useEffect( () => { 
-  //   console.log('Nav Props:' , props)
-  // } , [ props ])
-
 
 
   /* close navbar by clicking on icon */
@@ -54,7 +30,7 @@ function NavBar (props) {
     const $menuBar = event.currentTarget.querySelector('i');
     $menuBar.classList.toggle('fa-bars')
     $menuBar.classList.toggle('fa-times') 
-    document.querySelector('.navbar').classList.toggle('active')
+    document.querySelector('.navbars').classList.toggle('active')
   };
 
   /* close navbar by esc. key */
@@ -63,7 +39,7 @@ function NavBar (props) {
       const $menuBar = document.querySelector(".menu-bar i");
       $menuBar.classList.remove("fa-times");
       $menuBar.classList.add("fa-bars");
-      document.querySelector(".navbar").classList.remove("active");
+      document.querySelector(".navbars").classList.remove("active");
     }
   };
 
@@ -73,7 +49,7 @@ function NavBar (props) {
     if (!$menuBar.contains(event.target)) {
       $menuBar.classList.remove("fa-times");
       $menuBar.classList.add("fa-bars");
-      document.querySelector(".navbar").classList.remove("active");
+      document.querySelector(".navbars").classList.remove("active");
     }
   };
 
@@ -83,7 +59,7 @@ function NavBar (props) {
     if ($menuBar.classList.contains("fa-times")) {
       $menuBar.classList.remove("fa-times");
       $menuBar.classList.add("fa-bars");
-      document.querySelector(".navbar").classList.remove("active");
+      document.querySelector(".navbars").classList.remove("active");
     }
   };
 
@@ -101,7 +77,7 @@ function NavBar (props) {
 
   return (
     <>
-      <nav className="navbar">
+      <nav className="navbars">
         <ul className="nav-opts">
           <li>
             <Link to="/">Home</Link>
@@ -111,15 +87,13 @@ function NavBar (props) {
             ? (
               <>
                 <li>
-                  <Link to={`/user${ query }`}>
+                  <Link to={ `/user${ props.query }` }>
                     User
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="/"
-                    onClick={ signOutAuth }
-                  >Logout
+                  <Link to="/" onClick={ signOutAuth }>
+                    Log Out
                   </Link>
                 </li>
               </>
@@ -127,18 +101,22 @@ function NavBar (props) {
             : (
             <>
               <li>
-                <Link to="/user/auth/sign-in">Log In</Link>
+                <Link to="/user/auth/sign-in">
+                  Log In
+                </Link>
               </li>
 
               <li>
-                <Link to="/user/auth/sign-up">Sign Up</Link>
+                <Link to="/user/auth/sign-up">
+                  Sign Up
+                </Link>
               </li>
             </>
           )
           }
         </ul>
       </nav>
-      <div className="menu-bar" onClick={toggleNav}>
+      <div className="menu-bar" onClick={ toggleNav }>
         <i className="fas fa-bars"></i>
       </div>
     </>

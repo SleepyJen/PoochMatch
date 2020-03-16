@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './PoochProfile.css'
 import { Card } from 'react-bootstrap'
 import { ListGroup } from 'react-bootstrap'
