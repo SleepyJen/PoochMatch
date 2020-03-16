@@ -450,27 +450,27 @@ class UserProfile extends Component {
                         Dog Walks</label>
                     </div>
                     <div className="form-check">
-                      <input onChange={this.handleCheck} type="checkbox" id="dropdownCheck2" className="form-check-input" value="Play Dates" name="interestsHolder" />
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Play Dates" name="interestsHolder" />
                       <label className="form-check-label" htmlFor="dropdownCheck2">
                         Play Dates</label>
                     </div>
                     <div className="form-check">
-                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" value="Breed" name="interestsHolder" id="dropdownCheck2" />
+                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Breed" name="interestsHolder" />
                       <label className="form-check-label" htmlFor="dropdownCheck2">
                         Breed</label>
                     </div>
                     <div className="form-check">
-                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" value="Dog Sit" name="interestsHolder" id="dropdownCheck2" />
+                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Dog Sit" name="interestsHolder" />
                       <label className="form-check-label" htmlFor="dropdownCheck2">
                         Dog Sit</label>
                     </div>
                     <div className="form-check">
-                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" value="Adoption" name="interestsHolder" id="dropdownCheck2" />
+                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Adoption" name="interestsHolder" />
                       <label className="form-check-label" htmlFor="dropdownCheck2">
                         Adoption</label>
                     </div>
                     <div className="form-check">
-                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" value="Fostering" name="interestsHolder" id="dropdownCheck2" />
+                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Fostering" name="interestsHolder" />
                       <label className="form-check-label" htmlFor="dropdownCheck2">
                         Fostering</label>
                     </div>
