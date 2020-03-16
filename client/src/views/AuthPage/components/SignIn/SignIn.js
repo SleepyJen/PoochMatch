@@ -23,7 +23,7 @@ class SignIn extends Component {
   /* POST Request - login valid user */
   loginUser = async (data) => {
     try {
-      
+
       const result = await axios.post('/user/login', data);
       console.log('API Result:' , result.data)
       
@@ -40,13 +40,13 @@ class SignIn extends Component {
 
         this.setState({ ...initState })
         const query = `?user_id=${result.data.user._id}`;
-        
-        this.props.setAuth( result.data.auth )
+
+        this.props.setAuth(result.data.auth)
         this.props.history.push({
           pathname: '/user',
           search: query
         })
-        
+
       }
 
     } catch (err) { console.log(err) }
@@ -57,7 +57,7 @@ class SignIn extends Component {
   handleValueChange = (event) => {
     const { name , value } = event.target;
     // console.log('Target:', name, '—', value)
-    this.setState({ [name] : value });
+    this.setState({ [name]: value });
   };
 
   /* submit user data to axios */
@@ -70,8 +70,8 @@ class SignIn extends Component {
   };
 
   render() {
-    const { email , password , message } = this.state;
-    const { handleValueChange , submitForm } = this;
+    const { email, password, message } = this.state;
+    const { handleValueChange, submitForm } = this;
 
 
 

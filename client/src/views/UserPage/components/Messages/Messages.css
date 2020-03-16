@@ -1,3 +1,36 @@
-.component {
-    text-align: center;
+.field {
+    background-color: white;
+}
+
+.chatContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 450px;
+}
+
+.chatRoom {
+    flex: 3;
+    height: 425px;
+    background-color: rgba(209, 191, 191, 0.5);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin: 1%;
+}
+
+.chatIm {
+    margin-left: 1%;
+    flex: 1;
+    height: 425px;
+    background-color: rgba(209, 191, 191, 0.5);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: 1%;
+}
+
+.chatInput {
+    background-color: rgba(209, 191, 191, 0.5);
+    margin: 1%;
+    height: 50px;
+    border-radius: 5px;
 }

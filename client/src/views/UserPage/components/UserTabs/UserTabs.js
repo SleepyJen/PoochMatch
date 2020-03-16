@@ -8,6 +8,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import PoochProfile from "../PoochProfile/PoochProfile";
 import UserProfile from "../UserProfile/UserProfile";
 import Messages from "../Messages/Messages";
+import CreateDog from '../CreateDog/CreateDog';
 
 function UserTabs() {
   return (
@@ -32,6 +33,9 @@ function UserTabs() {
         </Tab>
         <Tab eventKey="poochProfile" title="Pooch Profile">
           <PoochProfile />
+        </Tab>
+        <Tab eventKey="createDog" title="Add a Pooch">
+          <CreateDog />
         </Tab>
       </Tabs>
     </div>
