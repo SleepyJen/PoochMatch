@@ -20,7 +20,9 @@ const initState = {
   imgId: "",
   imgLocation: "",
   _id: "",
-  holder: ""
+  holder: "",
+  interestsHolder: [],
+  checked: false
 };
 
 class UserProfile extends Component {
@@ -45,8 +47,11 @@ class UserProfile extends Component {
       imgId: this.state.imgId,
       imgLocation: this.state.imgLocation,
       _id: this.state._id,
-      holder: this.state.holder
-    };
+      holder: this.state.holder,
+      interestsHolder: this.state.interestsHolder,
+      checked: this.state.checked
+    }
+
     this.setState(data);
   };
 
@@ -73,8 +78,10 @@ class UserProfile extends Component {
         imgId: result.data.data._id,
         imgLocation: this.state.imgLocation,
         _id: this.state._id,
-        holder: this.state.holder
-      };
+        holder: this.state.holder,
+        interestsHolder: this.state.interestsHolder,
+        checked: this.state.checked
+      }
       this.setState(data);
     });
     console.log(this.state);
@@ -98,8 +105,11 @@ class UserProfile extends Component {
       imgId: this.state.imgId,
       imgLocation: location.data.data,
       _id: this.state._id,
-      holder: this.state.holder
-    };
+      holder: this.state.holder,
+      interestsHolder: this.state.interestsHolder,
+      checked: this.state.checked
+    }
+
     this.setState(data);
   };
 
@@ -123,8 +133,11 @@ class UserProfile extends Component {
       imgId: data.imgs,
       imgLocation: image.data.data,
       _id: userId,
-      holder: this.state.holder
-    };
+      holder: this.state.holder,
+      interestsHolder: this.state.interestsHolder,
+      checked: this.state.checked
+    }
+
     this.setState(newState);
     console.log(this.state);
   }
@@ -155,6 +168,44 @@ class UserProfile extends Component {
     }
     console.log(this.state);
   };
+
+  handleCheck = async event => {
+    event.preventDefault();
+    let { name, value } = event.target;
+    let interests = this.state.Interests;
+    let interestsHolder = this.state.interestsHolder;
+    if (interests.length < 1) {
+      if (interestsHolder.length < 1) {
+        this.setState({
+          [name]: [value],
+          ['checked']: event.target.checked
+        });
+      } else {
+        for (let i = 0; i < interestsHolder.length; i++) {
+          if (interestsHolder[i] === value) {
+            i = interestsHolder.length;
+          } else if (interestsHolder[i] !== value && i === interestsHolder.length - 1) {
+            this.setState({
+              [name]: [...this.state.interestsHolder, value],
+              ['checked']: event.target.checked
+            });
+          }
+        }
+      }
+    } else {
+      for (let i = 0; i < interests.length; i++) {
+        if (interests[i] === value) {
+          i = interests.length;
+        } else if (interests[i] !== value && i === interests.length - 1) {
+          this.setState({
+            [name]: [...this.state.interestsHolder, value],
+            ['checked']: event.target.checked
+          });
+        }
+      }
+    }
+    console.log(this.state.interestsHolder);
+  }
 
   /* displays all states in <option> tag */
   displayStatesListOption = () => {
@@ -386,16 +437,47 @@ class UserProfile extends Component {
               </div>
 
               <div className="row justify-content-center mb-3">
-                <div className="interestsData col-sm-7" id="interests">
-                  <strong>Interests: </strong> {this.state.Interests}
+                <div className="interestsData col-sm-7" id="interests"><strong>Interests: </strong> {this.state.Interests}</div>
+                <div className="dropdown">
+                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="City" aria-haspopup="true" aria-expanded="false">
+                    Edit<i className="far fa-edit"></i>
+                  </button>
+                  <div className="dropdown-menu p-1">
+                    <label htmlFor="changeCity">Interests</label>
+                    <div className="form-check">
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Dog Walks" name="interestsHolder" />
+                      <label className="form-check-label" htmlFor="dropdownCheck2">
+                        Dog Walks</label>
+                    </div>
+                    <div className="form-check">
+                      <input onChange={this.handleCheck} type="checkbox" id="dropdownCheck2" className="form-check-input" value="Play Dates" name="interestsHolder" />
+                      <label className="form-check-label" htmlFor="dropdownCheck2">
+                        Play Dates</label>
+                    </div>
+                    <div className="form-check">
+                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" value="Breed" name="interestsHolder" id="dropdownCheck2" />
+                      <label className="form-check-label" htmlFor="dropdownCheck2">
+                        Breed</label>
+                    </div>
+                    <div className="form-check">
+                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" value="Dog Sit" name="interestsHolder" id="dropdownCheck2" />
+                      <label className="form-check-label" htmlFor="dropdownCheck2">
+                        Dog Sit</label>
+                    </div>
+                    <div className="form-check">
+                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" value="Adoption" name="interestsHolder" id="dropdownCheck2" />
+                      <label className="form-check-label" htmlFor="dropdownCheck2">
+                        Adoption</label>
+                    </div>
+                    <div className="form-check">
+                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" value="Fostering" name="interestsHolder" id="dropdownCheck2" />
+                      <label className="form-check-label" htmlFor="dropdownCheck2">
+                        Fostering</label>
+                    </div>
+                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="Interests">Save</button>
+                  </div>
+
                 </div>
-                <button
-                  className="btn dropdown modifyBtn"
-                  type="button"
-                  data-toggle="dropdown"
-                >
-                  Edit<i className="far fa-edit"></i>
-                </button>
               </div>
 
               <div className="row justify-content-center mb-3">
@@ -427,9 +509,9 @@ class UserProfile extends Component {
 
               </div>
             </div>
-          </fieldset>
-        </form>
-      </section>
+          </fieldset >
+        </form >
+      </section >
     );
   }
 }
