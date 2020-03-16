@@ -2,9 +2,12 @@
     text-align: center;
 }
 
-/* body { */
-    /* background: url("/assets/images/dogsPlaying.jpeg"); */
-    /* background-size: 100%; */
-    /* background-repeat: no-repeat; */
-    /* height: 0vh; */
-/* } */
+main.home-page {
+    border: 2px solid black;
+    background: url("/assets/images/dogsPlaying.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 100%;
+}

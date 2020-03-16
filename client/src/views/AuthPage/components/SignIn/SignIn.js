@@ -18,7 +18,7 @@ class SignIn extends Component {
   }
 
   /* check login props */
-  componentDidMount () { console.log('Login Props:' , this.props) }
+  // componentDidMount () { console.log('Login Props:' , this.props) }
 
   /* POST Request - login valid user */
   loginUser = async (data) => {
@@ -80,9 +80,9 @@ class SignIn extends Component {
         <div className="login-content">
           <h2>Login Page</h2>
           
+          {/* display error */}
           <div className="input-message">
             { 
-              // message && (
               (typeof message === 'string') && (
                 <p className="text error">
                   { message }
@@ -91,10 +91,12 @@ class SignIn extends Component {
             }
           </div>
           
+          {/* login form */}
           <form
             className="form"
             onSubmit={ submitForm }
           >
+            {/* EMAIL */}
             <div className="group">
               <input
                 type="text"
@@ -112,6 +114,7 @@ class SignIn extends Component {
               </label>
             </div>
             
+            {/* PASSWORD */}
             <div className="group">
               <input
                 type="text"
@@ -130,6 +133,7 @@ class SignIn extends Component {
 
             <br />
 
+            {/* login btn */}
             <input
               type="submit"
               name="login"
@@ -138,7 +142,8 @@ class SignIn extends Component {
               // disabled
             />
           </form>
-
+          
+          {/* caption */}
           <p className="text-caption">
             <span>
               New to Pooch Match?

@@ -4,7 +4,7 @@ const db = require('../models');
 const fs = require('fs');
 const passport = require('../custom/');
 const { 
-    check , validationResult , body
+    check , validationResult
 } = require('express-validator');
 
 //GET REQUESTS 
@@ -38,13 +38,13 @@ router.post(
         .trim().isLength({ min: 5 , max: 15 })
         .withMessage('requires 5-15 characters'),
 
-        body('cPassword')
+        check('cPassword')
         .custom( (value , { req }) => {
             // console.log('Confirm Pass:' , value , req);
             if (value !== req.body.password) {
                 throw new Error('must match password');
             } else {
-                console.log('password WORK')
+                console.log('password does match')
                 return true;
             }
         })
@@ -315,14 +315,19 @@ router.post('/updatelastName/:id', (req, res) => {
 
 //update password
 router.post('/updatepassword/:id', (req, res) => {
-    db.User.findOneAndUpdate({
-        _id: req.params.id
-    },
-        {
-            password: req.body.password
-        }).then(result => {
-            res.json(result);
-        });
+    /* DELETE AFTER TEST */
+    console.log('REQ:', req.params,req.body)
+    console.log('User:', (req.user)?true:false)
+    res.send( (req.user)?req.user:false )
+
+    // db.User.findOneAndUpdate({
+    //     _id: req.params.id
+    // },
+    //     {
+    //         password: req.body.password
+    //     }).then(result => {
+    //         res.json(result);
+    //     });
 });
 
 //update City

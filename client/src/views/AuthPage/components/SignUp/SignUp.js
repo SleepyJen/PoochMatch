@@ -58,15 +58,6 @@ class SignUp extends Component {
     } catch (err) { console.log(err) }
   };
 
-  /* displays all states in <option> tag */
-  displayStatesListOption = () => {
-    return allStatesList.map( (state , id) => (
-      <option key={id} value={ state.abbreviation }>
-        { state.name }
-      </option>
-    ));
-  };
-
   /* targets & handles each value change */
   handleValueChange = event => {
     const { name , value } = event.target;
@@ -82,6 +73,15 @@ class SignUp extends Component {
     const userData = this.state;
     console.log("Client Data:", userData);
     this.createUser(userData)
+  };
+
+  /* displays all states in <option> tag */
+  displayStatesListOption = () => {
+    return allStatesList.map( (state , id) => (
+      <option key={id} value={ state.abbreviation }>
+        { state.name }
+      </option>
+    ));
   };
 
   render() {
@@ -106,6 +106,7 @@ class SignUp extends Component {
         <div className="register-content">
           <h2>Register Page</h2>
 
+          {/* display error */}
           <div className="input-message">
             { 
               (typeof error === 'string') && (
@@ -116,10 +117,12 @@ class SignUp extends Component {
             }
           </div>
 
+          {/* register form */}
           <form 
             className="reg-form form" 
             // onSubmit={ submitForm }
           >
+            {/* FIRST NAME */}
             <div className="grid-first-name group">
               <input
                 type="text"
@@ -147,7 +150,8 @@ class SignUp extends Component {
                 }
               </label>
             </div>
-
+            
+            {/* LAST NAME */}
             <div className="grid-last-name group">
               <input
                 type="text"
@@ -175,6 +179,7 @@ class SignUp extends Component {
               </label>
             </div>
 
+            {/* EMAIL */}
             <div className="grid-email group">
               <input
                 type="text"
@@ -202,6 +207,7 @@ class SignUp extends Component {
               </label>
             </div>
 
+            {/* PASSWORD */}
             <div className="grid-password group">
               <input
                 type="text"
@@ -229,6 +235,7 @@ class SignUp extends Component {
               </label>
             </div>
 
+            {/* CONFIRM PASSWORD */}
             <div className="grid-cPassword group">
               <input
                 type="text"
@@ -256,6 +263,7 @@ class SignUp extends Component {
               </label>
             </div>
 
+            {/* CITY */}
             <div className="grid-City group">
               <input
                 type="text"
@@ -272,11 +280,12 @@ class SignUp extends Component {
               </label>
             </div>
             
+            {/* STATE */}
             <div className="grid-State">
               <select
                 form="State"
                 name="State"
-                className="State"
+                className="State input"
                 defaultValue={ State }
                 onChange={ handleValueChange }
               >
@@ -285,6 +294,7 @@ class SignUp extends Component {
               </select>
             </div>
 
+            {/* PHONE */}
             <div className="grid-phone group">
               <input
                 type="number"
@@ -303,22 +313,9 @@ class SignUp extends Component {
             </div>
           </form>
 
-{/* 
-            <br/>
-
-            <div className="grid-btn">
-              <input
-                type="submit"
-                name="sign-up"
-                className="auth-btn sign-up-btn"
-                value="Sign Up"
-                // disabled
-              />
-            </div>
-          </form>
-*/}
-
+          {/* register btn --- */}
           <button
+            type="submit"
             name="sign-up"
             className="auth-btn sign-up-btn"
             onClick={ submitForm }
@@ -328,6 +325,7 @@ class SignUp extends Component {
           <br/>
           <br/>
 
+          {/* caption */}
           <p className="text-caption">
             <span>
               Have an account?
@@ -344,3 +342,20 @@ class SignUp extends Component {
 }
 
 export default SignUp;
+
+
+
+/* 
+<br/>
+
+<div className="grid-btn">
+  <input
+    type="submit"
+    name="sign-up"
+    className="auth-btn sign-up-btn"
+    value="Sign Up"
+    // disabled
+  />
+</div>
+</form> 
+*/
