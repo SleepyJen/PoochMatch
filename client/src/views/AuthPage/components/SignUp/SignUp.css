@@ -1,33 +1,57 @@
-main.register-page {
-    border: 2px solid rgb(134, 139, 134);
-    width: 300px;
-    min-height: 100px;
-    /* margin: 0 auto; */
+div.register-content {
+    border: 2px solid gray;
     background-color: white;
-    margin-top: 5%;
-    color:rgb(160, 105, 55)
+
+    border-radius: 1em;
+
+    max-width: 700px;
+    min-height: 100px;
+
+    /* margin: 0 auto; */
+    padding: 30px;
 }
 
 main.register-page h2 {
     text-align: center;
 }
 
-.main-body {
-    overflow: auto;
-}
-
 .State {
-    width: 255px;
+    width: 100%;
 }
 
-.sign-up-btn {
-    border: 1.5px solid #cebaa7;
-    border-radius: 10px;
-    color:rgb(134, 139, 134);
-    font-size: large;
+/*  */
+
+.reg-form {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-areas:
+        "f-name   f-name   l-name    l-name"
+        "email    email    email     email"
+        "password password cPassword cPassword"
+        "City     State    State     phone"
+    ;
 }
 
-.sign-up-btn:hover {
-    background-color: #cebaa7;
-    border-color: #cebaa7;
+.grid-first-name { grid-area: f-name; }
+.grid-last-name { grid-area: l-name; }
+.grid-email { grid-area: email; }
+.grid-password { grid-area: password; }
+.grid-cPassword { grid-area: cPassword; }
+.grid-City { grid-area: City; }
+.grid-State { grid-area: State; }
+.grid-phone { grid-area: phone; }
+
+@media screen and (max-width: 600px) {
+    .reg-form {
+        grid-template-areas:
+            "f-name"
+            "l-name"
+            "email"
+            "password"
+            "cPassword"
+            "City"
+            "State"
+            "phone"
+        ;
+    }
 }

@@ -9,22 +9,33 @@ import { Route, Redirect } from 'react-router-dom';
 - deny access to UserPage
 - or redirect to SignInPage 
 */
-export const RouteAuthenticate = ({ auth , setAuth , component: Component , ...rest }) => {
-    const comp = (props) => {
+export const RouteAuthenticate = (
+    { auth , setAuth , query , component:Component , ...rest }
+) => {
+    const Comp = (props) => {
         // console.log('Auth Props:' , props , auth)
         return (!auth)
         ? (
             <Component 
-                {...rest} 
-                {...props} 
-                auth={ auth } 
-                setAuth={ setAuth } 
+                { ...rest } 
+                { ...props }
+                auth={ auth }
+                setAuth={ setAuth }
             />
         )
-        : (<Redirect to={`/user${''}`} />);
-        // ?user_id=${props.location}
+        : (
+            <Redirect 
+                to={ `/user${ query }` } 
+            />
+        );
     };
-    return (<Route {...rest} render={comp} />);
+
+    return (
+        <Route 
+            { ...rest } 
+            render={ Comp } 
+        />
+    );
 }
 
 /* 
@@ -33,17 +44,30 @@ export const RouteAuthenticate = ({ auth , setAuth , component: Component , ...r
 - deny access to SignInPage & SignUpPage
 - redirect to UserPage
 */
-export const RouteProtected = ({ auth , component: Component , ...rest }) => {
-    const comp = (props) => {
-        // console.log('Prot Props:' , props, auth)
+export const RouteProtected = (
+    { auth , setAuth , component:Component , ...rest }
+) => {
+    const Comp = (props) => {
+        // console.log('Prot Props:' , props , auth)
         return ( auth )
         ? (
             <Component 
-                {...rest} 
-                {...props} 
+                { ...rest }
+                { ...props }
+                setAuth={ setAuth }
             />
         )
-        : (<Redirect to={`/user/auth/sign-in`} />);
+        : (
+            <Redirect 
+                to={ `/` } 
+            />
+        );
     };
-    return (<Route {...rest} render={comp} />);
+
+    return (
+        <Route 
+            { ...rest } 
+            render={ Comp } 
+        />
+    );
 }

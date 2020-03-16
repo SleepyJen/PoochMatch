@@ -1,12 +1,14 @@
 /* NOTE:  *//* TODO:  *//* REVIEW:  *//* FIXME:  *//* SECTION:  *//* STUB:  *//* ANCHOR:  *//* *: *//* !: *//* ?: */
 
-/* COLORS
+/* 
+= COLORS =
 #CEBAA7
 #8F5D39
 #8F857C
 #faebd7
 #664732
 #C0977A
+#a06937
 */
 
 *, *::before, *::after {
@@ -15,7 +17,7 @@
 }
 
 
-html, body {
+html, body , div#root {
     width: 100%; height: 100%;
     /* width: 100vw; height: 100vh; */
     font-family: sans-serif;
@@ -24,29 +26,13 @@ html, body {
 
 html { border: 2px solid black; }
 body { border: 2px solid silver; }
-
-
-/*  */
-/* 
-body {
+div#root { 
+    border: 2px solid gray; 
     display: flex;
     flex-flow: column;
-    align-items: center;
-    justify-content: center;
-} 
- */
-/* 
-body {
-    display: flex;
-    flex-flow: column;
-
-    text-align: center;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
 }
-*/
-/*  */
 
+/*  */
 
 li,a {
     text-decoration: none;

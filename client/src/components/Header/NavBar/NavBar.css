@@ -1,41 +1,39 @@
-/* .navbar { */
-/* border: 2px solid red; */
-/* } */
-.navbar ul {
-    /* border: 2px solid blue; */
-    display: flex;
+.navbars {
+    /* border: 2px solid red; */
     height: 100%;
 }
+    .navbars ul {
+        /* border: 2px solid blue; */
+        display: flex;
+        height: 100%;
+    }
+    /* .navbars li { */
+        /* border: 2px solid lightblue; */
+        /* height: 100%; */
+    /* } */
+    .navbars a {
+        background: #cebaa7;
+        /* border: 2px solid green; */
+        color: white;
+        font-size: 17px;
 
-/* .navbar li { */
-/* border: 2px solid lightblue; */
-/* } */
-.navbar a {
-    background: #cebaa7;
-    /* border: 2px solid green; */
-    color: white;
-    font-size: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    /* width: 100%; */
-    height: 100%;
-    padding: 0 20px;
-}
-
-.navbar a:hover {
-    /* background: #c0977a; */
-    color: black;
-    text-decoration: none;
-}
-
-.navbar a:active {
-    /* background: cornsilk; */
-    color: black;
-}
-
+        /* width: 100%; */
+        height: 100%;
+        padding: 0 20px;
+    }
+        .navbars a:hover {
+            background: #c0977a;
+            color: black;
+            text-decoration: none;
+        }
+        .navbars a:active {
+            /* background: cornsilk; */
+            color: black;
+        }
 /*  */
 
 .menu-bar {
@@ -44,21 +42,17 @@
     display: flex;
     align-items: center;
 }
-
-.menu-bar i {
-    color: black;
-    font-size: 1.5em;
-    padding: 0 10px;
-}
-
-.menu-bar i:hover {
-    color: darkred;
-}
-
-.menu-bar i:active {
-    color: darkblue;
-}
-
+    .menu-bar i {
+        color: black;
+        font-size: 1.5em;
+        padding: 0 10px;
+    }
+        .menu-bar i:hover {
+            color: darkred;
+        }
+        .menu-bar i:active {
+            color: darkblue;
+        }
 /*  */
 
 @media screen and (min-width: 550px) {
@@ -67,29 +61,28 @@
     }
 }
 
-
 @media screen and (max-width: 550px) {
-    .navbar {
+    .navbars {
         display: none;
     }
 
-    .navbar {
+    .navbars {
         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
         position: absolute;
         top: 100%;
         right: 0;
 
-        width: 200px;
-        /* width: 100%; */
+        /* width: 200px; */
+        width: 100%;
         height: auto;
     }
 
-    .navbar ul {
+    .navbars ul {
         flex-flow: column;
     }
 
-    .navbar a {
+    .navbars a {
         padding: 10px 0;
     }
 }

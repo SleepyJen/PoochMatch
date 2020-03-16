@@ -3,8 +3,8 @@ const router = express.Router();
 const db = require('../models');
 const fs = require('fs');
 const passport = require('../custom/');
-const {
-    check, validationResult, matchedData
+const { 
+    check , validationResult , body
 } = require('express-validator');
 
 //GET REQUESTS 
@@ -22,30 +22,45 @@ router.get('/', (req, res) => {
 router.post(
     '/sign-up',
     [
-        check('email')
-            .trim().isEmail().normalizeEmail()
-            .withMessage('Email requires "@" & "." symbols'),
+        check('firstName')
+        .isAlpha().isLength({ min: 2 })
+        .withMessage('requires only letters'),
 
+        check('lastName')
+        .isAlpha().isLength({ min: 2 })
+        .withMessage('requires only letters'),
+
+        check('email')
+        .trim().isEmail().normalizeEmail()
+        .withMessage('requires "@" & "." symbols'),
+        
         check('password')
-            .trim().isLength({ min: 5, max: 15 })
-            .withMessage('Password requires 5-15 characters'),
+        .trim().isLength({ min: 5 , max: 15 })
+        .withMessage('requires 5-15 characters'),
+
+        body('cPassword')
+        .custom( (value , { req }) => {
+            // console.log('Confirm Pass:' , value , req);
+            if (value !== req.body.password) {
+                throw new Error('must match password');
+            } else {
+                console.log('password WORK')
+                return true;
+            }
+        })
     ],
     (req, res, next) => {
         console.log('— REGISTER —')
         console.log('Server Data:', req.body)
 
         const errors = validationResult(req);
-        const userData = matchedData(req);
 
-        if (!errors.isEmpty()) {
-            console.log(
-                'Error:', errors, '\n', userData
-            )
-
+        if ( !errors.isEmpty() ) {
+            console.log('Error:' , errors)
+            
             res.status = 500;
             return res.json({
-                error: errors,
-                user: userData
+                error : errors.mapped()
             })
         } else {
             passport.authenticate(
@@ -78,7 +93,7 @@ router.post(
             console.log('Reg. User:', user._id, user.id)
 
             res.json({
-                message: info,
+                info,
                 user: {
                     _id: user._id,
                     email: user.email
@@ -128,6 +143,7 @@ router.post('/login', (req, res, next) => {
             if (error) {
                 console.log('Login Error:', error)
 
+                res.status = 500;
                 return res.json({
                     error: error || 'internal server problem'
                 });
@@ -135,14 +151,14 @@ router.post('/login', (req, res, next) => {
                 console.log('Auth User:', user._id)
 
                 return res
-                    .json({
-                        info: info,
-                        user: {
-                            _id: user._id,
-                            email: user.email
-                        },
-                        auth: req.isAuthenticated()
-                    });
+                .json({
+                    info,
+                    user: {
+                        _id: user._id, 
+                        email: user.email 
+                    },
+                    auth: req.isAuthenticated()
+                });
             }
         })
 
