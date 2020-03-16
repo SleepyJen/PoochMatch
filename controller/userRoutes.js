@@ -315,19 +315,14 @@ router.post('/updatelastName/:id', (req, res) => {
 
 //update password
 router.post('/updatepassword/:id', (req, res) => {
-    /* DELETE AFTER TEST */
-    console.log('REQ:', req.params,req.body)
-    console.log('User:', (req.user)?true:false)
-    res.send( (req.user)?req.user:false )
-
-    // db.User.findOneAndUpdate({
-    //     _id: req.params.id
-    // },
-    //     {
-    //         password: req.body.password
-    //     }).then(result => {
-    //         res.json(result);
-    //     });
+    db.User.findOneAndUpdate({
+        _id: req.params.id
+    },
+        {
+            password: req.body.password
+        }).then(result => {
+            res.json(result);
+        });
 });
 
 //update City
