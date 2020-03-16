@@ -15,7 +15,7 @@ function Banner() {
           </div>
         </div>
       </div>
-
+      
       <section className="banner">
         <button className="login-button" type="button">
           <Link to="/user/auth/sign-in" className="loginBtn">

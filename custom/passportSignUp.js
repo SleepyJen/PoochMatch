@@ -18,9 +18,10 @@ const SignUpStrategy = new Strategy(
 /* check user in DB & each input requirements */
 async function authUser (req, email, password, done) {
     delete req.body['error'];
+    delete req.body['cPassword'];
     req.body.firstName = req.body.firstName
     .trim().replace( /^\w/, cap => cap.toUpperCase() );
-    req.body.lastName = req.body.firstName
+    req.body.lastName = req.body.lastName
     .trim().replace( /^\w/, cap => cap.toUpperCase() );
     
     console.log('REQ:' , req.body)

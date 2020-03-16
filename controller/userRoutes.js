@@ -4,7 +4,7 @@ const db = require('../models');
 const fs = require('fs');
 const passport = require('../custom/');
 const { 
-    check , validationResult , body
+    check , validationResult
 } = require('express-validator');
 
 //GET REQUESTS 
@@ -38,13 +38,13 @@ router.post(
         .trim().isLength({ min: 5 , max: 15 })
         .withMessage('requires 5-15 characters'),
 
-        body('cPassword')
+        check('cPassword')
         .custom( (value , { req }) => {
             // console.log('Confirm Pass:' , value , req);
             if (value !== req.body.password) {
                 throw new Error('must match password');
             } else {
-                console.log('password WORK')
+                console.log('password does match')
                 return true;
             }
         })
