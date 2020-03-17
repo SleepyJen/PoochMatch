@@ -44,22 +44,15 @@
   margin: 15px;
 }
 
-.discriptionText {
+.descriptionText {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #cebaa7;
   opacity: .5;
-  height: 10vh;
   width: 100%;
   color: rgb(97, 62, 22);
   font-size: 20px;
   font-weight: bold;
   font-family: 'Roboto Mono', monospace;
-}
-
-.textbox2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

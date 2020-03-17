@@ -4,18 +4,20 @@ import "./Banner.css";
 
 function Banner() {
   return (
-    <div>
-      <div className="discriptionText">
-        <div className="textbox1">
+
+    <div className="container">
+      <div className="row justify-content-center descriptionText ">
+        <div className="col-sm-10  ">
           As dog owners we know the importance of socializing them with other
-          dogs. We also know how difficult it is to find them
-          <div className="textbox2">
-            the correct playmate or companion. This app will help you find that
-            perfect playdate or partner for your furry friend!
-          </div>
+          dogs.
+          We also know how difficult it is to find them
+          the correct playmate or companion. This app will help you find that
+          perfect playdate or partner for your furry friend!
+          <h1> Woof you play with me?</h1>
         </div>
+
       </div>
-      
+
       <section className="banner">
         <button className="login-button" type="button">
           <Link to="/user/auth/sign-in" className="loginBtn">
@@ -28,7 +30,7 @@ function Banner() {
           </Link>
         </button>
       </section>
-    </div>
+    </div >
   );
 }
 
