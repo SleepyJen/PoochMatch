@@ -20,7 +20,9 @@ const initState = {
   imgId: "",
   imgLocation: "",
   _id: "",
-  holder: ""
+  holder: "",
+  interestsHolder: [],
+  checked: false
 };
 
 class UserProfile extends Component {
@@ -45,8 +47,11 @@ class UserProfile extends Component {
       imgId: this.state.imgId,
       imgLocation: this.state.imgLocation,
       _id: this.state._id,
-      holder: this.state.holder
+      holder: this.state.holder,
+      interestsHolder: this.state.interestsHolder,
+      checked: this.state.checked
     };
+
     this.setState(data);
   };
 
@@ -73,7 +78,9 @@ class UserProfile extends Component {
         imgId: result.data.data._id,
         imgLocation: this.state.imgLocation,
         _id: this.state._id,
-        holder: this.state.holder
+        holder: this.state.holder,
+        interestsHolder: this.state.interestsHolder,
+        checked: this.state.checked
       };
       this.setState(data);
     });
@@ -98,8 +105,11 @@ class UserProfile extends Component {
       imgId: this.state.imgId,
       imgLocation: location.data.data,
       _id: this.state._id,
-      holder: this.state.holder
+      holder: this.state.holder,
+      interestsHolder: this.state.interestsHolder,
+      checked: this.state.checked
     };
+
     this.setState(data);
   };
 
@@ -123,8 +133,11 @@ class UserProfile extends Component {
       imgId: data.imgs,
       imgLocation: image.data.data,
       _id: userId,
-      holder: this.state.holder
+      holder: this.state.holder,
+      interestsHolder: this.state.interestsHolder,
+      checked: this.state.checked
     };
+
     this.setState(newState);
     console.log(this.state);
   }
@@ -156,6 +169,47 @@ class UserProfile extends Component {
     console.log(this.state);
   };
 
+  handleCheck = async event => {
+    event.preventDefault();
+    let { name, value } = event.target;
+    let interests = this.state.Interests;
+    let interestsHolder = this.state.interestsHolder;
+    if (interests.length < 1) {
+      if (interestsHolder.length < 1) {
+        this.setState({
+          [name]: [value],
+          ["checked"]: event.target.checked
+        });
+      } else {
+        for (let i = 0; i < interestsHolder.length; i++) {
+          if (interestsHolder[i] === value) {
+            i = interestsHolder.length;
+          } else if (
+            interestsHolder[i] !== value &&
+            i === interestsHolder.length - 1
+          ) {
+            this.setState({
+              [name]: [...this.state.interestsHolder, value],
+              ["checked"]: event.target.checked
+            });
+          }
+        }
+      }
+    } else {
+      for (let i = 0; i < interests.length; i++) {
+        if (interests[i] === value) {
+          i = interests.length;
+        } else if (interests[i] !== value && i === interests.length - 1) {
+          this.setState({
+            [name]: [...this.state.interestsHolder, value],
+            ["checked"]: event.target.checked
+          });
+        }
+      }
+    }
+    console.log(this.state.interestsHolder);
+  };
+
   /* displays all states in <option> tag */
   displayStatesListOption = () => {
     return allStatesList.map((state, id) => (
@@ -179,12 +233,18 @@ class UserProfile extends Component {
             <div className="container userProfileForm mt-3">
               <div className="row justify-content-center mb-3">
                 <div className="userImage col-sm-8" id="userImage">
-                  <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgId} />
+                  <Images
+                    click={this.fileSelected}
+                    upload={this.fileUpload}
+                    img={this.state.imgId}
+                  />
                 </div>
               </div>
 
               <div className="row justify-content-center mb-3">
-                <div className="firstNameData col-sm-7" id="firstName"><strong>First Name: </strong> {this.state.firstName}</div>
+                <div className="firstNameData col-sm-7" id="firstName">
+                  <strong>First Name: </strong> {this.state.firstName}
+                </div>
 
                 <div className="dropdown">
                   {/* id="dropdownMenuButton" */}
@@ -338,7 +398,7 @@ class UserProfile extends Component {
                 <div className="dropdown">
                   <FormGroup>
                     <Dropdown>
-                      <Dropdown.Toggle className="modifyBtn">
+                      <Dropdown.Toggle className="modifyBtn stateBtn">
                         Edit<i className="far fa-edit"></i>
                       </Dropdown.Toggle>
                       <Dropdown.Menu className="dropdown-menu">
@@ -370,61 +430,239 @@ class UserProfile extends Component {
               </div>
 
               <div className="row justify-content-center mb-3">
-
-                <div className="emailData col-sm-7" id="email"><strong>Email: </strong> {this.state.email}</div>
+                <div className="emailData col-sm-7" id="email">
+                  <strong>Email: </strong> {this.state.email}
+                </div>
                 <div className="dropdown">
-                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="email" aria-haspopup="true" aria-expanded="false">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="email"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Edit<i className="far fa-edit"></i>
                   </button>
                   <div className="dropdown-menu p-1">
                     <label htmlFor="changeemail">New Email</label>
-                    <input onChange={this.handleValue} type="text" className="form-control" id="changeemail" placeholder="email" name="holder" />
-                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="email">Save</button>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changeemail"
+                      placeholder="email"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary"
+                      name="email"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
-
               </div>
 
               <div className="row justify-content-center mb-3">
                 <div className="interestsData col-sm-7" id="interests">
                   <strong>Interests: </strong> {this.state.Interests}
                 </div>
-                <button
-                  className="btn dropdown modifyBtn"
-                  type="button"
-                  data-toggle="dropdown"
-                >
-                  Edit<i className="far fa-edit"></i>
-                </button>
+                <div className="dropdown">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="City"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Edit<i className="far fa-edit"></i>
+                  </button>
+                  <div className="dropdown-menu p-1">
+                    <label htmlFor="changeCity">Interests</label>
+                    <div className="form-check">
+                      <input
+                        onChange={this.handleCheck}
+                        type="checkbox"
+                        className="form-check-input"
+                        checked={this.state.checked}
+                        value="Dog Walks"
+                        name="interestsHolder"
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="dropdownCheck2"
+                      >
+                        Dog Walks
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        onChange={this.handleCheck}
+                        type="checkbox"
+                        className="form-check-input"
+                        checked={this.state.checked}
+                        value="Play Dates"
+                        name="interestsHolder"
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="dropdownCheck2"
+                      >
+                        Play Dates
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        onClick={this.handleCheck}
+                        type="checkbox"
+                        className="form-check-input"
+                        checked={this.state.checked}
+                        value="Breed"
+                        name="interestsHolder"
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="dropdownCheck2"
+                      >
+                        Breed
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        onClick={this.handleCheck}
+                        type="checkbox"
+                        className="form-check-input"
+                        checked={this.state.checked}
+                        value="Dog Sit"
+                        name="interestsHolder"
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="dropdownCheck2"
+                      >
+                        Dog Sit
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        onClick={this.handleCheck}
+                        type="checkbox"
+                        className="form-check-input"
+                        checked={this.state.checked}
+                        value="Adoption"
+                        name="interestsHolder"
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="dropdownCheck2"
+                      >
+                        Adoption
+                      </label>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        onClick={this.handleCheck}
+                        type="checkbox"
+                        className="form-check-input"
+                        checked={this.state.checked}
+                        value="Fostering"
+                        name="interestsHolder"
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="dropdownCheck2"
+                      >
+                        Fostering
+                      </label>
+                    </div>
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary"
+                      name="Interests"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <div className="row justify-content-center mb-3">
                 <div className="petsData col-sm-7" id="pets">
                   <strong>Pets: </strong> {this.state.Pets}
                 </div>
-                <button
-                  className="btn dropdown modifyBtn"
-                  type="button"
-                  data-toggle="dropdown"
-                >
-                  Edit<i className="far fa-edit"></i>
-                </button>
+                <div className="dropdown">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="pets"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Edit<i className="far fa-edit"></i>
+                  </button>
+                  <div className="dropdown-menu p-1">
+                    <label htmlFor="changepets">New Pets</label>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changepets"
+                      placeholder="New Pet"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary"
+                      name="pets"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <div className="row justify-content-center mb-3">
-
-                <div className="phoneData col-sm-7" id="phone"><strong>Phone #: </strong> {this.state.phone}</div>
+                <div className="phoneData col-sm-7" id="phone">
+                  <strong>Phone #: </strong> {this.state.phone}
+                </div>
                 <div className="dropdown">
-                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="phone" aria-haspopup="true" aria-expanded="false">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="phone"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Edit<i className="far fa-edit"></i>
                   </button>
                   <div className="dropdown-menu p-1">
                     <label htmlFor="changephone">New Phone Number</label>
-                    <input onChange={this.handleValue} type="text" className="form-control" id="changephone" placeholder="Phone Number" name="holder" />
-                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="phone">Save</button>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changephone"
+                      placeholder="Phone Number"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary"
+                      name="phone"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
-
               </div>
             </div>
           </fieldset>

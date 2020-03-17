@@ -1,8 +1,10 @@
-import React from "react"; // , { useState }
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Logo.css";
 
-function Logo() {
+
+
+function Logo () {
   return (
     <div className="header-logo">
       <img
@@ -11,12 +13,14 @@ function Logo() {
         className="icon"
       />
       <h1 className="title-lg">
-        <Link className="logoBtn">
+        <Link to="/" className="logo-btn">
           Pooch Match
         </Link>
       </h1>
     </div>
   );
 }
+
+
 
 export default Logo;

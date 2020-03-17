@@ -16,18 +16,21 @@ function AuthPage (props) {
     <>
       <RouteAuthenticate 
         exact 
-        // { ...props }
         auth={ props.auth } 
         setAuth={ props.setAuth }
+        // props={ props }
+        // { ...rest }
         path="/user/auth/sign-in" 
         component={ SignIn } 
       />
       
       <RouteAuthenticate 
         exact 
-        // { ...props }
-        // auth={ auth }
         auth={ props.auth }
+        setAuth={ props.setAuth }
+        // { ...rest }
+        // props={ props }
+        // { ...rest }
         path="/user/auth/sign-up" 
         component={ SignUp } 
       />

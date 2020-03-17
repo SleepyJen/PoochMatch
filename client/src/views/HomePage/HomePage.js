@@ -5,7 +5,7 @@ import Banner from "./components/Banner/Banner";
 
 function HomePage() {
   return (
-    <main className="">
+    <main className="home-page">
       <Banner />
     </main>
   );
