@@ -225,7 +225,14 @@ router.get('/getById/:id', (req, res) => {
     });
 });
 
-
+//get by City
+router.get('/getByCity/:city', (req, res) => {
+    db.User.find({
+        City: req.params.city
+    }).then(result => {
+        res.json(result);
+    });
+});
 
 //POST REQUESTS
 //Create new user

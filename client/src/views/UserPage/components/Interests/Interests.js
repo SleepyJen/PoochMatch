@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
-import { Result } from 'express-validator';
 
 function Interests(props) {
     const [value, modifier] = useState({ Interests: [] });
