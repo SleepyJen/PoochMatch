@@ -1,62 +1,51 @@
-
-
 import React, { Component } from 'react';
-import { Dropdown, Form, Button, Grid, Row, Col } from 'react-bootstrap';
+import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 import Images from '../Images/Images';
-import allStatesList from '../../../AuthPage/components/SignUp/all-states-list.json';
+// import allStatesList from '../../../AuthPage/components/SignUp/all-states-list.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CreateDog.css'
 
 const initState = {
+  imgs: '',
+  imgId: '',
+  imgLocation: '',
   name: '',
   breed: '',
   gender: '',
   age: '',
   weight: '',
   spayedNeutered: '',
-  rabiesVaccine: '',
-  bordatellaVaccine: '',
-  parvovirusVaccine: '',
-  distemperVaccine: '',
+  rabies: '',
+  bordatella: '',
+  parvovirus: '',
+  distemper: '',
   personality: '',
 };
 
 class CreateDog extends Component {
-
   constructor() {
     super()
     this.state = initState;
   }
 
 
-
+  //hold value for each input
   handleValue = (event) => {
-    const { name, type, checked, value } = event.target;
-    // console.log("name " + name);
-    // console.log("type " + type);
-    // console.log("checked " + checked);
-    // console.log("value " + value);
-
-
-    const valType = (type === 'checkbox') ? checked : value;
-
-    // console.log('Target:', name, '—', checked, '—', value)
-    // console.log( 'Input:' , valType )
-
-    this.setState({ [name]: valType })
+    const { name, value } = event.target;
+    this.setState({ [name]: value })
   };
 
+  //changes the state and database for updating profile
   submitForm = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     console.log('Dog Data:', this.state);
-    // this.setState({ ...initState })
-
   };
 
-  render() {
 
+
+  render() {
     const {
       name,
       breed,
@@ -64,10 +53,10 @@ class CreateDog extends Component {
       age,
       weight,
       spayedNeutered,
-      rabiesVaccine,
-      bordatellaVaccine,
-      parvovirusVaccine,
-      distemperVaccine,
+      rabies,
+      bordatella,
+      parvovirus,
+      distemper,
       personality,
     } = this.state;
     const {
@@ -95,7 +84,6 @@ class CreateDog extends Component {
                     name="name"
                     placeholder="enter name"
                     autoComplete="off"
-                    // value={name}
                     onChange={handleValue}
                   />
                 </Form.Group>
@@ -107,7 +95,6 @@ class CreateDog extends Component {
                     name="breed"
                     placeholder="enter breed"
                     autoComplete="off"
-                    // value={breed}
                     onChange={handleValue} />
                 </Form.Group>
               </Form.Row>
@@ -120,7 +107,6 @@ class CreateDog extends Component {
                     name="gender"
                     placeholder="enter gender"
                     autoComplete="off"
-                    // value={gender}
                     onChange={handleValue}>
                     <option></option>
                     <option>Male</option>
@@ -135,7 +121,6 @@ class CreateDog extends Component {
                     name="age"
                     placeholder="enter age"
                     autoComplete="off"
-                    // value={age}
                     onChange={handleValue}
                   >
                     <option></option>
@@ -155,7 +140,6 @@ class CreateDog extends Component {
                     name="weight"
                     placeholder="enter weight"
                     autoComplete="off"
-                    // value={weight}
                     onChange={handleValue}
                   >
                     <option></option>
@@ -171,11 +155,73 @@ class CreateDog extends Component {
 
               <Form.Row>
                 <Form.Group as={Col} controlId="formSpayedNeutered">
-                  <Form.Label>Spayed/Neutered?</Form.Label>
+                  <Form.Label>Spayed or Neutered?</Form.Label>
                   <Form.Control as="select"
                     className="poochSpayedNeutered"
                     name="spayedNeutered"
                     placeholder="enter spayed/neutered state"
+                    autoComplete="off"
+                    onChange={handleValue}
+                  >
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                  </Form.Control>
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="formRabies">
+                  <Form.Label>Rabies Vaccine?</Form.Label>
+                  <Form.Control as="select"
+                    className="poochRabies"
+                    name="rabies"
+                    placeholder="enter rabies vaccine state"
+                    autoComplete="off"
+                    onChange={handleValue}
+                  >
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col} controlId="formBordatella">
+                  <Form.Label>Bordatella Vaccine:</Form.Label>
+                  <Form.Control as="select"
+                    className="poochBordatellaVaccine:"
+                    name="bordatella"
+                    placeholder="enter Bordatella Vaccine state"
+                    autoComplete="off"
+                    onChange={handleValue}
+                  >
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                  </Form.Control>
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="formParvovirusVaccine">
+                  <Form.Label>Parvovirus Vaccine?</Form.Label>
+                  <Form.Control as="select"
+                    className="poochParvovirus"
+                    name="parvovirus"
+                    placeholder="enter Parvovirus Vaccine state"
+                    autoComplete="off"
+                    onChange={handleValue}
+                  >
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                  </Form.Control>
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="formDistemperVaccine">
+                  <Form.Label>Distemper Vaccine?</Form.Label>
+                  <Form.Control as="select"
+                    className="poochDistemperVaccine"
+                    name="distemper"
+                    placeholder="enter Distemper Vaccine state"
                     autoComplete="off"
                     // value={weight}
                     onChange={handleValue}
@@ -188,24 +234,22 @@ class CreateDog extends Component {
 
               </Form.Row>
 
-              <Form.Row>
-
-
-              </Form.Row>
-
-
-              <Form.Group id="formGridCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
+              <Form.Group controlId="formPersonality">
+                <Form.Label>Pooch's Personality</Form.Label>
+                <Form.Control as="textarea"
+                  rows="4"
+                  className="poochPersonality"
+                  name="personality"
+                  placeholder="In a few words, describe your pooch's personality"
+                  autoComplete="off"
+                  maxlength="250"
+                  onChange={handleValue} />
               </Form.Group>
 
-              <Button variant="primary" type="submit" onClick={submitForm}>
+              <Button variant="primary" className="submitAddPooch" type="submit" onClick={submitForm}>
                 Submit
-  </Button>
+                </Button>
             </Form>
-
-
-
-
 
           </div>
         </div>

@@ -6,7 +6,7 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class Dashboard extends Component {
   static defaultProps = {
-    center: { lat: 40.73, lng: -73.93 },
+    center: { lat: 37.7749, lng: -122.4194 },
     zoom: 11
   };
 
