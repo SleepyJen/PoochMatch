@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 import Images from '../Images/Images';
-// import allStatesList from '../../../AuthPage/components/SignUp/all-states-list.json';
+import allStatesList from '../../../AuthPage/components/SignUp/all-states-list.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CreateDog.css'
 
 const initState = {
+  _id: "",
   imgs: '',
   imgId: '',
   imgLocation: '',
@@ -29,15 +30,124 @@ class CreateDog extends Component {
     this.state = initState;
   }
 
+  //when someone uploads an image
+  fileSelected = event => {
+    let data = {
+      _id: this.state._id,
+      imgs: event.target.files[0],
+      imgId: this.state.imgId,
+      imgLocation: this.state.imgLocation,
+      name: this.state.name,
+      breed: this.state.breed,
+      gender: this.state.gender,
+      age: this.state.age,
+      weight: this.state.weight,
+      email: this.state.email,
+      spayedNeutered: this.state.spayedNeutered,
+      rabies: this.state.rabies,
+      bordatella: this.state.bordatella,
+      parvovirus: this.state.holder,
+      distemper: this.state.distemper,
+      personality: this.state.personality,
+    }
+
+    this.setState(data);
+  };
+
+  //upload file
+  fileUpload = async event => {
+    event.preventDefault();
+    const fd = new FormData();
+    fd.append("image", this.state.imgs, this.state.imgs.name);
+    await axios.post("/addImage/file", fd).then(result => {
+      axios.post(`/dog/addImage/${this.state._id}`, {
+        imgs: result.data.data._id
+      });
+      let data = {
+        _id: this.state._id,
+        imgs: this.state.imgs,
+        imgId: result.data.data._id,
+        imgLocation: this.state.imgLocation,
+        name: this.state.name,
+        breed: this.state.breed,
+        gender: this.state.gender,
+        age: this.state.age,
+        weight: this.state.weight,
+        email: this.state.email,
+        spayedNeutered: this.state.spayedNeutered,
+        rabies: this.state.rabies,
+        bordatella: this.state.bordatella,
+        parvovirus: this.state.holder,
+        distemper: this.state.distemper,
+        personality: this.state.personality,
+      }
+      this.setState(data);
+    });
+    console.log(this.state);
+    const urlQuerries = new URLSearchParams(window.location.search);
+    const dogId = urlQuerries.get("Dog_id");
+    await axios.post(`/dog/addImage/${dogId}`, {
+      imgs: this.state.imgId
+    });
+    let location = await axios.get(`/addImage/${this.state.imgId}`);
+    let data = {
+      _id: this.state._id,
+      imgs: this.state.imgs,
+      imgId: this.state.imgId,
+      imgLocation: location.data.data,
+      name: this.state.name,
+      breed: this.state.breed,
+      gender: this.state.gender,
+      age: this.state.age,
+      weight: this.state.weight,
+      email: this.state.email,
+      spayedNeutered: this.state.spayedNeutered,
+      rabies: this.state.rabies,
+      bordatella: this.state.bordatella,
+      parvovirus: this.state.holder,
+      distemper: this.state.distemper,
+      personality: this.state.personality,
+    }
+
+    this.setState(data);
+  };
+
+  async componentDidMount() {
+    const urlQuerries = new URLSearchParams(window.location.search);
+    const dogId = urlQuerries.get("Dog_id");
+    let user = await axios.get(`/dog/getById/${dogId}`);
+    let data = user.data;
+    let image = await axios.get(`/addImage/${data.imgs}`);
+    const newState = {
+      _id: dogId,
+      imgs: data.imgs,
+      imgId: data.imgs,
+      imgLocation: image.data.data,
+      name: data.name,
+      breed: data.breed,
+      gender: data.gender,
+      age: data.age,
+      weight: data.weight,
+      email: data.email,
+      spayedNeutered: data.spayedNeutered,
+      rabies: data.rabies,
+      bordatella: data.bordatella,
+      parvovirus: data.holder,
+      distemper: data.distemper,
+      personality: data.personality,
+    }
+    this.setState(newState);
+    console.log(this.state);
+  }
 
   //hold value for each input
-  handleValue = (event) => {
-    const { name, value } = event.target;
+  handleValue = async event => {
+    const { name, value } = await event.target;
     this.setState({ [name]: value })
   };
 
   //changes the state and database for updating profile
-  submitForm = (event) => {
+  submitForm = async event => {
     event.preventDefault();
 
     console.log('Dog Data:', this.state);
@@ -71,7 +181,7 @@ class CreateDog extends Component {
           <div className="col-sm-10 poochCard">
 
             <Form>
-              <Form.Group id="addPoochImage">
+              <Form.Group id="addPoochImage ">
                 <h3>Attach pooch's profile picture</h3>
                 <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgId} />
               </Form.Group>
