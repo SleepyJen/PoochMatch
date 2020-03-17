@@ -100,7 +100,6 @@ class UserProfile extends Component {
       }
       this.setState(data);
     });
-    console.log(this.state);
     const urlQuerries = new URLSearchParams(window.location.search);
     const userId = urlQuerries.get("User_id");
     await axios.post(`/user/addImage/${userId}`, {
@@ -139,32 +138,60 @@ class UserProfile extends Component {
     const userId = urlQuerries.get("user_id");
     let user = await axios.get(`/user/getById/${userId}`);
     let data = user.data;
-    let image = await axios.get(`/addImage/${data.imgs}`);
-    const newState = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      password: data.password,
-      City: data.City,
-      State: data.State,
-      email: data.email,
-      Interests: data.Interests,
-      Pets: data.pets,
-      imgs: data.imgs,
-      phone: data.phone,
-      imgId: data.imgs,
-      imgLocation: image.data.data,
-      _id: userId,
-      holder: this.state.holder,
-      interestsHolder: this.state.interestsHolder,
-      dogWalks: this.state.dogWalks,
-      playDates: this.state.playDates,
-      breed: this.state.breed,
-      dogSit: this.state.dogSit,
-      adoption: this.state.adoption,
-      fostering: this.state.fostering
+    console.log(data);
+    if (data.imgs) {
+      let image = await axios.get(`/addImage/${data.imgs}`);
+      const newState = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        password: data.password,
+        City: data.City,
+        State: data.State,
+        email: data.email,
+        Interests: data.Interests,
+        Pets: data.pets,
+        imgs: data.imgs,
+        phone: data.phone,
+        imgId: data.imgs,
+        imgLocation: image.data.data,
+        _id: userId,
+        holder: this.state.holder,
+        interestsHolder: this.state.interestsHolder,
+        dogWalks: this.state.dogWalks,
+        playDates: this.state.playDates,
+        breed: this.state.breed,
+        dogSit: this.state.dogSit,
+        adoption: this.state.adoption,
+        fostering: this.state.fostering
+      }
+      this.setState(newState);
+    } else {
+      const newState = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        password: data.password,
+        City: data.City,
+        State: data.State,
+        email: data.email,
+        Interests: data.Interests,
+        Pets: data.pets,
+        imgs: this.state.imgs,
+        phone: data.phone,
+        imgId: this.state.imgId,
+        imgLocation: this.state.imgLocation,
+        _id: userId,
+        holder: this.state.holder,
+        interestsHolder: this.state.interestsHolder,
+        dogWalks: this.state.dogWalks,
+        playDates: this.state.playDates,
+        breed: this.state.breed,
+        dogSit: this.state.dogSit,
+        adoption: this.state.adoption,
+        fostering: this.state.fostering
+      }
+      this.setState(newState);
     }
-    this.setState(newState);
-    console.log(this.state);
+    console.log(this.state)
   }
 
   //hold value for each input
@@ -192,7 +219,6 @@ class UserProfile extends Component {
     if (id !== "changeState") {
       document.getElementById(id).value = "";
     }
-    console.log(this.state);
   };
 
   //handle all the check marks for interests
@@ -233,7 +259,6 @@ class UserProfile extends Component {
         }
       }
     }
-    console.log(this.state.interestsHolder);
   };
 
   //adding all interests into the database
@@ -255,7 +280,6 @@ class UserProfile extends Component {
       [holder]: [],
       [interestName]: user.Interests
     });
-    console.log(this.state);
   }
 
   /* displays all states in <option> tag */

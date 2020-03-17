@@ -31,9 +31,10 @@ class Dashboard extends Component {
     let user = await axios.get(`/user/getById/${userId}`);
     console.log(user);
     this.setState({
-      [City]: user.City,
+      [City]: user.data.City,
       [_id]: userId
     });
+    console.log(this.state);
   }
 
   static defaultProps = {
@@ -58,7 +59,7 @@ class Dashboard extends Component {
             <AnyReactComponent lat={27.2} lng={77.5} text="My Marker" />
           </GoogleMapReact>
         </div>
-        <UserCards _id={this.state._id} city={this.state.City} />
+        <UserCards _id={this.state._id} City={this.state.City} />
       </div>
     );
   }
