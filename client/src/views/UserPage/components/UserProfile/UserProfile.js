@@ -179,12 +179,18 @@ class UserProfile extends Component {
             <div className="container userProfileForm mt-3">
               <div className="row justify-content-center mb-3">
                 <div className="userImage col-sm-8" id="userImage">
-                  <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgId} />
+                  <Images
+                    click={this.fileSelected}
+                    upload={this.fileUpload}
+                    img={this.state.imgId}
+                  />
                 </div>
               </div>
 
               <div className="row justify-content-center mb-3">
-                <div className="firstNameData col-sm-7" id="firstName"><strong>First Name: </strong> {this.state.firstName}</div>
+                <div className="firstNameData col-sm-7" id="firstName">
+                  <strong>First Name: </strong> {this.state.firstName}
+                </div>
 
                 <div className="dropdown">
                   {/* id="dropdownMenuButton" */}
@@ -338,7 +344,7 @@ class UserProfile extends Component {
                 <div className="dropdown">
                   <FormGroup>
                     <Dropdown>
-                      <Dropdown.Toggle className="modifyBtn">
+                      <Dropdown.Toggle className="modifyBtn stateBtn">
                         Edit<i className="far fa-edit"></i>
                       </Dropdown.Toggle>
                       <Dropdown.Menu className="dropdown-menu">
@@ -370,61 +376,151 @@ class UserProfile extends Component {
               </div>
 
               <div className="row justify-content-center mb-3">
-
-                <div className="emailData col-sm-7" id="email"><strong>Email: </strong> {this.state.email}</div>
+                <div className="emailData col-sm-7" id="email">
+                  <strong>Email: </strong> {this.state.email}
+                </div>
                 <div className="dropdown">
-                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="email" aria-haspopup="true" aria-expanded="false">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="email"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Edit<i className="far fa-edit"></i>
                   </button>
                   <div className="dropdown-menu p-1">
                     <label htmlFor="changeemail">New Email</label>
-                    <input onChange={this.handleValue} type="text" className="form-control" id="changeemail" placeholder="email" name="holder" />
-                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="email">Save</button>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changeemail"
+                      placeholder="email"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary"
+                      name="email"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
-
               </div>
 
               <div className="row justify-content-center mb-3">
                 <div className="interestsData col-sm-7" id="interests">
                   <strong>Interests: </strong> {this.state.Interests}
                 </div>
-                <button
-                  className="btn dropdown modifyBtn"
-                  type="button"
-                  data-toggle="dropdown"
-                >
-                  Edit<i className="far fa-edit"></i>
-                </button>
+                <div className="dropdown">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="interests"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Edit<i className="far fa-edit"></i>
+                  </button>
+                  <div className="dropdown-menu p-1">
+                    <label htmlFor="changeinterests">New Interests</label>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changeinterests"
+                      placeholder="Interests"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary"
+                      name="interests"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <div className="row justify-content-center mb-3">
                 <div className="petsData col-sm-7" id="pets">
                   <strong>Pets: </strong> {this.state.Pets}
                 </div>
-                <button
-                  className="btn dropdown modifyBtn"
-                  type="button"
-                  data-toggle="dropdown"
-                >
-                  Edit<i className="far fa-edit"></i>
-                </button>
+                <div className="dropdown">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="pets"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Edit<i className="far fa-edit"></i>
+                  </button>
+                  <div className="dropdown-menu p-1">
+                    <label htmlFor="changepets">New Pets</label>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changepets"
+                      placeholder="New Pet"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary"
+                      name="pets"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <div className="row justify-content-center mb-3">
-
-                <div className="phoneData col-sm-7" id="phone"><strong>Phone #: </strong> {this.state.phone}</div>
+                <div className="phoneData col-sm-7" id="phone">
+                  <strong>Phone #: </strong> {this.state.phone}
+                </div>
                 <div className="dropdown">
-                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="phone" aria-haspopup="true" aria-expanded="false">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="phone"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Edit<i className="far fa-edit"></i>
                   </button>
                   <div className="dropdown-menu p-1">
                     <label htmlFor="changephone">New Phone Number</label>
-                    <input onChange={this.handleValue} type="text" className="form-control" id="changephone" placeholder="Phone Number" name="holder" />
-                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="phone">Save</button>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changephone"
+                      placeholder="Phone Number"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary"
+                      name="phone"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
-
               </div>
             </div>
           </fieldset>
