@@ -5,6 +5,7 @@ import Images from "../Images/Images";
 import allStatesList from "../../../AuthPage/components/SignUp/all-states-list.json";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Dropdown, FormGroup } from "react-bootstrap";
+import Interests from '../Interests/Interests'
 
 const initState = {
   firstName: "",
@@ -22,7 +23,12 @@ const initState = {
   _id: "",
   holder: "",
   interestsHolder: [],
-  checked: false
+  dogWalks: false,
+  playDates: false,
+  breed: false,
+  dogSit: false,
+  adoption: false,
+  fostering: false
 };
 
 class UserProfile extends Component {
@@ -49,7 +55,12 @@ class UserProfile extends Component {
       _id: this.state._id,
       holder: this.state.holder,
       interestsHolder: this.state.interestsHolder,
-      checked: this.state.checked
+      dogWalks: this.state.dogWalks,
+      playDates: this.state.playDates,
+      breed: this.state.breed,
+      dogSit: this.state.dogSit,
+      adoption: this.state.adoption,
+      fostering: this.state.fostering
     }
 
     this.setState(data);
@@ -80,7 +91,12 @@ class UserProfile extends Component {
         _id: this.state._id,
         holder: this.state.holder,
         interestsHolder: this.state.interestsHolder,
-        checked: this.state.checked
+        dogWalks: this.state.dogWalks,
+        playDates: this.state.playDates,
+        breed: this.state.breed,
+        dogSit: this.state.dogSit,
+        adoption: this.state.adoption,
+        fostering: this.state.fostering
       }
       this.setState(data);
     });
@@ -107,7 +123,12 @@ class UserProfile extends Component {
       _id: this.state._id,
       holder: this.state.holder,
       interestsHolder: this.state.interestsHolder,
-      checked: this.state.checked
+      dogWalks: this.state.dogWalks,
+      playDates: this.state.playDates,
+      breed: this.state.breed,
+      dogSit: this.state.dogSit,
+      adoption: this.state.adoption,
+      fostering: this.state.fostering
     }
 
     this.setState(data);
@@ -135,9 +156,13 @@ class UserProfile extends Component {
       _id: userId,
       holder: this.state.holder,
       interestsHolder: this.state.interestsHolder,
-      checked: this.state.checked
+      dogWalks: this.state.dogWalks,
+      playDates: this.state.playDates,
+      breed: this.state.breed,
+      dogSit: this.state.dogSit,
+      adoption: this.state.adoption,
+      fostering: this.state.fostering
     }
-
     this.setState(newState);
     console.log(this.state);
   }
@@ -158,6 +183,7 @@ class UserProfile extends Component {
     }
   };
 
+  //update database for all categories except interests and pets
   updateDatabase = async name => {
     await axios.post(`/user/update${name}/${this.state._id}`, {
       [name]: this.state.holder
@@ -169,16 +195,18 @@ class UserProfile extends Component {
     console.log(this.state);
   };
 
+  //handle all the check marks for interests
   handleCheck = async event => {
     event.preventDefault();
+
     let { name, value } = event.target;
+    this.setState({ [name]: event.target.checked });
     let interests = this.state.Interests;
     let interestsHolder = this.state.interestsHolder;
     if (interests.length < 1) {
       if (interestsHolder.length < 1) {
         this.setState({
-          [name]: [value],
-          ['checked']: event.target.checked
+          ['interestsHolder']: [...this.state.interestsHolder, value]
         });
       } else {
         for (let i = 0; i < interestsHolder.length; i++) {
@@ -186,8 +214,7 @@ class UserProfile extends Component {
             i = interestsHolder.length;
           } else if (interestsHolder[i] !== value && i === interestsHolder.length - 1) {
             this.setState({
-              [name]: [...this.state.interestsHolder, value],
-              ['checked']: event.target.checked
+              ['interestsHolder']: [...this.state.interestsHolder, value]
             });
           }
         }
@@ -198,13 +225,32 @@ class UserProfile extends Component {
           i = interests.length;
         } else if (interests[i] !== value && i === interests.length - 1) {
           this.setState({
-            [name]: [...this.state.interestsHolder, value],
-            ['checked']: event.target.checked
+            ['interestsHolder']: [...this.state.interestsHolder, value]
           });
         }
       }
     }
     console.log(this.state.interestsHolder);
+  }
+
+  //adding all interests into the database
+  addChecked = async e => {
+    e.preventDefault();
+    let interests = [];
+    for (let i = 0; i < this.state.interestsHolder.length; i++) {
+      if (this.state.interestsHolder[i] !== null) {
+        interests.push(this.state.interestsHolder[i]);
+      }
+    }
+    await axios.post(`/user/addInterests/${this.state._id}`, {
+      Interests: interests
+    });
+    let user = await axios.get(`/user/getById/${this.state._id}`);
+    this.setState({
+      ['interestHolder']: [],
+      ['Interests']: user.Interests
+    });
+    console.log(this.state);
   }
 
   /* displays all states in <option> tag */
@@ -215,6 +261,13 @@ class UserProfile extends Component {
       </option>
     ));
   };
+
+  showInterests = () => {
+    return this.state.Interests.map(interests => (
+      console.log(interests),
+      <h6>{interests}</h6>
+    ));
+  }
 
   render() {
     return (
@@ -437,7 +490,7 @@ class UserProfile extends Component {
               </div>
 
               <div className="row justify-content-center mb-3">
-                <div className="interestsData col-sm-7" id="interests"><strong>Interests: </strong> {this.state.Interests}</div>
+                <div className="interestsData col-sm-7" id="interests"><strong>Interests: </strong> <Interests _id={this.state._id} /></div>
                 <div className="dropdown">
                   <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="City" aria-haspopup="true" aria-expanded="false">
                     Edit<i className="far fa-edit"></i>
@@ -445,36 +498,36 @@ class UserProfile extends Component {
                   <div className="dropdown-menu p-1">
                     <label htmlFor="changeCity">Interests</label>
                     <div className="form-check">
-                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Dog Walks" name="interestsHolder" />
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.dogWalks} value="Dog Walks" name="dogWalks" />
                       <label className="form-check-label" htmlFor="dropdownCheck2">
                         Dog Walks</label>
                     </div>
                     <div className="form-check">
-                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Play Dates" name="interestsHolder" />
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.playDates} value="Play Dates" name="playDates" />
                       <label className="form-check-label" htmlFor="dropdownCheck2">
                         Play Dates</label>
                     </div>
                     <div className="form-check">
-                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Breed" name="interestsHolder" />
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.breed} value="Breed" name="breed" />
                       <label className="form-check-label" htmlFor="dropdownCheck2">
                         Breed</label>
                     </div>
                     <div className="form-check">
-                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Dog Sit" name="interestsHolder" />
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Dog Sit" name="dogSit" />
                       <label className="form-check-label" htmlFor="dropdownCheck2">
                         Dog Sit</label>
                     </div>
                     <div className="form-check">
-                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Adoption" name="interestsHolder" />
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.adoption} value="Adoption" name="adoption" />
                       <label className="form-check-label" htmlFor="dropdownCheck2">
                         Adoption</label>
                     </div>
                     <div className="form-check">
-                      <input onClick={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Fostering" name="interestsHolder" />
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.fostering} value="Fostering" name="fostering" />
                       <label className="form-check-label" htmlFor="dropdownCheck2">
                         Fostering</label>
                     </div>
-                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="Interests">Save</button>
+                    <button onClick={this.addChecked} type="submit" className="btn btn-primary" name="Interests">Save</button>
                   </div>
 
                 </div>
