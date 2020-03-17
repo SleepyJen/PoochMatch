@@ -60,3 +60,12 @@ input {
   overflow-y: scroll;
 }
 
+.stateBtn {
+  border: none;
+  color: black;
+  height: 39px;
+}
+
+.stateBtn:hover {
+  color: black;
+}
