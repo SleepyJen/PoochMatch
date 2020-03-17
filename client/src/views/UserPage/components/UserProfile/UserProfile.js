@@ -198,7 +198,7 @@ class UserProfile extends Component {
   //handle all the check marks for interests
   handleCheck = async event => {
     event.preventDefault();
-
+    let interestName = "interestsHolder";
     let { name, value } = event.target;
     this.setState({ [name]: event.target.checked });
     let interests = this.state.Interests;
@@ -206,7 +206,7 @@ class UserProfile extends Component {
     if (interests.length < 1) {
       if (interestsHolder.length < 1) {
         this.setState({
-          ['interestsHolder']: [...this.state.interestsHolder, value]
+          [interestName]: [...this.state.interestsHolder, value]
         });
       } else {
         for (let i = 0; i < interestsHolder.length; i++) {
@@ -217,7 +217,7 @@ class UserProfile extends Component {
             i === interestsHolder.length - 1
           ) {
             this.setState({
-              ['interestsHolder']: [...this.state.interestsHolder, value]
+              [interestName]: [...this.state.interestsHolder, value]
             });
           }
         }
@@ -228,7 +228,7 @@ class UserProfile extends Component {
           i = interests.length;
         } else if (interests[i] !== value && i === interests.length - 1) {
           this.setState({
-            ['interestsHolder']: [...this.state.interestsHolder, value]
+            [interestName]: [...this.state.interestsHolder, value]
           });
         }
       }
@@ -240,6 +240,8 @@ class UserProfile extends Component {
   addChecked = async e => {
     e.preventDefault();
     let interests = [];
+    let holder = "interestsHolder";
+    let interestName = "Interests";
     for (let i = 0; i < this.state.interestsHolder.length; i++) {
       if (this.state.interestsHolder[i] !== null) {
         interests.push(this.state.interestsHolder[i]);
@@ -250,8 +252,8 @@ class UserProfile extends Component {
     });
     let user = await axios.get(`/user/getById/${this.state._id}`);
     this.setState({
-      ['interestHolder']: [],
-      ['Interests']: user.Interests
+      [holder]: [],
+      [interestName]: user.Interests
     });
     console.log(this.state);
   }
@@ -267,7 +269,6 @@ class UserProfile extends Component {
 
   showInterests = () => {
     return this.state.Interests.map(interests => (
-      console.log(interests),
       <h6>{interests}</h6>
     ));
   }
