@@ -61,7 +61,7 @@ class SignUp extends Component {
   displayStatesListOption = () => {
     return allStatesList.map((state, id) => (
       <option key={id} value={state.abbreviation}>
-        { state.name }
+        {state.name}
       </option>
     ));
   };
@@ -118,9 +118,9 @@ class SignUp extends Component {
         <div className="container" align="center">
           <main className="register-page">
             <h2>Register Page</h2>
-            <form 
-              className="form" 
-              onSubmit={ submitForm }
+            <form
+              className="form"
+              onSubmit={submitForm}
             >
               <div className="group">
                 <input
@@ -129,8 +129,8 @@ class SignUp extends Component {
                   className="email input"
                   autoComplete="off"
                   autoFocus
-                  value={ email }
-                  onChange={ handleValueChange }
+                  value={email}
+                  onChange={handleValueChange}
                 />
                 <label htmlFor="email" className="border">
                   <span className="text">
@@ -145,8 +145,8 @@ class SignUp extends Component {
                   name="password"
                   className="password input"
                   autoComplete="off"
-                  value={ password }
-                  onChange={ handleValueChange }
+                  value={password}
+                  onChange={handleValueChange}
                 />
                 <label htmlFor="password" className="border">
                   <span className="text">
@@ -161,8 +161,8 @@ class SignUp extends Component {
                   name="firstName"
                   className="firstName input"
                   autoComplete="off"
-                  value={ firstName }
-                  onChange={ handleValueChange }
+                  value={firstName}
+                  onChange={handleValueChange}
                 />
                 <label htmlFor="firstName" className="border">
                   <span className="text">
@@ -177,8 +177,8 @@ class SignUp extends Component {
                   name="lastName"
                   className="lastName input"
                   autoComplete="off"
-                  value={ lastName }
-                  onChange={ handleValueChange }
+                  value={lastName}
+                  onChange={handleValueChange}
                 />
                 <label htmlFor="lastName" className="border">
                   <span className="text">
@@ -193,8 +193,8 @@ class SignUp extends Component {
                   name="City"
                   className="City input"
                   autoComplete="off"
-                  value={ City }
-                  onChange={ handleValueChange }
+                  value={City}
+                  onChange={handleValueChange}
                 />
                 <label htmlFor="City" className="border">
                   <span className="text">
@@ -207,11 +207,11 @@ class SignUp extends Component {
                 form="State"
                 name="State"
                 className="State"
-                defaultValue={ State }
-                onChange={ handleValueChange }
+                defaultValue={State}
+                onChange={handleValueChange}
               >
                 <option hidden>— Select State * —</option>
-                { this.displayStatesListOption() }
+                {this.displayStatesListOption()}
               </select>
 
               <div className="group">
@@ -220,8 +220,8 @@ class SignUp extends Component {
                   name="phone"
                   className="phone input"
                   autoComplete="off"
-                  value={ phone }
-                  onChange={ handleValueChange }
+                  value={phone}
+                  onChange={handleValueChange}
                 />
                 <label htmlFor="phone" className="border">
                   <span className="text">
@@ -240,7 +240,7 @@ class SignUp extends Component {
               />
             </form>
             <div>
-              { this.displayErrors(error) }
+              {this.displayErrors(error)}
             </div>
           </main>
         </div>
