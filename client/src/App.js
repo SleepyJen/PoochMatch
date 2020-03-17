@@ -5,8 +5,7 @@ import {
 import axios from 'axios';
 
 import React , { 
-  useState 
-/*   , useEffect  */
+  useState , useEffect 
 } from 'react';
 
 import "./assets/reset.css";
@@ -31,23 +30,27 @@ import ErrorPage from "./views/ErrorPage/ErrorPage.js";
 
 function App() {
 
-  const [ auth , setAuth ] = useState( initAuth );
-
-  /* Get Request - to setup user authentication */
-  async function initAuth () {
+  const [ auth , setAuth ] = useState( '' );
+  const [ id   , setId ] = useState( '' );
+  const query = `?user_id=${ id }`;
+  
+  /* GET Request - check for user */
+  async function initState () {
     try {
-    
+
       const result = await axios.get('/user/check-user');
-      console.log('Auth Result:' , result.data)
+      console.log('App Result:' , result.data)
       setAuth( result.data.auth )
+      setId( (result.data.user)  ? result.data.user._id : '')
+
+    } catch (err) { console.log(err) }
+  };
   
-    } catch (err) { console.log(err) } 
-  }
-  
-  /* check auth hook */
-  // useEffect( () => { 
-  //   console.log('App Auth:' , auth) 
-  // } , [ auth ])
+  /* check fn hook */
+  useEffect( () => { 
+    if ( !auth && !id ) { initState() }
+    console.log('App Check:' , auth , id) 
+  } , [ auth , id ])
 
 
 
@@ -57,6 +60,7 @@ function App() {
         <Header 
           auth={ auth }
           setAuth={ setAuth } 
+          query={ query }
         />
 
         <Switch>
@@ -70,6 +74,7 @@ function App() {
             exact
             auth={ auth }
             setAuth={ setAuth }
+            query={ query }
             path="/user/auth/:entry"
             component={ AuthPage }
           />
@@ -77,6 +82,8 @@ function App() {
           {/* access to user page */}
           <RouteProtected
             auth={ auth }
+            setAuth={ setAuth }
+            query={ query }
             path="/user"
             component={ UserPage }
           />

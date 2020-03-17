@@ -2,23 +2,26 @@
     text-align: center;
 }
 
-/*  */
-
-.img-comp {
+main.auth-page {
     border: 2px solid black;
-    text-align: center;
-}
 
-.img-comp img {
-    max-width: 200px;
-    height: auto;
-}
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
 
-/*  */
+    width: 100%;
+
+    /* height: 100%; */
+    flex: 1 1 auto;
+}
 
 form.form {
-    padding: 20px;
+    padding: 30px 0;
 }
+
+/*  */
+
 div.group {
     position: relative;
 
@@ -34,22 +37,23 @@ div.group {
         margin: 10px 0;
         padding: 3px 0 5px 5px;
     }
-    label.border {
+    label.borders {
+        border: none;
         /* text-align: center; */
         pointer-events: none;
     }
-        label.border::after {
+        label.borders::after {
             content: '';
 
             position: absolute;
-            top: 55%;
+            /* top: 55%; */
             left: 50%;
             right: 50%;
-            /* bottom: 0.6em; */
+            bottom: 2.15em;
             transition: 0.3s all ease;
             
             width: 0;
-            height: 0.1em;
+            height: 0.15em;
         }
         span.text {
             position: absolute;
@@ -57,52 +61,82 @@ div.group {
             left: 0;
             transition: 0.3s all ease;
         }
-            input.input:focus ~ .border .text {
-                color: blue;
-                top: 0;
-                font-size: 8pt;
-            }
-            input.input:focus ~ .border::after {
-                background: blue;
+            input.input:focus ~ .borders::after {
+                background: #8F5D39;
                 left: 0;
                 right: 0;
                 width: 100%;
             }
+            input.input:focus ~ .borders .text {
+                color: #8F5D39;
+                top: 0;
+                font-size: 8pt;
+            }
 /*  */
 
-input.input:not([value=""]):not(:focus):optional + .border::after
+input.input:not([value=""]):not(:focus):optional + .borders::after
 {
-    background: green;
+    background: gray;
     left: 0;
     right: 0;
     width: 100%;
 }
 
-input.input:not([value=""]):not(:focus):optional + .border .text
+input.input:not([value=""]):not(:focus):optional + .borders .text
 {
-    color: green;
+    color: gray;
     top: 0;
     font-size: 8pt;
 }
+
 /*  */
 
-.sign-up-btn {
-    border: 2px solid black;
+span.error {
+    left: initial;
+    right: 0;
+    color: red;
+}
+
+input.input:focus ~ .borders .error {
+    left: initial;
+    right: 0;
+    color: red;
+}
+
+input.input:not([value=""]):not(:focus):optional + .borders .error {
+    left: initial;
+    right: 0;
+    color: red;
+}
+
+/*  */
+
+.auth-btn {
+    border: 2px solid #CEBAA7;
+    background: #CEBAA7;
+
 
     border-radius: 0.5em;
     transition: 0.3s background ease;
 
+    width: 100%;
     padding: 1em;
 }
 
-.sign-up-btn:hover {
-    border: 2px solid skyblue;
-    background: skyblue;
+.auth-btn:hover {
+    border: 2px solid #C0977A;
+    background: #C0977A;
     color: white;
 }
 
-.sign-up-btn:active {
-    border: 2px solid lightgreen;
-    background: lightgreen;
+.auth-btn:active {
+    border: 2px solid #CEBAA7;
+    background: #CEBAA7;
     color: white;
+}
+
+.auth-btn:disabled {
+    border: 2px solid silver;
+    background: silver;
+    color: black;
 }

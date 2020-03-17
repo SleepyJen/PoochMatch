@@ -1,6 +1,5 @@
-import React from "react";
-// import React, { Component } from "react";
-import "./Messages.css";
+import React from 'react';
+import './Messages.css';
 
 function Messages() {
   return (

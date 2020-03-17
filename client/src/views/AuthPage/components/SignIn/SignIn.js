@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import './SignIn.css'
 import axios from 'axios';
 
@@ -16,6 +17,7 @@ class SignIn extends Component {
     this.state = initState;
   }
 
+  /* check login props */
   // componentDidMount () { console.log('Login Props:' , this.props) }
 
   /* POST Request - login valid user */
@@ -23,19 +25,16 @@ class SignIn extends Component {
     try {
 
       const result = await axios.post('/user/login', data);
-      console.log('API Result:', result.data)
-
-      if (result.data.error) {
-
-        console.log('Denied:', result.data.error)
-
-      } else if (!result.data.user) {
-        console.log(
-          'Denied:',
-          result.data.info.message
-        )
-        this.setState({
-          message: result.data.info.message
+      console.log('API Result:' , result.data)
+      
+      if ( result.data.error ) {
+      
+        console.log('Denied:' , result.data.error)
+      
+      } else if ( !result.data.user ) {
+        console.log('Denied:' , result.data.info.message)
+        this.setState({ 
+          message : result.data.info.message
         })
       } else {
 
@@ -56,7 +55,7 @@ class SignIn extends Component {
 
   /* targets & handles each value change */
   handleValueChange = (event) => {
-    const { name, value } = event.target;
+    const { name , value } = event.target;
     // console.log('Target:', name, '—', value)
     this.setState({ [name]: value });
   };
@@ -64,9 +63,10 @@ class SignIn extends Component {
   /* submit user data to axios */
   submitForm = (event) => {
     event.preventDefault()
-    const { email, password } = this.state;
-    console.log('Client Data:', { email, password })
-    this.loginUser({ email, password })
+    
+    const { email , password } = this.state;
+    console.log('Client Data:' , { email , password })
+    this.loginUser({ email , password })
   };
 
   render() {
@@ -76,62 +76,85 @@ class SignIn extends Component {
 
 
     return (
-      <div className="main-body">
-        <div className="container" align="center">
-          <main className="login-page">
-            <h2>Login Page</h2>
-            <form
-              className="form"
-              onSubmit={submitForm}
-            >
-              <div className="group">
-                <input
-                  type="text"
-                  name="email"
-                  className="email input"
-                  autoComplete="off"
-                  autoFocus
-                  value={email}
-                  onChange={handleValueChange}
-                />
-                <label htmlFor="email" className="border">
-                  <span className="text">
-                    Email
-                </span>
-                </label>
-              </div>
-
-              <div className="group">
-                <input
-                  type="text"
-                  name="password"
-                  className="password input"
-                  autoComplete="off"
-                  value={password}
-                  onChange={handleValueChange}
-                />
-                <label htmlFor="password" className="border">
-                  <span className="text">
-                    Password
-                </span>
-                </label>
-              </div>
-
-              <br />
-
+      <main className="login-page auth-page">
+        <div className="login-content">
+          <h2>Login Page</h2>
+          
+          {/* display error */}
+          <div className="input-message">
+            { 
+              (typeof message === 'string') && (
+                <p className="text error">
+                  { message }
+                </p>
+              )
+            }
+          </div>
+          
+          {/* login form */}
+          <form
+            className="form"
+            onSubmit={ submitForm }
+          >
+            {/* EMAIL */}
+            <div className="group">
               <input
-                type="submit"
-                name="login"
-                className="login-btn"
-                value="Log In"
+                type="text"
+                name="email"
+                className="email input"
+                autoComplete="off"
+                autoFocus
+                value={ email }
+                onChange={ handleValueChange }
               />
-            </form>
-            <div>
-              {message && <p>{message}</p>}
+              <label htmlFor="email" className="borders">
+                <span className="text">
+                  Email
+                </span>
+              </label>
             </div>
-          </main>
+            
+            {/* PASSWORD */}
+            <div className="group">
+              <input
+                type="text"
+                name="password"
+                className="password input"
+                autoComplete="off"
+                value={ password }
+                onChange={ handleValueChange }
+              />
+              <label htmlFor="password" className="borders">
+                <span className="text">
+                  Password
+                </span>
+              </label>
+            </div>
+
+            <br />
+
+            {/* login btn */}
+            <input
+              type="submit"
+              name="login"
+              className="auth-btn login-btn"
+              value="Log In"
+              // disabled
+            />
+          </form>
+          
+          {/* caption */}
+          <p className="text-caption">
+            <span>
+              New to Pooch Match?
+            </span>
+            <br/>
+            <Link to="/user/auth/sign-up">
+              Create an account
+            </Link>
+          </p>
         </div>
-      </div>
+      </main>
     );
   }
 }
