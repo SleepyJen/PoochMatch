@@ -138,7 +138,6 @@ class UserProfile extends Component {
     const userId = urlQuerries.get("user_id");
     let user = await axios.get(`/user/getById/${userId}`);
     let data = user.data;
-    console.log(data);
     if (data.imgs) {
       let image = await axios.get(`/addImage/${data.imgs}`);
       const newState = {
