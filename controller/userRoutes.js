@@ -303,6 +303,20 @@ router.post('/addPet/:id', (req, res) => {
         });
 });
 
+//update pets
+router.post('/clearPets/:id', (req, res) => {
+    db.User.findByIdAndUpdate({
+        _id: req.params.id
+    },
+        {
+            $set: {
+                Pets: []
+            }
+        }).then(result => {
+            res.send(result);
+        });
+});
+
 //adding comment from Comments model 
 router.post('/addComment/:id', (req, res) => {
     db.User.findOneAndUpdate({
