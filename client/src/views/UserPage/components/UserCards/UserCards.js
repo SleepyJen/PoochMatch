@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Interests from '../Interests/Interests';
-import avatar from '../default/avatar-default.png'
+import avatar from '../default/avatar-default.png';
+import ProfilePic from '../ProfilePic/ProfilePic';
+import './userCard.css';
 
 function UserCards(props) {
     const [value, modifier] = useState({ people: [], imgs: [] });
@@ -14,11 +16,9 @@ function UserCards(props) {
             if (ppl[i]._id !== props._id) {
                 data.push(ppl[i]);
                 if (ppl[i].imgs) {
-                    axios.get(`/addImage/${ppl[i].imgs}`).then(res => {
-                        imgs.push(res.data.data);
-                    });
+                    imgs.push(ppl[i].imgs);
                 } else {
-                    imgs.push(avatar);
+                    imgs.push("avatar");
                 }
             }
         }
@@ -28,7 +28,9 @@ function UserCards(props) {
         <div >
             {value.people.map((person, index) => (
                 <div className="card" key={index}>
-                    <img className="card-img-top" src={value.imgs[index]} alt="profile pic" />
+                    <div className="image">
+                        <ProfilePic img={value.imgs[index]} />
+                    </div>
                     <div className="card-body">
                         <h5 className="card-title">{person.firstName} {person.lastName}</h5>
                         <Interests _id={person._id} />
