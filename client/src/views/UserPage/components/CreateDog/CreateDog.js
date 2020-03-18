@@ -145,8 +145,9 @@ class CreateDog extends Component {
     }).then(result => {
       console.log(result);
       axios.post(`/user/addPet/${userId}`, {
-        Pets: result
+        Pets: result.data
       });
+      alert('Pet Added');
     });
 
     console.log(this.state);
