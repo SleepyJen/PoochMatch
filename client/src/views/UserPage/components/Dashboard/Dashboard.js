@@ -29,12 +29,10 @@ class Dashboard extends Component {
     let City = "City";
     let _id = "_id";
     let user = await axios.get(`/user/getById/${userId}`);
-    console.log(user);
     this.setState({
       [City]: user.data.City,
       [_id]: userId
     });
-    console.log(this.state);
   }
 
   static defaultProps = {

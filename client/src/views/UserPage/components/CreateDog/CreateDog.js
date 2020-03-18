@@ -2,26 +2,25 @@ import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 import Images from '../Images/Images';
-import allStatesList from '../../../AuthPage/components/SignUp/all-states-list.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CreateDog.css'
 
 const initState = {
   _id: "",
-  imgs: '',
-  imgId: '',
-  imgLocation: '',
-  name: '',
-  breed: '',
-  gender: '',
-  age: '',
-  weight: '',
-  spayedNeutered: '',
-  rabies: '',
-  bordatella: '',
-  parvovirus: '',
-  distemper: '',
-  personality: '',
+  imgs: "",
+  imgId: "",
+  imgLocation: "",
+  name: "",
+  breed: "",
+  gender: "",
+  age: "",
+  weight: "",
+  spayedNeutered: false,
+  rabies: false,
+  bordatella: false,
+  parvovirus: false,
+  distemper: false,
+  personality: ""
 };
 
 class CreateDog extends Component {
@@ -104,7 +103,7 @@ class CreateDog extends Component {
       spayedNeutered: this.state.spayedNeutered,
       rabies: this.state.rabies,
       bordatella: this.state.bordatella,
-      parvovirus: this.state.holder,
+      parvovirus: this.state.parvovirus,
       distemper: this.state.distemper,
       personality: this.state.personality,
     }
@@ -112,68 +111,49 @@ class CreateDog extends Component {
     this.setState(data);
   };
 
-  async componentDidMount() {
-    const urlQuerries = new URLSearchParams(window.location.search);
-    const dogId = urlQuerries.get("Dog_id");
-    let user = await axios.get(`/dog/getById/${dogId}`);
-    let data = user.data;
-    let image = await axios.get(`/addImage/${data.imgs}`);
-    const newState = {
-      _id: dogId,
-      imgs: data.imgs,
-      imgId: data.imgs,
-      imgLocation: image.data.data,
-      name: data.name,
-      breed: data.breed,
-      gender: data.gender,
-      age: data.age,
-      weight: data.weight,
-      email: data.email,
-      spayedNeutered: data.spayedNeutered,
-      rabies: data.rabies,
-      bordatella: data.bordatella,
-      parvovirus: data.holder,
-      distemper: data.distemper,
-      personality: data.personality,
-    }
-    this.setState(newState);
-    console.log(this.state);
-  }
-
   //hold value for each input
   handleValue = async event => {
-    const { name, value } = await event.target;
-    this.setState({ [name]: value })
+    const { name, value } = event.target;
+    if (name === 'spayedNeutered' || name === 'rabies' || name === 'bordatella' || name === 'parvovirus' || name === 'distemper') {
+      if (value === 'Yes') {
+        console.log(this.state);
+        this.setState({ [name]: true });
+      }
+    } else {
+      this.setState({ [name]: value });
+    }
   };
 
   //changes the state and database for updating profile
   submitForm = async event => {
     event.preventDefault();
+    const urlQuerries = new URLSearchParams(window.location.search);
+    const userId = urlQuerries.get("user_id");
+    console.log(this.state);
+    await axios.post(`/dog/createPooch`, {
+      name: this.state.name,
+      breed: this.state.breed,
+      gender: this.state.gender,
+      age: this.state.age,
+      weight: this.state.weight,
+      spayedNeutered: this.state.spayedNeutered,
+      rabiesVaccine: this.state.rabies,
+      bordatellaVaccine: this.state.bordatella,
+      parvovirusVaccine: this.state.parvovirus,
+      distemperVaccine: this.state.distemper,
+      personality: this.state.personality
+    }).then(result => {
+      console.log(result);
+      axios.post(`/user/addPet/${userId}`, {
+        Pets: result
+      });
+    });
 
-    console.log('Dog Data:', this.state);
+    console.log(this.state);
+
   };
 
-
-
   render() {
-    const {
-      name,
-      breed,
-      gender,
-      age,
-      weight,
-      spayedNeutered,
-      rabies,
-      bordatella,
-      parvovirus,
-      distemper,
-      personality,
-    } = this.state;
-    const {
-      handleValue,
-      submitForm
-    } = this;
-
 
     return (
       <div className="container">
@@ -194,7 +174,7 @@ class CreateDog extends Component {
                     name="name"
                     placeholder="enter name"
                     autoComplete="off"
-                    onChange={handleValue}
+                    onChange={this.handleValue}
                   />
                 </Form.Group>
 
@@ -205,7 +185,7 @@ class CreateDog extends Component {
                     name="breed"
                     placeholder="enter breed"
                     autoComplete="off"
-                    onChange={handleValue} />
+                    onChange={this.handleValue} />
                 </Form.Group>
               </Form.Row>
 
@@ -217,7 +197,7 @@ class CreateDog extends Component {
                     name="gender"
                     placeholder="enter gender"
                     autoComplete="off"
-                    onChange={handleValue}>
+                    onChange={this.handleValue}>
                     <option></option>
                     <option>Male</option>
                     <option>Female</option>
@@ -231,7 +211,7 @@ class CreateDog extends Component {
                     name="age"
                     placeholder="enter age"
                     autoComplete="off"
-                    onChange={handleValue}
+                    onChange={this.handleValue}
                   >
                     <option></option>
                     <option>Less than 6 months</option>
@@ -250,7 +230,7 @@ class CreateDog extends Component {
                     name="weight"
                     placeholder="enter weight"
                     autoComplete="off"
-                    onChange={handleValue}
+                    onChange={this.handleValue}
                   >
                     <option></option>
                     <option>Less than 10 lbs</option>
@@ -271,7 +251,7 @@ class CreateDog extends Component {
                     name="spayedNeutered"
                     placeholder="enter spayed/neutered state"
                     autoComplete="off"
-                    onChange={handleValue}
+                    onChange={this.handleValue}
                   >
                     <option></option>
                     <option>Yes</option>
@@ -286,7 +266,7 @@ class CreateDog extends Component {
                     name="rabies"
                     placeholder="enter rabies vaccine state"
                     autoComplete="off"
-                    onChange={handleValue}
+                    onChange={this.handleValue}
                   >
                     <option></option>
                     <option>Yes</option>
@@ -303,7 +283,7 @@ class CreateDog extends Component {
                     name="bordatella"
                     placeholder="enter Bordatella Vaccine state"
                     autoComplete="off"
-                    onChange={handleValue}
+                    onChange={this.handleValue}
                   >
                     <option></option>
                     <option>Yes</option>
@@ -318,7 +298,7 @@ class CreateDog extends Component {
                     name="parvovirus"
                     placeholder="enter Parvovirus Vaccine state"
                     autoComplete="off"
-                    onChange={handleValue}
+                    onChange={this.handleValue}
                   >
                     <option></option>
                     <option>Yes</option>
@@ -334,7 +314,7 @@ class CreateDog extends Component {
                     placeholder="enter Distemper Vaccine state"
                     autoComplete="off"
                     // value={weight}
-                    onChange={handleValue}
+                    onChange={this.handleValue}
                   >
                     <option></option>
                     <option>Yes</option>
@@ -352,11 +332,11 @@ class CreateDog extends Component {
                   name="personality"
                   placeholder="In a few words, describe your pooch's personality"
                   autoComplete="off"
-                  maxlength="250"
-                  onChange={handleValue} />
+                  maxLength="250"
+                  onChange={this.handleValue} />
               </Form.Group>
 
-              <Button variant="primary" className="submitAddPooch" type="submit" onClick={submitForm}>
+              <Button variant="primary" className="submitAddPooch" type="submit" onClick={this.submitForm}>
                 Submit
                 </Button>
             </Form>
