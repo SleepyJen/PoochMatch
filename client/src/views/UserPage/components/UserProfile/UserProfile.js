@@ -347,7 +347,7 @@ class UserProfile extends Component {
                     <button
                       onClick={this.submitForm}
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-primary saveBtn"
                       name="firstName"
                     >
                       Save
@@ -384,7 +384,7 @@ class UserProfile extends Component {
                     <button
                       onClick={this.submitForm}
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-primary saveBtn"
                       name="lastName"
                     >
                       Save
@@ -421,7 +421,7 @@ class UserProfile extends Component {
                     <button
                       onClick={this.submitForm}
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-primary saveBtn"
                       name="password"
                     >
                       Save
@@ -458,7 +458,7 @@ class UserProfile extends Component {
                     <button
                       onClick={this.submitForm}
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-primary saveBtn"
                       name="City"
                     >
                       Save
@@ -493,7 +493,7 @@ class UserProfile extends Component {
                           <button
                             onClick={this.submitForm}
                             type="submit"
-                            className="btn btn-primary"
+                            className="btn btn-primary saveBtn"
                             name="State"
                           >
                             Save
@@ -533,7 +533,7 @@ class UserProfile extends Component {
                     <button
                       onClick={this.submitForm}
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-primary saveBtn"
                       name="email"
                     >
                       Save
@@ -588,7 +588,7 @@ class UserProfile extends Component {
                       <label className="form-check-label" htmlFor="dropdownCheck2">
                         Fostering</label>
                     </div>
-                    <button onClick={this.addChecked} type="submit" className="btn btn-primary" name="Interests">Save</button>
+                    <button onClick={this.addChecked} type="submit" className="btn btn-primary saveBtn" name="Interests">Save</button>
                   </div>
                 </div>
               </div>
@@ -621,7 +621,7 @@ class UserProfile extends Component {
                     <button
                       onClick={this.submitForm}
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-primary saveBtn"
                       name="pets"
                     >
                       Save
@@ -658,7 +658,7 @@ class UserProfile extends Component {
                     <button
                       onClick={this.submitForm}
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-primary saveBtn"
                       name="phone"
                     >
                       Save
