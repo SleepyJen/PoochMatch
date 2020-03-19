@@ -2,37 +2,43 @@ import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import { ListGroupItem } from 'react-bootstrap';
-import '../PoochProfile/PoochProfile.css'
+import '../PoochProfile/PoochProfile.css';
+import axios from 'axios';
 
 function Pets(props) {
     const [value, modifier] = useState({ Pets: [] });
     useEffect(() => {
-        let data = [];
-        for (let i = 0; i < props.Pets.length; i++) {
-            let pet = {
-                images: props.Pets[i].images,
-                _id: props.Pets[i]._id,
-                name: props.Pets[i].name,
-                breed: props.Pets[i].breed,
-                gender: props.Pets[i].gender,
-                age: props.Pets[i].age,
-                weight: props.Pets[i].weight,
-                spayedNeutered: "",
-                rabiesVaccine: "",
-                bordatellaVaccine: "",
-                parvovirusVaccine: "",
-                distemperVaccine: "",
-                personality: props.Pets[i].personality
-            }
-            props.Pets[i].spayedNeutered ? pet.spayedNeutered = "Yes" : pet.spayedNeutered = "No";
-            props.Pets[i].rabiesVaccine ? pet.rabiesVaccine = "Yes" : pet.rabiesVaccine = "No";
-            props.Pets[i].bordatellaVaccine ? pet.bordatellaVaccine = "Yes" : pet.bordatellaVaccine = "No";
-            props.Pets[i].parvovirusVaccine ? pet.parvovirusVaccine = "Yes" : pet.parvovirusVaccine = "No";
-            props.Pets[i].distemperVaccine ? pet.distemperVaccine = "Yes" : pet.distemperVaccine = "No";
-            data.push(pet);
+        console.log(props);
+        if (props.user !== "") {
+            axios.get(`/user/getById/${props.user}`).then(result => {
+                let Pets = result.data.Pets;
+                let data = [];
+                for (let i = 0; i < Pets.length; i++) {
+                    const pet = {
+                        _id: Pets[i]._id,
+                        name: Pets[i].name,
+                        breed: Pets[i].breed,
+                        gender: Pets[i].gender,
+                        age: Pets[i].age,
+                        weight: Pets[i].weight,
+                        personality: Pets[i].personality,
+                        spayedNeutered: "",
+                        rabiesVaccine: "",
+                        bordatellaVaccine: "",
+                        parvovirusVaccine: "",
+                        distemperVaccine: ""
+                    }
+                    Pets[i].spayedNeutered ? pet["spayedNeutered"] = "Yes" : pet["spayedNeutered"] = "No";
+                    Pets[i].rabiesVaccine ? pet["rabiesVaccine"] = "Yes" : pet["rabiesVaccine"] = "No";
+                    Pets[i].bordatellaVaccine ? pet["bordatellaVaccine"] = "Yes" : pet["bordatellaVaccine"] = "No";
+                    Pets[i].parvovirusVaccine ? pet["parvovirusVaccine"] = "Yes" : pet["parvovirusVaccine"] = "No";
+                    Pets[i].distemperVaccine ? pet["distemperVaccine"] = "Yes" : pet["distemperVaccine"] = "No";
+                    data.push(pet);
+                    modifier({ Pets: data });
+                }
+            });
         }
-        modifier({ Pets: data });
-    });
+    }, [props.user]);
 
     return value.Pets.map((pet, index) => (
         <div key={index} className="container">

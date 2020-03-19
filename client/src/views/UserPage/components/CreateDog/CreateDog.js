@@ -49,7 +49,6 @@ class CreateDog extends Component {
       distemper: this.state.distemper,
       personality: this.state.personality,
     }
-
     this.setState(data);
   };
 
@@ -162,10 +161,10 @@ class CreateDog extends Component {
           <div className="col-sm-10 poochCard">
 
             <Form>
-              <Form.Group id="addPoochImage ">
+              {/* <Form.Group id="addPoochImage ">
                 <h3>Attach pooch's profile picture</h3>
                 <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgId} />
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Row>
                 <Form.Group as={Col} controlId="formPoochName">

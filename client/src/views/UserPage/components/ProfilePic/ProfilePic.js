@@ -14,7 +14,7 @@ function ProfilePic(props) {
                 modifier({ data: result.data.data });
             });
         }
-    }, []);
+    }, [props.img]);
 
     return (
         <div>

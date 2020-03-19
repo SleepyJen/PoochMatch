@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Interests from '../Interests/Interests';
-import avatar from '../default/avatar-default.png';
 import ProfilePic from '../ProfilePic/ProfilePic';
-import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import './userCard.css';
 
 function UserCards(props) {
@@ -30,7 +29,7 @@ function UserCards(props) {
             <div className="row justify-content-center">
                 <div className="col-sm-10 matchCard">
                     {value.people.map((person, index) => (
-                        <Card style={{ width: 'auto', height: 'auto' }}>
+                        <Card key={index} style={{ width: 'auto', height: 'auto' }}>
 
                             <Card.Body className="cardMain row no-gutters justify-content-center">
                                 <ListGroup className="list-group col-6">
