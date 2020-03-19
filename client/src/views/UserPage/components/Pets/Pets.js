@@ -3,12 +3,12 @@ import { Card } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import { ListGroupItem } from 'react-bootstrap';
 import '../PoochProfile/PoochProfile.css';
+import PetPic from '../PetPic/PetPic';
 import axios from 'axios';
 
 function Pets(props) {
     const [value, modifier] = useState({ Pets: [] });
     useEffect(() => {
-        console.log(props);
         if (props.user !== "") {
             axios.get(`/user/getById/${props.user}`).then(result => {
                 let Pets = result.data.Pets;
@@ -61,7 +61,8 @@ function Pets(props) {
                             </ListGroup>
 
                             <ListGroup className="list-group col-6">
-                                <Card.Img className="dogImage" />
+                                {/* <Card.Img className="dogImage" /> */}
+                                <PetPic _id={pet._id} />
                             </ListGroup>
                         </Card.Body>
 

@@ -10,6 +10,13 @@ router.get('/', (req, res) => {
     });
 });
 
+//get dog by id
+router.get('/:id', (req, res) => {
+    db.Dog.findOne({ _id: req.params.id }).then(result => {
+        res.json(result);
+    });
+});
+
 //create a new dog
 router.post('/createPooch', (req, res) => {
     db.Dog.create({
@@ -37,6 +44,20 @@ router.post('/addImages/:id', (req, res) => {
         {
             $push: {
                 images: req.body.images
+            }
+        }).then(result => {
+            res.send(result);
+        });
+});
+
+//clear dog images
+router.post('/clearImage/:id', (req, res) => {
+    db.Dog.findByIdAndUpdate({
+        _id: req.params.id
+    },
+        {
+            $set: {
+                images: []
             }
         }).then(result => {
             res.send(result);
