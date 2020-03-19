@@ -4,8 +4,6 @@ import "./Dashboard.css";
 import UserCards from '../UserCards/UserCards';
 import axios from 'axios';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
 const initState = {
   lat: 37.7749,
   lng: -122.4194,
