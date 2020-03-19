@@ -69,3 +69,21 @@ input {
 .stateBtn:hover {
   color: black;
 }
+
+.stateBtn:focus, .stateBtn:active  {
+  background-color: rgba(209, 191, 191, 0.5) !important;
+  border: none !important;
+  color: black !important;
+}
+
+.saveBtn {
+  background-color: rgb(202, 160, 126);
+  border: none;
+  color: black;
+
+}
+
+.saveBtn:hover {
+  background-color: rgba(209, 191, 191, 0.5);
+  color: black;
+}
