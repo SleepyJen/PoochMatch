@@ -190,7 +190,6 @@ class UserProfile extends Component {
       }
       this.setState(newState);
     }
-    console.log(this.state)
   }
 
   //hold value for each input
