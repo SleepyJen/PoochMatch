@@ -6,7 +6,6 @@ import './profilePic.css'
 function ProfilePic(props) {
     const [value, modifier] = useState({ data: "" });
     useEffect(() => {
-        console.log(props);
         if (props.img === "avatar") {
             modifier({ data: avatar });
         } else {
