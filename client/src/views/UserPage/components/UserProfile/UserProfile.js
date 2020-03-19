@@ -551,14 +551,14 @@ class UserProfile extends Component {
                     className="btn dropdown-toggle modifyBtn"
                     type="button"
                     data-toggle="dropdown"
-                    name="City"
+                    name="interests"
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
                     Edit<i className="far fa-edit"></i>
                   </button>
                   <div className="dropdown-menu p-1">
-                    <label htmlFor="changeCity">Interests</label>
+                    <label htmlFor="changeinterests">Interests</label>
                     <div className="form-check">
                       <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.dogWalks} value="Dog Walks" name="dogWalks" />
                       <label className="form-check-label" htmlFor="dropdownCheck2">
