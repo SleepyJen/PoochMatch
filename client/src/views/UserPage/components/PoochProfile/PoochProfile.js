@@ -9,7 +9,7 @@ function PetInfo() {
   return (
     <div>
       <div className="container mb-3 justify-content-center">
-        <h2>Yor pet's will be displayed here.</h2>
+        <h2>Your pet's will be displayed here.</h2>
       </div>
 
       <div className="container">

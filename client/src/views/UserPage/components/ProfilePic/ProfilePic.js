@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import avatar from '../default/avatar-default.png';
 import axios from 'axios';
+import { Card } from 'react-bootstrap'
 import './profilePic.css'
 
 function ProfilePic(props) {
@@ -18,7 +19,7 @@ function ProfilePic(props) {
 
     return (
         <div>
-            <img className="image" src={value.data} alt="Profile Picture"></img>
+            <Card.Img className="profileImage" src={value.data} alt="Profile Picture" />
         </div>
     )
 }
