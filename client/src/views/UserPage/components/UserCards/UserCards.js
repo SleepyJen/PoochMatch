@@ -3,6 +3,7 @@ import axios from 'axios';
 import Interests from '../Interests/Interests';
 import avatar from '../default/avatar-default.png';
 import ProfilePic from '../ProfilePic/ProfilePic';
+import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
 import './userCard.css';
 
 function UserCards(props) {
@@ -25,20 +26,30 @@ function UserCards(props) {
         modifier({ people: data, imgs: imgs });
     });
     return (
-        <div >
-            {value.people.map((person, index) => (
-                <div className="card" key={index}>
-                    <div className="image">
-                        <ProfilePic img={value.imgs[index]} />
-                    </div>
-                    <div className="card-body">
-                        <h5 className="card-title">{person.firstName} {person.lastName}</h5>
-                        <Interests _id={person._id} />
-                        <a href={`/profile?user_profile=${person._id}`} className="btn btn-primary">View website</a>
-                    </div>
+        <div className="container" >
+            <div className="row justify-content-center">
+                <div className="col-sm-10 matchCard">
+                    {value.people.map((person, index) => (
+                        <Card style={{ width: 'auto', height: 'auto' }}>
+
+                            <Card.Body className="cardMain row no-gutters justify-content-center">
+                                <ListGroup className="list-group col-6">
+                                    <ListGroupItem className="name" id="name"><strong>{person.firstName} {person.lastName}</strong></ListGroupItem>
+                                    <Interests _id={person._id} />
+                                </ListGroup>
+
+                                <ListGroup className="list-group col-6">
+                                    <ProfilePic img={value.imgs[index]} />
+                                </ListGroup>
+                            </Card.Body>
+
+                            <Card.Body className="cardFooter">
+                                <Card.Link href={`/profile?user_profile=${person._id}`} className="btn btn-primary">View website</Card.Link>
+                            </Card.Body>
+                        </Card>
+                    ))}
                 </div>
-            ))}
-            <br></br>
+            </div>
         </div>
     )
 }

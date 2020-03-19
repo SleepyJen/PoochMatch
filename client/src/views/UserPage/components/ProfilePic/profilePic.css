@@ -1,4 +1,10 @@
-.image{
+/* .image{
     height: 150px;
     width: 150px;
+} */
+
+.card-img-top {
+    width: 20%;
+    height: 8vw;
+    align-items: left;
 }

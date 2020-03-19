@@ -7,10 +7,10 @@ import axios from 'axios';
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const initState = {
-  lat: 40.37,
-  lng: -73.93,
+  lat: 37.7749,
+  lng: -122.4194,
   center: {
-    lat: 40.37, lng: -73.93
+    lat: 37.7749, lng: -122.4194
   },
   zoom: 11,
   City: "",
@@ -42,22 +42,26 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="row justify-content-left">
-        <div
-          className="mapContainer col-4"
-          style={{ height: "60vh", width: "30%" }}
-        >
-          <GoogleMapReact
-            bootstrapURLKeys={{
-              key: "AIzaSyAslvs6KNkTaQS-cW6hOwrrccd4XEozlEk"
-            }}
-            defaultCenter={this.state.center}
-            defaultZoom={this.state.zoom}
-          >
-            <AnyReactComponent lat={27.2} lng={77.5} text="My Marker" />
-          </GoogleMapReact>
+      <div>
+        <div className="container">
+          <div className="row justify-content-left">
+            <div className="mapContainer col-sm-4"
+              style={{ height: "60vh", width: "30%" }}>
+              <GoogleMapReact
+                bootstrapURLKeys={{
+                  key: "AIzaSyAslvs6KNkTaQS-cW6hOwrrccd4XEozlEk"
+                }}
+                defaultCenter={this.state.center}
+                defaultZoom={this.state.zoom}
+              >
+                {/* <AnyReactComponent lat={27.2} lng={77.5} text="My Marker" /> */}
+              </GoogleMapReact>
+            </div>
+            <div className="cardContainer col-sm-7" >
+              <UserCards _id={this.state._id} City={this.state.City} />
+            </div>
+          </div>
         </div>
-        <UserCards _id={this.state._id} City={this.state.City} />
       </div>
     );
   }
