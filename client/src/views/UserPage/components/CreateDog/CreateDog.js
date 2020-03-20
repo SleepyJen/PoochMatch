@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
-import Images from '../Images/Images';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CreateDog.css'
 

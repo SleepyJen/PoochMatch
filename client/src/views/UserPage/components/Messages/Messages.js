@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import './Messages.css';
+import axios from 'axios';
+import ShowMessages from './ShowMessages';
 
 const initState = {
-
+  comments: [],
+  thisUser: ""
 }
 
 class Messages extends Component {
@@ -11,14 +14,19 @@ class Messages extends Component {
     this.state = initState;
   }
 
-  componentDidMount() {
-
+  async componentDidMount() {
+    const urlQuerrie = new URLSearchParams(window.location.search);
+    const userId = urlQuerrie.get('user_id');
+    const user = await axios.get(`/user/getById/${userId}`);
+    const messages = user.data.comments;
+    this.setState({ comments: messages, thisUser: userId });
   }
 
   render() {
     return (
       <section className="messageContainer" >
-        <form>
+        <ShowMessages comments={this.state.comments} userId={this.state.thisUser} />
+        {/* <form>
           <fieldset className="field">
             <div>
               <legend>Chat Room</legend>
@@ -36,7 +44,8 @@ class Messages extends Component {
               <p>user text/chat input goes here</p>
             </div>
           </fieldset>
-        </form>
+        </form> */}
+
       </section>
     );
   }
