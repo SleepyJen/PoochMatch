@@ -1,4 +1,4 @@
-import React , { useEffect } from "react";
+import React from "react"; // , { useEffect }
 import { Link } from "react-router-dom";
 import "./Banner.css";
 
@@ -6,9 +6,9 @@ import "./Banner.css";
 
 function Banner (props) {
 
-  useEffect( () => { 
-    console.log('Banner Check:' , props) 
-  } , [ props ])
+  // useEffect( () => { 
+  //   console.log('Banner Check:' , props) 
+  // } , [ props ])
 
   return (
     <section className="banner-section">
