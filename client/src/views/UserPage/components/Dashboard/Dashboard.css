@@ -17,10 +17,10 @@
     margin-left: 50px;
 }
 
-.userCardsContainer {
-    margin-left: 30px;
-    background-color: red;
-}
+/* .userCardsContainer {
+    /* margin-left: 10px; */
+    /* background-color: red;
+} */
 
 .pats-dog {
     background: url("/assets/images/Pats-Dog.png") center;

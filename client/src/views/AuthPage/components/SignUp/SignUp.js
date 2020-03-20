@@ -211,7 +211,7 @@ class SignUp extends Component {
             {/* PASSWORD */}
             <div className="grid-password group">
               <input
-                type="text"
+                type="password"
                 name="password"
                 className="password input"
                 autoComplete="off"
@@ -239,7 +239,7 @@ class SignUp extends Component {
             {/* CONFIRM PASSWORD */}
             <div className="grid-cPassword group">
               <input
-                type="text"
+                type="password"
                 name="cPassword"
                 className="cPassword input"
                 autoComplete="off"

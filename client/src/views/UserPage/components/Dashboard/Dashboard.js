@@ -41,10 +41,10 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <div className="container">
+        <div className="container col-sm-12">
           <div className="row justify-content-left">
             <div className="mapContainer col-sm-4"
-              style={{ height: "60vh", width: "30%" }}>
+              style={{ height: "60vh", width: "40%" }}>
               <GoogleMapReact
                 bootstrapURLKeys={{
                   key: "AIzaSyAslvs6KNkTaQS-cW6hOwrrccd4XEozlEk"
@@ -55,7 +55,7 @@ class Dashboard extends Component {
                 {/* <AnyReactComponent lat={27.2} lng={77.5} text="My Marker" /> */}
               </GoogleMapReact>
             </div>
-            <div className="cardContainer col-sm-7" >
+            <div className="userCardsContainer col-sm-7" >
               <UserCards _id={this.state._id} City={this.state.City} />
             </div>
           </div>

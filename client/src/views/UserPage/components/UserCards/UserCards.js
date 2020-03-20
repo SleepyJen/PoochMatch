@@ -10,6 +10,7 @@ function UserCards(props) {
 
     axios.get(`/user/getByCity/${props.City}`).then(result => {
         let ppl = result.data;
+        console.log(ppl)
         let data = [];
         let imgs = [];
         for (let i = 0; i < ppl.length; i++) {
@@ -24,32 +25,33 @@ function UserCards(props) {
         }
         modifier({ people: data, imgs: imgs });
     });
+
     return (
-        <div className="container" >
-            <div className="row justify-content-center">
-                <div className="col-sm-10 matchCard">
-                    {value.people.map((person, index) => (
-                        <Card key={index} style={{ width: 'auto', height: 'auto' }}>
+        // <div className="container" >
+        <div className="row justify-content-center">
+            <div className="col-sm-12 matchCard">
+                {value.people.map((person, index) => (
+                    <Card key={index} style={{ width: '100%', margin: "5px 0", height: 'auto' }}>
 
-                            <Card.Body className="cardMain row no-gutters justify-content-center">
-                                <ListGroup className="list-group col-6">
-                                    <ListGroupItem className="name" id="name"><strong>{person.firstName} {person.lastName}</strong></ListGroupItem>
-                                    <Interests _id={person._id} />
-                                </ListGroup>
+                        <Card.Body className="cardMain row no-gutters justify-content-center">
+                            <ListGroup className="list-group col-6">
+                                <ListGroupItem className="name" id="name"><strong>{person.firstName} {person.lastName}</strong></ListGroupItem>
+                                <Interests _id={person._id} />
+                            </ListGroup>
 
-                                <ListGroup className="list-group col-6">
-                                    <ProfilePic img={value.imgs[index]} />
-                                </ListGroup>
-                            </Card.Body>
+                            <ListGroup className="list-group col-6 image-container">
+                                <ProfilePic img={value.imgs[index]} />
+                            </ListGroup>
+                        </Card.Body>
 
-                            <Card.Body className="cardFooter">
-                                <Card.Link href={`/profile?user_profile=${person._id}`} className="btn btn-primary">View website</Card.Link>
-                            </Card.Body>
-                        </Card>
-                    ))}
-                </div>
+                        <Card.Body className="cardFooter">
+                            <Card.Link href={`/profile?user_profile=${person._id}`} className="btn btn-primary">View website</Card.Link>
+                        </Card.Body>
+                    </Card>
+                ))}
             </div>
         </div>
+        // </div>
     )
 }
 
