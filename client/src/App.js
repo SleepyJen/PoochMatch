@@ -24,7 +24,7 @@ import Header from "./components/Header/Header.js";
 import HomePage from "./views/HomePage/HomePage.js";
 import AuthPage from "./views/AuthPage/AuthPage.js";
 import UserPage from "./views/UserPage/UserPage.js";
-// import ErrorPage from "./views/ErrorPage/ErrorPage.js";
+import ErrorPage from "./views/ErrorPage/ErrorPage.js";
 import MatchProfile from './views/MatchProfile/MatchProfile';
 
 
