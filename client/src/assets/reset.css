@@ -7,6 +7,7 @@
 #8F857C
 #faebd7
 #664732
+#613e16
 #C0977A
 #a06937
 */
@@ -24,21 +25,22 @@ html, body , div#root {
 }
 
 
-html { border: 2px solid black; }
-body { border: 2px solid silver; }
+/* html { border: 2px solid black; } */
+/* body { border: 2px solid silver; } */
 div#root { 
-    border: 2px solid gray; 
+    /* border: 2px solid gray;  */
     display: flex;
     flex-flow: column;
 }
 
 /*  */
 
-li,a {
+a { 
     text-decoration: none;
-    list-style: none;
     color: black;
 }
+
+li { list-style: none; }
 
 input {
     outline: none;

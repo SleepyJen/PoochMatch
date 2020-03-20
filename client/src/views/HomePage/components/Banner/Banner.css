@@ -1,65 +1,55 @@
-.banner {
-  width: 100%;
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  align-items: center;
-  padding-top: 25%;
-  height: 80vh;
+.banner-section {
+  /* border: 2px solid black; */
   font-family: 'Roboto Mono', monospace;
-}
 
-.create-button,
-.login-button {
-  cursor: pointer;
-  padding: 20px;
-  font-size: 15pt;
-  border-radius: 10px;
-  border: 2px solid black;
-  border: none;
-  background-color: #cebaa7;
-  color: white;
-  width: 200px;
-  height: 100px;
-}
+  background: url("/assets/images/dogsPlaying.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
-.signBtn:hover,
-.loginBtn:hover {
-  text-decoration: none;
-  color: black;
-}
-
-.signBtn,
-.loginBtn {
-  color: white;
-}
-
-.banner-text,
-.banner-adoption {
-  font-size: 30pt;
-  color: whitesmoke;
-}
-
-.banner>* {
-  margin: 15px;
-}
-
-.discriptionText {
   display: flex;
-  align-items: center;
+  flex-flow: column;
   justify-content: center;
-  background-color: #cebaa7;
-  opacity: .5;
-  height: 10vh;
+  align-items: center;
+
   width: 100%;
-  color: rgb(97, 62, 22);
-  font-size: 20px;
-  font-weight: bold;
-  font-family: 'Roboto Mono', monospace;
+  height: 90vh;
 }
 
-.textbox2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.cta-caption {
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 1px #000;
+  font-size: 20pt;
+  font-weight: 600;
+  margin-bottom: 60px;
 }
+
+.cta-btns {
+  /* border: 2px solid black; */
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;  
+}
+  .cta-link {
+    text-align: center;
+
+    border: 2px solid black;
+    background: #cebaa7;
+    color: white;
+
+    font-size: 15pt;
+    border-radius: 10px;
+
+    width: 200px;
+    height: 100px;
+    margin: 5px;
+    padding: 20px;
+  }
+  .cta-link:hover {
+    text-decoration: none;
+    background: #664732;
+    color: white;
+  }
+/*  */

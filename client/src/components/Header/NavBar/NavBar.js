@@ -79,18 +79,17 @@ function NavBar (props) {
     <>
       <nav className="navbars">
         <ul className="nav-opts">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
           {
             ( props.auth )
             ? (
               <>
-                <li>
-                  <Link to={ `/user${ props.query }` }>
-                    User
-                  </Link>
-                </li>
+                {/* 
+                  <li>
+                    <Link to={ `/user${ props.query }` }>
+                      User
+                    </Link>
+                  </li> 
+                */}
                 <li>
                   <Link to="/" onClick={ signOutAuth }>
                     Log Out
@@ -100,6 +99,11 @@ function NavBar (props) {
             )
             : (
             <>
+              <li>
+                <Link to="/">
+                  Home
+                </Link>
+              </li>
               <li>
                 <Link to="/user/auth/sign-in">
                   Log In
