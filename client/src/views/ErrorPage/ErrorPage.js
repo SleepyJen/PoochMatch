@@ -3,7 +3,7 @@ import './ErrorPage.css'
 
 
 
-function ErrorPage () {
+function ErrorPage() {
 
   return (
     <div className="component">

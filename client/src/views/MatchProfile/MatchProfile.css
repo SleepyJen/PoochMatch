@@ -1,0 +1,19 @@
+.cardTitlePets, .cardTitleUser{ 
+    background-color: rgba(170, 143, 70, 0.678);
+    padding: 12px;
+    margin: 0px;
+}
+
+.backDashboard{
+    background-color:  rgb(202, 160, 126);
+    background-color: cutom-color;
+    border-color:  rgb(202, 160, 126);
+    border-color: cutom-cor;
+}
+
+.backDashboard:hover {
+    background-color: rgba(209, 191, 191, 0.5);
+    background-color: cutom-color;
+    border-color: rgba(209, 191, 191, 0.5);
+    border-color: cutom-cor;
+}

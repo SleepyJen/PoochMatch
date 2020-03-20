@@ -25,7 +25,7 @@ import HomePage from "./views/HomePage/HomePage.js";
 import AuthPage from "./views/AuthPage/AuthPage.js";
 import UserPage from "./views/UserPage/UserPage.js";
 import ErrorPage from "./views/ErrorPage/ErrorPage.js";
-
+import MatchProfile from './views/MatchProfile/MatchProfile';
 
 
 function App() {
@@ -67,8 +67,8 @@ function App() {
           {/* public home page to all users */}
           <Route exact path="/">
             <HomePage
-              auth={ auth }
-              query={ query }
+              auth={auth}
+              query={query}
             />
           </Route>
 
@@ -92,7 +92,9 @@ function App() {
           />
 
           {/* unknowm route error page */}
-          <Route component={ErrorPage} />
+          {/* <Route component={ErrorPage} /> */}
+          <Route component={MatchProfile} />
+
         </Switch>
       </Router>
     </>
