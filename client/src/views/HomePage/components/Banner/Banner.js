@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Banner.css";
 
-function Banner() {
+function Banner(props) {
   return (
 
     <div className="container">
@@ -17,19 +17,22 @@ function Banner() {
         </div>
 
       </div>
+      {
+        props.auth ? <p> Welcome </p> :
 
-      <section className="banner">
-        <button className="login-button" type="button">
-          <Link to="/user/auth/sign-in" className="loginBtn">
-            Log In
+          <section className="banner">
+            <button className="login-button" type="button">
+              <Link to="/user/auth/sign-in" className="loginBtn">
+                Log In
           </Link>
-        </button>
-        <button className="create-button" type="button">
-          <Link to="/user/auth/sign-up" className="signBtn">
-            Create an account
+            </button>
+            <button className="create-button" type="button">
+              <Link to="/user/auth/sign-up" className="signBtn">
+                Create an account
           </Link>
-        </button>
-      </section>
+            </button>
+          </section>
+      }
     </div >
   );
 }

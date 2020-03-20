@@ -8,3 +8,7 @@
     height: 8vw;
     align-items: left;
 }
+
+.profileImage {
+    width: "100%";
+}

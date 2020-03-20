@@ -9,3 +9,8 @@
     /* object-fit: cover; */
     /* align-items: left; */
 }
+
+.image-container {
+    height: 30vh;
+    overflow: scroll;
+}
