@@ -32,12 +32,13 @@ function UserCards(props) {
         <div className="row justify-content-center">
             <div className="col-sm-12 matchCard">
                 {value.people.map((person, index) => (
+
                     <Card key={index} style={{ width: '100%', margin: "5px 0", height: 'auto' }}>
 
                         <Card.Body className="cardMain row no-gutters justify-content-center">
                             <ListGroup className="list-group col-6">
                                 <ListGroupItem className="name" id="name"><strong>Name: </strong>{person.firstName} {person.lastName}</ListGroupItem>
-                                <ListGroupItem classname="city" id="city"><strong>City: </strong></ListGroupItem>
+                                <ListGroupItem classname="city" id="city"><strong>City: </strong>{person.City}</ListGroupItem>
                                 <ListGroupItem classname="interests" id="interests"><strong>Interests: </strong><Interests _id={person._id} /></ListGroupItem>
                                 <ListGroupItem classname="pets" id="pets"><strong>Pets: </strong></ListGroupItem>
                             </ListGroup>
@@ -54,6 +55,7 @@ function UserCards(props) {
                 ))}
             </div>
         </div>
+
 
     )
 }
