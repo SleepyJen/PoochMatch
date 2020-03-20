@@ -323,9 +323,25 @@ router.post('/addComment/:id', (req, res) => {
         _id: req.params.id
     }, {
         $push: {
-            comments: req.params.comments
+            comments: req.body.comments
         }
+    }).then(result => {
+        res.send(result);
     });
+});
+
+//update clear comments
+router.post('/clearComments/:id', (req, res) => {
+    db.User.findByIdAndUpdate({
+        _id: req.params.id
+    },
+        {
+            $set: {
+                comments: []
+            }
+        }).then(result => {
+            res.send(result);
+        });
 });
 
 //UPDATES
@@ -355,10 +371,10 @@ router.post('/updatelastName/:id', (req, res) => {
 //update password
 router.post('/updatepassword/:id', (req, res) => {
     /* DELETE AFTER TEST */
-    console.log('REQ:', req.params,req.body)
-    console.log('User:', (req.user)?true:false)
-    res.send( (req.user)?req.user:false )
-    
+    console.log('REQ:', req.params, req.body)
+    console.log('User:', (req.user) ? true : false)
+    res.send((req.user) ? req.user : false)
+
     // db.User.findOneAndUpdate({
     //     _id: req.params.id
     // },
