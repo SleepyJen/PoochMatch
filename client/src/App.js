@@ -91,10 +91,14 @@ function App() {
             component={UserPage}
           />
 
-          {/* unknowm route error page */}
-          {/* <Route component={ErrorPage} /> */}
+          {/* route to match profile */}
 
-          <Route component={MatchProfile} />
+          <Route path="/profile"
+            render={(props) => <MatchProfile {...props} id={id} isAuthed={auth} />}
+          />
+
+          {/* unknowm route error page */}
+          <Route path='/*' component={ErrorPage} />
 
         </Switch>
       </Router>
