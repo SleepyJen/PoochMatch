@@ -205,6 +205,9 @@ class UserProfile extends Component {
     this.setState({ [name]: this.state.holder });
     if (name !== "Interests" && name !== "Pets") {
       this.updateDatabase(name);
+/*  */
+      console.log('Target:', name)
+/*  */
     }
   };
 

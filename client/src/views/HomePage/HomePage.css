@@ -3,11 +3,11 @@
 }
 
 main.home-page {
-    border: 2px solid black;
-    background: url("/assets/images/dogsPlaying.jpeg");
+    /* border: 2px solid black; */
+    /* background: url("/assets/images/dogsPlaying.jpeg");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
 
     height: 100%;
 }
