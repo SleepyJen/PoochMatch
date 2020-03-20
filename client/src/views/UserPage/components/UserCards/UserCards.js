@@ -49,6 +49,7 @@ function UserCards(props) {
                         </Card.Body>
 
                         <Card.Body className="cardFooter">
+                            {/* <Card.Link href={`/profile?user_profile=${person._id}`} className="btn btn-primary">View profile</Card.Link> */}
                             <Card.Link href={`/profile?user_profile=${person._id}`} className="btn btn-primary">View profile</Card.Link>
                         </Card.Body>
                     </Card>
