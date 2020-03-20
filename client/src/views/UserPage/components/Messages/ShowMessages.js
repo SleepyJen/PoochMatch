@@ -34,7 +34,7 @@ function ShowMessages(props) {
 
     return (
         <div>
-            <legend>Chat Room</legend>
+            {/* <legend>Chat Room</legend> */}
 
             {comments.commentsInfo.map((comm, index) => (
                 <div key={index}>
