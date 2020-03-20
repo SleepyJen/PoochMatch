@@ -25,11 +25,11 @@ class Messages extends Component {
             </div>
 
             <div className="chatContainer">
-              <div className="chatRoom">
-                <p>chat dialog goes here</p>
-              </div>
               <div className="chatIm">
                 <p>screen name</p>
+              </div>
+              <div className="chatRoom">
+                <p>chat dialog goes here</p>
               </div>
             </div>
             <div className="chatInput">
