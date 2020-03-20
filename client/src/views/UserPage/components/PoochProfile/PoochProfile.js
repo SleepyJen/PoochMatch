@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './PoochProfile.css';
-import axios from 'axios';
 import Pets from '../Pets/Pets.js';
 
 const initState = {
@@ -16,9 +15,6 @@ class PetInfo extends Component {
   async componentDidMount() {
     const urlQuerries = new URLSearchParams(window.location.search);
     const userId = urlQuerries.get("user_id");
-    // await axios.get(`/user/getById/${userId}`).then(result => {
-    //   this.setState({ Pets: result.data.Pets });
-    // });
     this.setState({ userId: userId });
   }
 
