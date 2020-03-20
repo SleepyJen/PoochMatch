@@ -38,7 +38,7 @@ class SignUp extends Component {
         )
         this.setState({
           // error : result.data.error.errors
-          error : result.data.error
+          error: result.data.error
         })
 
       } else if (!result.data.user) {
@@ -46,7 +46,7 @@ class SignUp extends Component {
           'Denied:', result.data.info.message
         )
         this.setState({
-          error : result.data.info.message
+          error: result.data.info.message
         })
 
       } else {
@@ -59,10 +59,11 @@ class SignUp extends Component {
   };
 
   /* targets & handles each value change */
+
   handleValueChange = (event) => {
     const { name , value } = event.target;
     // console.log('Target:', name, '—', value)
-    this.setState({ [name] : value });
+    this.setState({ [name]: value });
   };
 
 
@@ -77,9 +78,9 @@ class SignUp extends Component {
 
   /* displays all states in <option> tag */
   displayStatesListOption = () => {
-    return allStatesList.map( (state , id) => (
-      <option key={id} value={ state.abbreviation }>
-        { state.name }
+    return allStatesList.map((state, id) => (
+      <option key={id} value={state.abbreviation}>
+        {state.name}
       </option>
     ));
   };
@@ -108,19 +109,19 @@ class SignUp extends Component {
 
           {/* display error */}
           <div className="input-message">
-            { 
+            {
               (typeof error === 'string') && (
                 <p className="text error">
-                  { error }
+                  {error}
                 </p>
               )
             }
           </div>
 
           {/* register form */}
-          <form 
-            className="reg-form form" 
-            // onSubmit={ submitForm }
+          <form
+            className="reg-form form"
+          // onSubmit={ submitForm }
           >
             {/* FIRST NAME */}
             <div className="grid-first-name group">
@@ -129,8 +130,8 @@ class SignUp extends Component {
                 name="firstName"
                 className="firstName input"
                 autoComplete="off"
-                value={ firstName }
-                onChange={ handleValueChange }
+                value={firstName}
+                onChange={handleValueChange}
                 autoFocus
               />
               <label htmlFor="firstName" className="borders">
@@ -141,16 +142,16 @@ class SignUp extends Component {
                   (
                     (typeof error === 'object') &&
                     error.firstName
-                  ) && 
+                  ) &&
                   (
                     <span className="text error">
-                      { error.firstName.msg }
+                      {error.firstName.msg}
                     </span>
-                  ) 
+                  )
                 }
               </label>
             </div>
-            
+
             {/* LAST NAME */}
             <div className="grid-last-name group">
               <input
@@ -158,8 +159,8 @@ class SignUp extends Component {
                 name="lastName"
                 className="lastName input"
                 autoComplete="off"
-                value={ lastName }
-                onChange={ handleValueChange }
+                value={lastName}
+                onChange={handleValueChange}
               />
               <label htmlFor="lastName" className="borders">
                 <span className="text">
@@ -172,9 +173,9 @@ class SignUp extends Component {
                   ) &&
                   (
                     <span className="text error">
-                      { error.lastName.msg }
+                      {error.lastName.msg}
                     </span>
-                  ) 
+                  )
                 }
               </label>
             </div>
@@ -186,8 +187,8 @@ class SignUp extends Component {
                 name="email"
                 className="email input"
                 autoComplete="off"
-                value={ email }
-                onChange={ handleValueChange }
+                value={email}
+                onChange={handleValueChange}
               />
               <label htmlFor="email" className="borders">
                 <span className="text">
@@ -200,9 +201,9 @@ class SignUp extends Component {
                   ) &&
                   (
                     <span className="text error">
-                      { error.email.msg }
+                      {error.email.msg}
                     </span>
-                  ) 
+                  )
                 }
               </label>
             </div>
@@ -214,8 +215,8 @@ class SignUp extends Component {
                 name="password"
                 className="password input"
                 autoComplete="off"
-                value={ password }
-                onChange={ handleValueChange }
+                value={password}
+                onChange={handleValueChange}
               />
               <label htmlFor="password" className="borders">
                 <span className="text">
@@ -228,9 +229,9 @@ class SignUp extends Component {
                   ) &&
                   (
                     <span className="text error">
-                      { error.password.msg }
+                      {error.password.msg}
                     </span>
-                  ) 
+                  )
                 }
               </label>
             </div>
@@ -242,8 +243,8 @@ class SignUp extends Component {
                 name="cPassword"
                 className="cPassword input"
                 autoComplete="off"
-                value={ cPassword }
-                onChange={ handleValueChange }
+                value={cPassword}
+                onChange={handleValueChange}
               />
               <label htmlFor="cPassword" className="borders">
                 <span className="text">
@@ -256,9 +257,9 @@ class SignUp extends Component {
                   ) &&
                   (
                     <span className="text error">
-                      { error.cPassword.msg }
+                      {error.cPassword.msg}
                     </span>
-                  ) 
+                  )
                 }
               </label>
             </div>
@@ -270,8 +271,8 @@ class SignUp extends Component {
                 name="City"
                 className="City input"
                 autoComplete="off"
-                value={ City }
-                onChange={ handleValueChange }
+                value={City}
+                onChange={handleValueChange}
               />
               <label htmlFor="City" className="borders">
                 <span className="text">
@@ -279,18 +280,18 @@ class SignUp extends Component {
                 </span>
               </label>
             </div>
-            
+
             {/* STATE */}
             <div className="grid-State">
               <select
                 form="State"
                 name="State"
                 className="State input"
-                defaultValue={ State }
-                onChange={ handleValueChange }
+                defaultValue={State}
+                onChange={handleValueChange}
               >
                 <option hidden>— Select State * —</option>
-                { this.displayStatesListOption() }
+                {this.displayStatesListOption()}
               </select>
             </div>
 
@@ -301,8 +302,8 @@ class SignUp extends Component {
                 name="phone"
                 className="phone input"
                 autoComplete="off"
-                value={ phone }
-                onChange={ handleValueChange }
+                value={phone}
+                onChange={handleValueChange}
                 min="0"
               />
               <label htmlFor="phone" className="borders">
@@ -318,19 +319,19 @@ class SignUp extends Component {
             type="submit"
             name="sign-up"
             className="auth-btn sign-up-btn"
-            onClick={ submitForm }
+            onClick={submitForm}
           >Sign Up
           </button>
 
-          <br/>
-          <br/>
+          <br />
+          <br />
 
           {/* caption */}
           <p className="text-caption">
             <span>
               Have an account?
             </span>
-            <br/>
+            <br />
             <Link to="/user/auth/sign-in">
               Login now
             </Link>
@@ -345,9 +346,8 @@ export default SignUp;
 
 
 
-/* 
+/*
 <br/>
-
 <div className="grid-btn">
   <input
     type="submit"
@@ -357,5 +357,5 @@ export default SignUp;
     // disabled
   />
 </div>
-</form> 
+</form>
 */

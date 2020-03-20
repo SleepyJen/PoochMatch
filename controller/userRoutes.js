@@ -3,8 +3,8 @@ const router = express.Router();
 const db = require('../models');
 const fs = require('fs');
 const passport = require('../custom/');
-const { 
-    check , validationResult
+const {
+    check, validationResult
 } = require('express-validator');
 
 //GET REQUESTS 
@@ -23,31 +23,31 @@ router.post(
     '/sign-up',
     [
         check('firstName')
-        .isAlpha().isLength({ min: 2 })
-        .withMessage('requires only letters'),
+            .isAlpha().isLength({ min: 2 })
+            .withMessage('requires only letters'),
 
         check('lastName')
-        .isAlpha().isLength({ min: 2 })
-        .withMessage('requires only letters'),
+            .isAlpha().isLength({ min: 2 })
+            .withMessage('requires only letters'),
 
         check('email')
-        .trim().isEmail().normalizeEmail()
-        .withMessage('requires "@" & "." symbols'),
-        
+            .trim().isEmail().normalizeEmail()
+            .withMessage('requires "@" & "." symbols'),
+
         check('password')
-        .trim().isLength({ min: 5 , max: 15 })
-        .withMessage('requires 5-15 characters'),
+            .trim().isLength({ min: 5, max: 15 })
+            .withMessage('requires 5-15 characters'),
 
         check('cPassword')
-        .custom( (value , { req }) => {
-            // console.log('Confirm Pass:' , value , req);
-            if (value !== req.body.password) {
-                throw new Error('must match password');
-            } else {
-                console.log('password does match')
-                return true;
-            }
-        })
+            .custom((value, { req }) => {
+                // console.log('Confirm Pass:' , value , req);
+                if (value !== req.body.password) {
+                    throw new Error('must match password');
+                } else {
+                    console.log('password does match')
+                    return true;
+                }
+            })
     ],
     (req, res, next) => {
         console.log('— REGISTER —')
@@ -55,12 +55,12 @@ router.post(
 
         const errors = validationResult(req);
 
-        if ( !errors.isEmpty() ) {
-            console.log('Error:' , errors)
-            
+        if (!errors.isEmpty()) {
+            console.log('Error:', errors)
+
             res.status = 500;
             return res.json({
-                error : errors.mapped()
+                error: errors.mapped()
             })
         } else {
             passport.authenticate(
@@ -151,14 +151,14 @@ router.post('/login', (req, res, next) => {
                 console.log('Auth User:', user._id)
 
                 return res
-                .json({
-                    info,
-                    user: {
-                        _id: user._id, 
-                        email: user.email 
-                    },
-                    auth: req.isAuthenticated()
-                });
+                    .json({
+                        info,
+                        user: {
+                            _id: user._id,
+                            email: user.email
+                        },
+                        auth: req.isAuthenticated()
+                    });
             }
         })
 
@@ -207,6 +207,7 @@ router.get('/check-user', (req, res) => {
 })
 /*  */
 
+//get by email
 router.get('/getByEmail/:email', (req, res) => {
     db.User.findOne({
         email: req.params.email
@@ -215,11 +216,21 @@ router.get('/getByEmail/:email', (req, res) => {
     });
 });
 
+//get by id
 router.get('/getById/:id', (req, res) => {
     db.User.findOne({
         _id: req.params.id
     }).then(result => {
         res.send(result);
+    });
+});
+
+//get by City
+router.get('/getByCity/:city', (req, res) => {
+    db.User.find({
+        City: req.params.city
+    }).then(result => {
+        res.json(result);
     });
 });
 
@@ -264,6 +275,20 @@ router.post('/addInterests/:id', (req, res) => {
         });
 });
 
+//update interests
+router.post('/clearInterests/:id', (req, res) => {
+    db.User.findByIdAndUpdate({
+        _id: req.params.id
+    },
+        {
+            $set: {
+                Interests: []
+            }
+        }).then(result => {
+            res.send(result);
+        });
+});
+
 //pushing pets
 router.post('/addPet/:id', (req, res) => {
     db.User.findOneAndUpdate({
@@ -272,6 +297,20 @@ router.post('/addPet/:id', (req, res) => {
         {
             $push: {
                 Pets: req.body.Pets
+            }
+        }).then(result => {
+            res.send(result);
+        });
+});
+
+//update pets
+router.post('/clearPets/:id', (req, res) => {
+    db.User.findByIdAndUpdate({
+        _id: req.params.id
+    },
+        {
+            $set: {
+                Pets: []
             }
         }).then(result => {
             res.send(result);

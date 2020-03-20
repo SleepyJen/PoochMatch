@@ -7,7 +7,6 @@ function Images(props) {
     const [value, modifier] = useState({ data: "" });
     useEffect(() => {
         axios.get(`/addImage/${props.img}`).then(result => {
-
             if (result.length > 1) {
                 modifier({ data: result[0].data.data });
             } else {

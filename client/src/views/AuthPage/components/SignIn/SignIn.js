@@ -117,7 +117,7 @@ class SignIn extends Component {
             {/* PASSWORD */}
             <div className="group">
               <input
-                type="text"
+                type="password"
                 name="password"
                 className="password input"
                 autoComplete="off"

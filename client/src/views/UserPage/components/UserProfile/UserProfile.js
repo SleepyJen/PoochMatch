@@ -5,6 +5,7 @@ import Images from "../Images/Images";
 import allStatesList from "../../../AuthPage/components/SignUp/all-states-list.json";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Dropdown, FormGroup } from "react-bootstrap";
+import Interests from '../Interests/Interests'
 
 const initState = {
   firstName: "",
@@ -20,7 +21,14 @@ const initState = {
   imgId: "",
   imgLocation: "",
   _id: "",
-  holder: ""
+  holder: "",
+  interestsHolder: [],
+  dogWalks: false,
+  playDates: false,
+  breed: false,
+  dogSit: false,
+  adoption: false,
+  fostering: false
 };
 
 class UserProfile extends Component {
@@ -45,8 +53,16 @@ class UserProfile extends Component {
       imgId: this.state.imgId,
       imgLocation: this.state.imgLocation,
       _id: this.state._id,
-      holder: this.state.holder
-    };
+      holder: this.state.holder,
+      interestsHolder: this.state.interestsHolder,
+      dogWalks: this.state.dogWalks,
+      playDates: this.state.playDates,
+      breed: this.state.breed,
+      dogSit: this.state.dogSit,
+      adoption: this.state.adoption,
+      fostering: this.state.fostering
+    }
+
     this.setState(data);
   };
 
@@ -73,11 +89,17 @@ class UserProfile extends Component {
         imgId: result.data.data._id,
         imgLocation: this.state.imgLocation,
         _id: this.state._id,
-        holder: this.state.holder
-      };
+        holder: this.state.holder,
+        interestsHolder: this.state.interestsHolder,
+        dogWalks: this.state.dogWalks,
+        playDates: this.state.playDates,
+        breed: this.state.breed,
+        dogSit: this.state.dogSit,
+        adoption: this.state.adoption,
+        fostering: this.state.fostering
+      }
       this.setState(data);
     });
-    console.log(this.state);
     const urlQuerries = new URLSearchParams(window.location.search);
     const userId = urlQuerries.get("User_id");
     await axios.post(`/user/addImage/${userId}`, {
@@ -98,8 +120,16 @@ class UserProfile extends Component {
       imgId: this.state.imgId,
       imgLocation: location.data.data,
       _id: this.state._id,
-      holder: this.state.holder
-    };
+      holder: this.state.holder,
+      interestsHolder: this.state.interestsHolder,
+      dogWalks: this.state.dogWalks,
+      playDates: this.state.playDates,
+      breed: this.state.breed,
+      dogSit: this.state.dogSit,
+      adoption: this.state.adoption,
+      fostering: this.state.fostering
+    }
+
     this.setState(data);
   };
 
@@ -108,25 +138,58 @@ class UserProfile extends Component {
     const userId = urlQuerries.get("user_id");
     let user = await axios.get(`/user/getById/${userId}`);
     let data = user.data;
-    let image = await axios.get(`/addImage/${data.imgs}`);
-    const newState = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      password: data.password,
-      City: data.City,
-      State: data.State,
-      email: data.email,
-      Interests: data.Interests,
-      Pets: data.pets,
-      imgs: data.imgs,
-      phone: data.phone,
-      imgId: data.imgs,
-      imgLocation: image.data.data,
-      _id: userId,
-      holder: this.state.holder
-    };
-    this.setState(newState);
-    console.log(this.state);
+    if (data.imgs) {
+      let image = await axios.get(`/addImage/${data.imgs}`);
+      const newState = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        password: data.password,
+        City: data.City,
+        State: data.State,
+        email: data.email,
+        Interests: data.Interests,
+        Pets: data.pets,
+        imgs: data.imgs,
+        phone: data.phone,
+        imgId: data.imgs,
+        imgLocation: image.data.data,
+        _id: userId,
+        holder: this.state.holder,
+        interestsHolder: this.state.interestsHolder,
+        dogWalks: this.state.dogWalks,
+        playDates: this.state.playDates,
+        breed: this.state.breed,
+        dogSit: this.state.dogSit,
+        adoption: this.state.adoption,
+        fostering: this.state.fostering
+      }
+      this.setState(newState);
+    } else {
+      const newState = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        password: data.password,
+        City: data.City,
+        State: data.State,
+        email: data.email,
+        Interests: data.Interests,
+        Pets: data.pets,
+        imgs: this.state.imgs,
+        phone: data.phone,
+        imgId: this.state.imgId,
+        imgLocation: this.state.imgLocation,
+        _id: userId,
+        holder: this.state.holder,
+        interestsHolder: this.state.interestsHolder,
+        dogWalks: this.state.dogWalks,
+        playDates: this.state.playDates,
+        breed: this.state.breed,
+        dogSit: this.state.dogSit,
+        adoption: this.state.adoption,
+        fostering: this.state.fostering
+      }
+      this.setState(newState);
+    }
   }
 
   //hold value for each input
@@ -148,6 +211,7 @@ class UserProfile extends Component {
     }
   };
 
+  //update database for all categories except interests and pets
   updateDatabase = async name => {
     await axios.post(`/user/update${name}/${this.state._id}`, {
       [name]: this.state.holder
@@ -156,8 +220,68 @@ class UserProfile extends Component {
     if (id !== "changeState") {
       document.getElementById(id).value = "";
     }
-    console.log(this.state);
   };
+
+  //handle all the check marks for interests
+  handleCheck = async event => {
+    event.preventDefault();
+    let interestName = "interestsHolder";
+    let { name, value } = event.target;
+    this.setState({ [name]: event.target.checked });
+    let interests = this.state.Interests;
+    let interestsHolder = this.state.interestsHolder;
+    if (interests.length < 1) {
+      if (interestsHolder.length < 1) {
+        this.setState({
+          [interestName]: [...this.state.interestsHolder, value]
+        });
+      } else {
+        for (let i = 0; i < interestsHolder.length; i++) {
+          if (interestsHolder[i] === value) {
+            i = interestsHolder.length;
+          } else if (
+            interestsHolder[i] !== value &&
+            i === interestsHolder.length - 1
+          ) {
+            this.setState({
+              [interestName]: [...this.state.interestsHolder, value]
+            });
+          }
+        }
+      }
+    } else {
+      for (let i = 0; i < interests.length; i++) {
+        if (interests[i] === value) {
+          i = interests.length;
+        } else if (interests[i] !== value && i === interests.length - 1) {
+          this.setState({
+            [interestName]: [...this.state.interestsHolder, value]
+          });
+        }
+      }
+    }
+  };
+
+  //adding all interests into the database
+  addChecked = async e => {
+    e.preventDefault();
+    let interests = [];
+    let holder = "interestsHolder";
+    let interestName = "Interests";
+    for (let i = 0; i < this.state.interestsHolder.length; i++) {
+      if (this.state.interestsHolder[i] !== null) {
+        interests.push(this.state.interestsHolder[i]);
+      }
+    }
+    await axios.post(`/user/addInterests/${this.state._id}`, {
+      Interests: interests
+    });
+    let user = await axios.get(`/user/getById/${this.state._id}`);
+    this.setState({
+      [holder]: [],
+      [interestName]: user.Interests
+    });
+  }
 
   /* displays all states in <option> tag */
   displayStatesListOption = () => {
@@ -167,6 +291,12 @@ class UserProfile extends Component {
       </option>
     ));
   };
+
+  showInterests = () => {
+    return this.state.Interests.map(interests => (
+      <h6>{interests}</h6>
+    ));
+  }
 
   render() {
     return (
@@ -182,12 +312,18 @@ class UserProfile extends Component {
             <div className="container userProfileForm mt-3">
               <div className="row justify-content-center mb-3">
                 <div className="userImage col-sm-8" id="userImage">
-                  <Images click={this.fileSelected} upload={this.fileUpload} img={this.state.imgId} />
+                  <Images
+                    click={this.fileSelected}
+                    upload={this.fileUpload}
+                    img={this.state.imgId}
+                  />
                 </div>
               </div>
 
               <div className="row justify-content-center mb-3">
-                <div className="firstNameData col-sm-7" id="firstName"><strong>First Name: </strong> {this.state.firstName}</div>
+                <div className="firstNameData col-sm-7" id="firstName">
+                  <strong>First Name: </strong> {this.state.firstName}
+                </div>
 
                 <div className="dropdown">
                   {/* id="dropdownMenuButton" */}
@@ -214,7 +350,7 @@ class UserProfile extends Component {
                     <button
                       onClick={this.submitForm}
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-primary saveBtn"
                       name="firstName"
                     >
                       Save
@@ -251,7 +387,7 @@ class UserProfile extends Component {
                     <button
                       onClick={this.submitForm}
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-primary saveBtn"
                       name="lastName"
                     >
                       Save
@@ -288,7 +424,7 @@ class UserProfile extends Component {
                     <button
                       onClick={this.submitForm}
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-primary saveBtn"
                       name="password"
                     >
                       Save
@@ -325,7 +461,7 @@ class UserProfile extends Component {
                     <button
                       onClick={this.submitForm}
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-primary saveBtn"
                       name="City"
                     >
                       Save
@@ -341,7 +477,7 @@ class UserProfile extends Component {
                 <div className="dropdown">
                   <FormGroup>
                     <Dropdown>
-                      <Dropdown.Toggle className="modifyBtn">
+                      <Dropdown.Toggle className="modifyBtn stateBtn">
                         Edit<i className="far fa-edit"></i>
                       </Dropdown.Toggle>
                       <Dropdown.Menu className="dropdown-menu">
@@ -360,7 +496,7 @@ class UserProfile extends Component {
                           <button
                             onClick={this.submitForm}
                             type="submit"
-                            className="btn btn-primary"
+                            className="btn btn-primary saveBtn"
                             name="State"
                           >
                             Save
@@ -373,61 +509,165 @@ class UserProfile extends Component {
               </div>
 
               <div className="row justify-content-center mb-3">
-
-                <div className="emailData col-sm-7" id="email"><strong>Email: </strong> {this.state.email}</div>
+                <div className="emailData col-sm-7" id="email">
+                  <strong>Email: </strong> {this.state.email}
+                </div>
                 <div className="dropdown">
-                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="email" aria-haspopup="true" aria-expanded="false">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="email"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Edit<i className="far fa-edit"></i>
                   </button>
                   <div className="dropdown-menu p-1">
                     <label htmlFor="changeemail">New Email</label>
-                    <input onChange={this.handleValue} type="text" className="form-control" id="changeemail" placeholder="email" name="holder" />
-                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="email">Save</button>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changeemail"
+                      placeholder="email"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary saveBtn"
+                      name="email"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
-
               </div>
 
               <div className="row justify-content-center mb-3">
-                <div className="interestsData col-sm-7" id="interests">
-                  <strong>Interests: </strong> {this.state.Interests}
+                <div className="interestsData col-sm-7" id="interests"><strong>Interests: </strong> <Interests _id={this.state._id} /></div>
+
+                <div className="dropdown">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="interests"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Edit<i className="far fa-edit"></i>
+                  </button>
+                  <div className="dropdown-menu p-1">
+                    <label htmlFor="changeinterests">Interests</label>
+                    <div className="form-check">
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.dogWalks} value="Dog Walks" name="dogWalks" />
+                      <label className="form-check-label" htmlFor="dropdownCheck2">
+                        Dog Walks</label>
+                    </div>
+                    <div className="form-check">
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.playDates} value="Play Dates" name="playDates" />
+                      <label className="form-check-label" htmlFor="dropdownCheck2">
+                        Play Dates</label>
+                    </div>
+                    <div className="form-check">
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.breed} value="Breed" name="breed" />
+                      <label className="form-check-label" htmlFor="dropdownCheck2">
+                        Breed</label>
+                    </div>
+                    <div className="form-check">
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.checked} value="Dog Sit" name="dogSit" />
+                      <label className="form-check-label" htmlFor="dropdownCheck2">
+                        Dog Sit</label>
+                    </div>
+                    <div className="form-check">
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.adoption} value="Adoption" name="adoption" />
+                      <label className="form-check-label" htmlFor="dropdownCheck2">
+                        Adoption</label>
+                    </div>
+                    <div className="form-check">
+                      <input onChange={this.handleCheck} type="checkbox" className="form-check-input" checked={this.state.fostering} value="Fostering" name="fostering" />
+                      <label className="form-check-label" htmlFor="dropdownCheck2">
+                        Fostering</label>
+                    </div>
+                    <button onClick={this.addChecked} type="submit" className="btn btn-primary saveBtn" name="Interests">Save</button>
+                  </div>
                 </div>
-                <button
-                  className="btn dropdown modifyBtn"
-                  type="button"
-                  data-toggle="dropdown"
-                >
-                  Edit<i className="far fa-edit"></i>
-                </button>
               </div>
 
               <div className="row justify-content-center mb-3">
                 <div className="petsData col-sm-7" id="pets">
                   <strong>Pets: </strong> {this.state.Pets}
                 </div>
-                <button
-                  className="btn dropdown modifyBtn"
-                  type="button"
-                  data-toggle="dropdown"
-                >
-                  Edit<i className="far fa-edit"></i>
-                </button>
+                <div className="dropdown">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="pets"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Edit<i className="far fa-edit"></i>
+                  </button>
+                  <div className="dropdown-menu p-1">
+                    <label htmlFor="changepets">New Pets</label>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changepets"
+                      placeholder="New Pet"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary saveBtn"
+                      name="pets"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <div className="row justify-content-center mb-3">
-
-                <div className="phoneData col-sm-7" id="phone"><strong>Phone #: </strong> {this.state.phone}</div>
+                <div className="phoneData col-sm-7" id="phone">
+                  <strong>Phone #: </strong> {this.state.phone}
+                </div>
                 <div className="dropdown">
-                  <button className="btn dropdown-toggle modifyBtn" type="button" data-toggle="dropdown" name="phone" aria-haspopup="true" aria-expanded="false">
+                  <button
+                    className="btn dropdown-toggle modifyBtn"
+                    type="button"
+                    data-toggle="dropdown"
+                    name="phone"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Edit<i className="far fa-edit"></i>
                   </button>
                   <div className="dropdown-menu p-1">
                     <label htmlFor="changephone">New Phone Number</label>
-                    <input onChange={this.handleValue} type="text" className="form-control" id="changephone" placeholder="Phone Number" name="holder" />
-                    <button onClick={this.submitForm} type="submit" className="btn btn-primary" name="phone">Save</button>
+                    <input
+                      onChange={this.handleValue}
+                      type="text"
+                      className="form-control"
+                      id="changephone"
+                      placeholder="Phone Number"
+                      name="holder"
+                    />
+                    <button
+                      onClick={this.submitForm}
+                      type="submit"
+                      className="btn btn-primary saveBtn"
+                      name="phone"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
-
               </div>
             </div>
           </fieldset>

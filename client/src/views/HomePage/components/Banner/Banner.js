@@ -43,6 +43,7 @@ function Banner (props) {
         }
       </div>
     </section>
+
   );
 }
 
