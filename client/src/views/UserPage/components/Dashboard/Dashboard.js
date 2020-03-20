@@ -21,18 +21,16 @@ class Dashboard extends Component {
     this.state = initState;
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const UrlQuerries = new URLSearchParams(window.location.search);
     const userId = UrlQuerries.get('user_id');
-
-    //let user = await axios.get(`/user/getById/${userId}`);
-    axios.get(`/user/getById/${userId}`).then(user => {
-      //console.log(user)
-      this.setState({
-        City: user.data.City,
-        _id: userId
-      });
-    })
+    let City = "City";
+    let _id = "_id";
+    let user = await axios.get(`/user/getById/${userId}`);
+    this.setState({
+      [City]: user.data.City,
+      [_id]: userId
+    });
   }
 
   static defaultProps = {
@@ -46,7 +44,7 @@ class Dashboard extends Component {
         <div className="container col-sm-12">
           <div className="row justify-content-left">
             <div className="mapContainer col-sm-4"
-              style={{ height: "60vh", width: "100%" }}>
+              style={{ height: "60vh", width: "40%" }}>
               <GoogleMapReact
                 bootstrapURLKeys={{
                   key: "AIzaSyAslvs6KNkTaQS-cW6hOwrrccd4XEozlEk"

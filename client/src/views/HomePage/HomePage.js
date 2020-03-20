@@ -3,10 +3,10 @@ import "./HomePage.css";
 
 import Banner from "./components/Banner/Banner";
 
-function HomePage(props) {
+function HomePage() {
   return (
     <main className="home-page">
-      <Banner auth={props.auth} />
+      <Banner />
     </main>
   );
 }

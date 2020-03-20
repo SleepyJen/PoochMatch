@@ -66,7 +66,7 @@ function App() {
         <Switch>
           {/* public home page to all users */}
           <Route exact path="/">
-            <HomePage auth={auth} />
+            <HomePage />
           </Route>
 
           {/* access to sign-up/signin-in */}
