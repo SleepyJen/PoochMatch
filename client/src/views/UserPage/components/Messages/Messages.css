@@ -1,5 +1,7 @@
 .field {
     background-color: white;
+    width: 70%;
+
 }
 
 .chatContainer {
@@ -11,7 +13,7 @@
 
 .chatRoom {
     flex: 3;
-    height: 425px;
+    min-height: 425px;
     background-color: rgba(209, 191, 191, 0.5);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -21,11 +23,12 @@
 .chatIm {
     margin-left: 1%;
     flex: 1;
-    height: 425px;
+    min-height: 425px;
     background-color: rgba(209, 191, 191, 0.5);
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     margin: 1%;
+    width: 100%;
 }
 
 .chatInput {
