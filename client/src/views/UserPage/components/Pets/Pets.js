@@ -61,7 +61,6 @@ function Pets(props) {
                             </ListGroup>
 
                             <ListGroup className="list-group col-6">
-                                {/* <Card.Img className="dogImage" /> */}
                                 <PetPic _id={pet._id} />
                             </ListGroup>
                         </Card.Body>
