@@ -13,15 +13,23 @@ function PetPic(props) {
     });
     useEffect(() => {
         axios.get(`/dog/${props._id}`).then(result => {
-            value.PetInfo["name"] = result.data.name;
+            const data = {
+                _id: props._id,
+                name: "",
+                image: "",
+                imgId: "",
+                imgLocation: ""
+            }
+            data["name"] = result.data.name;
             if (result.data.images.length > 0) {
-                value.PetInfo["imgId"] = result.data.images[0];
+                data["imgId"] = result.data.images[0];
                 axios.get(`/addImage/${value.PetInfo.imgId}`).then(result => {
-                    value.PetInfo["imgLocation"] = result.data.data;
+                    data["imgLocation"] = result.data.data;
+                    modifier({ PetInfo: data });
                 });
             }
         });
-    }, [props._id, value.PetInfo.imgLocation]);
+    });
 
     //when someone uploads an image
     function fileSelected(event) {
@@ -34,7 +42,6 @@ function PetPic(props) {
         }
         modifier({ PetInfo: data });
     };
-
 
     //upload file
     async function fileUpload(event) {
@@ -56,9 +63,10 @@ function PetPic(props) {
             modifier({ PetInfo: data });
         });
     };
+
     return (
         <div>
-            <img src={value.PetInfo.imgLocation} alt="profile" className="image"></img>
+            <img src={value.PetInfo["imgLocation"]} alt="pet profile" className="image"></img>
             <div className="justify-content-center mb-3">
                 <div className="uploadImage" id="userImage">
                     <label htmlFor="img"></label>
