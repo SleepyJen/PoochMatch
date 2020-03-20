@@ -8,6 +8,7 @@ function ShowMessages(props) {
     const [value, modifier] = useState({ comments: [] });
     const [comments, modifyComment] = useState({ commentsInfo: [] });
     useEffect(() => {
+
         modifier({ comments: props.comments });
         let data = [];
         for (let i = 0; i < props.comments.length; i++) {
@@ -15,7 +16,8 @@ function ShowMessages(props) {
                 userId: "",
                 comments: []
             }
-            axios.get(`/comments/${value.comments[i]}`).then(result => {
+            axios.get(`/comments/${props.comments[i]}`).then(result => {
+                console.log(result);
                 for (let j = 0; j < result.data.userId.length; j++) {
                     if (result.data.userId[j] !== props.userId) {
                         info['userId'] = result.data.userId[j];
@@ -23,32 +25,40 @@ function ShowMessages(props) {
                 }
                 info['comments'] = result.data.comments
                 data.push(info);
+
                 modifyComment({ commentsInfo: data });
             });
         }
-    });
+    }, [props]);
+    console.log(comments);
 
-    return comments.commentsInfo.map((comm, index) => (
-        <div key={index}>
-            <form>
-                <fieldset className="field">
-                    <div>
+    return (
+        <div>
+            <legend>Chat Room</legend>
+
+            {comments.commentsInfo.map((comm, index) => (
+                <div key={index}>
+                    <form>
+                        <fieldset className="field">
+                            {/* <div>
                         <legend>Chat Room</legend>
-                    </div>
+                    </div> */}
 
-                    <div className="chatContainer">
-                        <ForUserMessage user={comm.userId} />
-                        <div className="chatRoom">
-                            <p>chat dialog goes here</p>
-                        </div>
-                    </div>
-                    <div className="chatInput">
-                        <p>user text/chat input goes here</p>
-                    </div>
-                </fieldset>
-            </form>
+                            <div className="chatContainer">
+                                <ForUserMessage user={comm.userId} />
+                                <div className="chatRoom">
+                                    <p>chat dialog goes here</p>
+                                </div>
+                            </div>
+                            <div className="chatInput">
+                                <p>user text/chat input goes here</p>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            ))}
         </div>
-    ));
+    )
 }
 
 export default ShowMessages;

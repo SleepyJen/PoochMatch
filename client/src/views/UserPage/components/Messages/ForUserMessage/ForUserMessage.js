@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../Messages.css';
 
 function ForUserMessage(props) {
     const [value, modifier] = useState({ name: "" });
@@ -8,7 +9,8 @@ function ForUserMessage(props) {
             let fullName = result.data.firstName + " " + result.data.lastName;
             modifier({ name: fullName });
         });
-    });
+    }, [props.user]);
+
     return (
         <div>
             <div className="chatIm">
