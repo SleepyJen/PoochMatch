@@ -6,7 +6,7 @@ import { ListGroupItem } from 'react-bootstrap';
 
 
 
-function MatchProfile() {
+function MatchProfile(props) {
 
     return (
         <div className="component mt-5">
@@ -62,7 +62,7 @@ function MatchProfile() {
                         </Card.Body>
 
                     </Card>
-                    <Button variant="primary" className="btn btn-large backDashboard mt-3 mb-3" href="#">Back to Dashboard</Button>
+                    <Button variant="primary" className="btn btn-large backDashboard mt-3 mb-3" href={"/user?userId=" + props.id} >Back to Dashboard</Button>
                 </div>
             </div>
         </div>
