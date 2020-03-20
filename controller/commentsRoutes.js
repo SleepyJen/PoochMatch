@@ -8,9 +8,18 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+    db.Comments.findOne({
+        _id: req.params.id
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 router.post('/createComment', (req, res) => {
     db.Comments.create({
-        userId: req.body.userId
+        userId: req.body.userId,
+        comments: req.body.comments
     }).then(result => {
         res.json(result);
     });
