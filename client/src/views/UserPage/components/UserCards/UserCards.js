@@ -104,7 +104,7 @@ function UserCards(props) {
                         </Card.Body>
 
                         <Card.Body className="cardFooter">
-                            <Card.Link href={`/profile?user_profile=${person._id}`} target="blank" className="btn btn-primary">View website</Card.Link>
+                            <Card.Link href={`/profile?user_profile=${person._id}`} target="_blank" className="btn btn-primary">View website</Card.Link>
                             <Dropdown>
                                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                                     Message

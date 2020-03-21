@@ -4,6 +4,7 @@ import "./Dashboard.css";
 import UserCards from '../UserCards/UserCards';
 import axios from 'axios';
 import Marker from './mapMarker';
+// require('dotenv').config();
 
 // const Marker = ({ text }: any) => <div>{text}</div>;
 
@@ -25,6 +26,7 @@ class Dashboard extends Component {
   }
 
   async componentDidMount() {
+    // console.log('API-KEY:' , process.env.REACT_APP_GOOGLE_MAP);
     const UrlQuerries = new URLSearchParams(window.location.search);
     const userId = UrlQuerries.get('user_id');
     let City = "City";
@@ -51,7 +53,7 @@ class Dashboard extends Component {
               style={{ height: "60vh", width: "40%" }}>
               <GoogleMapReact
                 bootstrapURLKeys={{
-                  key: "AIzaSyAslvs6KNkTaQS-cW6hOwrrccd4XEozlEk"
+                  key: process.env.REACT_APP_GOOGLE_MAP
                 }}
                 defaultCenter={this.state.center}
                 defaultZoom={this.state.zoom}

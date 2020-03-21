@@ -26,4 +26,5 @@ yarn-error.log*
 # etc
 /test
 /other
+.env
 /src/data.json
