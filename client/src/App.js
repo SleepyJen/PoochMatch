@@ -24,7 +24,7 @@ import Header from "./components/Header/Header.js";
 import HomePage from "./views/HomePage/HomePage.js";
 import AuthPage from "./views/AuthPage/AuthPage.js";
 import UserPage from "./views/UserPage/UserPage.js";
-// import ErrorPage from "./views/ErrorPage/ErrorPage.js";
+import ErrorPage from "./views/ErrorPage/ErrorPage.js";
 import MatchProfile from './views/MatchProfile/MatchProfile';
 
 
@@ -91,9 +91,14 @@ function App() {
             component={UserPage}
           />
 
+          {/* route to match profile */}
+
+          <Route path="/profile"
+            render={(props) => <MatchProfile {...props} id={id} isAuthed={auth} />}
+          />
+
           {/* unknowm route error page */}
-          {/* <Route component={ErrorPage} /> */}
-          <Route component={MatchProfile} />
+          <Route path='/*' component={ErrorPage} />
 
         </Switch>
       </Router>

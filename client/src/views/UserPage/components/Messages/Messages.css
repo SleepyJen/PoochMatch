@@ -1,25 +1,27 @@
+.form-container {
+    display: inline-flex;
+    width: 100%;
+}
+
 .field {
     background-color: white;
-    width: 70%;
-
 }
 
 .chatContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 450px;
+    height: 425px;
 }
 
 .chatRoom {
-    flex: 3;
-    min-height: 425px;
+    flex: 2;
+    min-height: 400px;
     background-color: rgba(209, 191, 191, 0.5);
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     margin: 1%;
 }
-
 .chatIm{
     background-color: white;
     border-color: black;
@@ -27,11 +29,12 @@
 
 .userChat {
     margin-left: 1%;
+
     flex: 1;
-    min-height: 425px;
+    min-height: 400px;
     background-color: rgba(209, 191, 191, 0.5);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     margin: 1%;
     width: 100%;
 }
@@ -39,6 +42,6 @@
 .chatInput {
     background-color: rgba(209, 191, 191, 0.5);
     margin: 1%;
-    height: 50px;
+    height: 175px;
     border-radius: 5px;
 }

@@ -1,8 +1,11 @@
-import React, { Component } from "react";
+import React, { useState, Component } from "react";
 import GoogleMapReact from "google-map-react";
 import "./Dashboard.css";
 import UserCards from '../UserCards/UserCards';
 import axios from 'axios';
+import Marker from './mapMarker';
+
+// const Marker = ({ text }: any) => <div>{text}</div>;
 
 const initState = {
   lat: 37.7749,
@@ -53,7 +56,7 @@ class Dashboard extends Component {
                 defaultCenter={this.state.center}
                 defaultZoom={this.state.zoom}
               >
-                {/* <AnyReactComponent lat={27.2} lng={77.5} text="My Marker" /> */}
+                <Marker lat={37.7749} lng={-122.4194} text="My Marker" />
               </GoogleMapReact>
             </div>
             <div className="userCardsContainer col-sm-7" >
@@ -66,5 +69,4 @@ class Dashboard extends Component {
   }
 }
 
-// export default SimpleMap;
 export default Dashboard;

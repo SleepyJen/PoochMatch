@@ -113,7 +113,7 @@ function UserCards(props) {
                                 <Dropdown.Menu>
                                     <Form className="p-1">
                                         <Form.Group>
-                                            <Form.Label>Message</Form.Label>
+                                            <Form.Label className="form-message">Message</Form.Label>
                                             <Form.Control onChange={handleMessage} type="input" placeholder="Enter Messages" name={person._id} />
                                         </Form.Group>
                                         <Button onClick={sendMessage} type="submit" className="btn btn-primary" >Send</Button>

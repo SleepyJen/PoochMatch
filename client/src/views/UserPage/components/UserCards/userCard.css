@@ -14,3 +14,41 @@
     height: 30vh;
     overflow: scroll;
 }
+
+.btn-primary {
+    background-color: rgb(202, 160, 126);
+    border: none;
+    color: black;
+    margin-right: 3px;
+}
+
+.btn-primary:hover {
+    background-color: rgba(209, 191, 191, 0.5);
+    color: black;
+}
+
+#dropdown-basic {
+    background-color: rgb(202, 160, 126);
+    border: none;
+    color: black;
+    margin-left: 3px;
+}
+
+#dropdown-basic:hover {
+    background-color: rgba(209, 191, 191, 0.5);
+    color: black;
+    border: none;
+}
+
+.form-message {
+    color: black !important;
+}
+
+.p-1 {
+    width: 200px;
+}
+
+.cardFooter {
+    display: flex;
+    justify-content: center;
+}
