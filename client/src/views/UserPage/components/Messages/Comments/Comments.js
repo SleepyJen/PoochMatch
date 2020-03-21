@@ -5,7 +5,6 @@ function Comments(props) {
     const [value, modifier] = useState({ comment: [] });
     useEffect(() => {
         axios.get(`/comments/${props.comments}`).then(result => {
-            //console.log(result.data.comments);
             let comments = result.data.comments;
             let data = [];
             for (let i = 0; i < comments.length; i++) {
@@ -13,8 +12,8 @@ function Comments(props) {
                     name: "",
                     comment: ""
                 }
-                info["comment"] = comments[0].comment;
-                axios.get(`/user/getById/${comments[0].from}`).then(res => {
+                info["comment"] = comments[i].comment;
+                axios.get(`/user/getById/${comments[i].from}`).then(res => {
                     console.log(res);
                     let name = res.data.firstName + " " + res.data.lastName;
                     info["name"] = name;
