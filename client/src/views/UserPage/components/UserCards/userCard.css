@@ -11,8 +11,8 @@
 }
 
 .image-container {
-    height: 35vh;
-    overflow: auto;
+    height: 20vh;
+    /* overflow: auto; */
 }
 
 .btn-primary {
