@@ -12,7 +12,7 @@
 
 .image-container {
     height: 30vh;
-    overflow: scroll;
+    /* overflow: auto; */
 }
 
 .btn-primary {
