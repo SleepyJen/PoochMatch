@@ -49,7 +49,9 @@ function App() {
   /* check fn hook */
   useEffect(() => {
     if (!auth && !id) { initState() }
+
     // console.log('App Check:', auth, id)
+    
   }, [auth, id])
 
 
