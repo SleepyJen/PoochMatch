@@ -56,11 +56,9 @@ function ShowMessages(props) {
 
                         </div>
                         <div className="chatInput">
-                            <form>
-                                <label>Message: </label>
-                                <input type="textarea"></input>
-                                <button type="submit" className="btn btn-primary">Send</button>
-                            </form>
+                            <label>Message: </label>
+                            <input type="textarea"></input>
+                            <button type="submit" className="btn btn-primary">Send</button>
                         </div>
                     </fieldset>
                 </form>
