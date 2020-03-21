@@ -14,7 +14,6 @@ function Comments(props) {
                 }
                 info["comment"] = comments[i].comment;
                 axios.get(`/user/getById/${comments[i].from}`).then(res => {
-                    console.log(res);
                     let name = res.data.firstName + " " + res.data.lastName;
                     info["name"] = name;
                     data.push(info);
@@ -28,6 +27,7 @@ function Comments(props) {
         <div key={index}>
             <h5><strong>{comment.name}: </strong></h5>
             <h6>{comment.comment}</h6>
+            <br></br>
         </div>
     ));
 }
