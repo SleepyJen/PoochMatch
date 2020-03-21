@@ -18,7 +18,7 @@ function ProfilePic(props) {
 
     return (
         <div>
-            <Card.Img className="profileImage" src={value.data} alt="Profile Picture" />
+            <Card.Img style={{ width: '100%', height: 'auto' }} className="profileImage" src={value.data} alt="Profile Picture" />
         </div>
     )
 }
