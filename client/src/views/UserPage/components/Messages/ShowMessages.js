@@ -69,32 +69,18 @@ function ShowMessages(props) {
                     <fieldset className="field">
                         <div className="chatContainer">
                             <div className="userChat">
-                                <div className="container">
-                                    <div className="row justify-content-center">
-                                        <div className="col-sm-8 user-card">
-                                            {user.id.map((use, index) => (
-                                                <ForUserMessage click={clicked} key={index} user={use.userId} name={use.userId} />
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
+                                {user.id.map((use, index) => (
+                                    <ForUserMessage click={clicked} key={index} user={use.userId} name={use.userId} />
+                                ))}
                             </div>
                             <div className="chatRoom">
-                                <div className="container">
-                                    <div className="row justify-content-center">
-                                        <div className="col-sm-10 chat-card">
-                                            <Comments comments={comments.comment} />
-                                        </div>
-                                    </div>
-                                </div>
+                                <Comments comments={comments.comment} />
                             </div>
                         </div>
                         <div className="chatInput">
-
-                            <label>Message: </label>
-                            <input onChange={handleMessage} type="textarea" className="text-box"></input>
-                            <button onClick={submit} type="submit" className="btn btn-primary">Send</button>
-
+                        <label>Message: </label>
+                        <input onChange={handleMessage} type="textarea" className="text-box"></input>
+                        <button onClick={submit} type="submit" className="btn btn-primary">Send</button>
                         </div>
                     </fieldset>
                 </form>
