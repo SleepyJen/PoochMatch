@@ -62,9 +62,13 @@ function UserCards(props) {
 
     async function createComment(userId) {
         let data = [userId, message.id];
+        let comment = {
+            from: userId,
+            comment: message.data
+        }
         await axios.post(`/comments/createComment`, {
             userId: data,
-            comments: message.data
+            comments: comment
         }).then(result => {
             let commentId = result.data._id;
             console.log(commentId);
@@ -74,6 +78,7 @@ function UserCards(props) {
             axios.post(`/user/addComment/${message.id}`, {
                 comments: commentId
             });
+            alert("message sent");
         });
     }
 

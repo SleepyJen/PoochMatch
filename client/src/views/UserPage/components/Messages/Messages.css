@@ -20,7 +20,12 @@
     margin: 1%;
 }
 
-.chatIm {
+.chatIm{
+    background-color: white;
+    border-color: black;
+}
+
+.userChat {
     margin-left: 1%;
     flex: 1;
     min-height: 425px;
