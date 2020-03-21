@@ -58,7 +58,7 @@ function MatchProfile(props) {
 
                             <div className="row">
                                 <ListGroup className="userImage list-group col-4">
-                                    <Card.Img variant="top" src={user.userInfo.image} />
+                                    <Card.Img variant="top" className="card-img" src={user.userInfo.image} />
                                 </ListGroup>
                                 <ListGroup className="list-group col-7">
                                     <ListGroupItem className="name" id="name"><strong>Name: </strong>{user.userInfo.name}</ListGroupItem>

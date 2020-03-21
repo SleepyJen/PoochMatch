@@ -92,7 +92,7 @@ function ShowMessages(props) {
                         <div className="chatInput">
 
                             <label>Message: </label>
-                            <input onChange={handleMessage} type="textarea"></input>
+                            <input onChange={handleMessage} type="textarea" className="text-box"></input>
                             <button onClick={submit} type="submit" className="btn btn-primary">Send</button>
 
                         </div>
