@@ -5,58 +5,62 @@ import Comments from './Comments/Comments';
 import ForUserMessage from './ForUserMessage/ForUserMessage';
 
 function ShowMessages(props) {
-    const [value, modifier] = useState({ comments: [] });
-    const [comments, modifyComment] = useState({ commentsInfo: [] });
+    const [user, modifyUser] = useState({ id: [] });
+    const [comments, modifyComments] = useState({ comments: [] });
     useEffect(() => {
-
-        modifier({ comments: props.comments });
         let data = [];
         for (let i = 0; i < props.comments.length; i++) {
             let info = {
-                userId: "",
-                comments: []
+                userId: ""
             }
             axios.get(`/comments/${props.comments[i]}`).then(result => {
-                console.log(result);
                 for (let j = 0; j < result.data.userId.length; j++) {
                     if (result.data.userId[j] !== props.userId) {
                         info['userId'] = result.data.userId[j];
                     }
                 }
-                info['comments'] = result.data.comments
                 data.push(info);
-
-                modifyComment({ commentsInfo: data });
+                modifyUser({ id: data });
             });
         }
     }, [props]);
-    console.log(comments);
+
+    async function clicked(name) {
+        console.log(name);
+        const urlQuerries = new URLSearchParams(window.location.search);
+        const userId = urlQuerries.get('user_id');
+        await axios.get(`/user/getById/${userId}`).then(result => {
+            modifyComments({ comment: result.data.comments });
+        });
+    }
+
 
     return (
         <div>
-            {/* <legend>Chat Room</legend> */}
+            <legend>Chat Room</legend>
+            <div>
+                <form>
+                    <fieldset className="field">
+                        <div className="chatContainer">
 
-            {comments.commentsInfo.map((comm, index) => (
-                <div key={index}>
-                    <form>
-                        <fieldset className="field">
-                            {/* <div>
-                        <legend>Chat Room</legend>
-                    </div> */}
+                            <div className="userChat">
+                                {user.id.map((use, index) => (
+                                    <ForUserMessage click={clicked} key={index} user={use.userId} name={use.userId} />
+                                ))}
+                            </div>
+                            <div className="chatRoom">
+                                <Comments comments={comments.comment} />
+                            </div>
 
-                            <div className="chatContainer">
-                                <ForUserMessage user={comm.userId} />
-                                <div className="chatRoom">
-                                    <p>chat dialog goes here</p>
-                                </div>
-                            </div>
-                            <div className="chatInput">
-                                <p>user text/chat input goes here</p>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            ))}
+                        </div>
+                        <div className="chatInput">
+                            <p>user text/chat input goes here</p>
+                        </div>
+
+
+                    </fieldset>
+                </form>
+            </div>
         </div>
     )
 }

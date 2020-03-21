@@ -22,9 +22,14 @@
     border-bottom-right-radius: 5px;
     margin: 1%;
 }
+.chatIm{
+    background-color: white;
+    border-color: black;
+}
 
-.chatIm {
-    /* margin-left: 1%; */
+.userChat {
+    margin-left: 1%;
+
     flex: 1;
     min-height: 400px;
     background-color: rgba(209, 191, 191, 0.5);

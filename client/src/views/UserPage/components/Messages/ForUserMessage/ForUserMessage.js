@@ -11,11 +11,14 @@ function ForUserMessage(props) {
         });
     }, [props.user]);
 
+    function clicked() {
+        let user = props.user;
+        props.click(user);
+    }
+
     return (
-        <div>
-            <div className="chatIm">
-                <p>{value.name}</p>
-            </div>
+        <div onClick={clicked} className="chatIm" value={props.user}>
+            <p>{value.name}</p>
         </div>
     )
 }
