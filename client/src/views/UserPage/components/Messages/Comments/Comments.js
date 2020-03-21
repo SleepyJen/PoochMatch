@@ -25,8 +25,8 @@ function Comments(props) {
         });
     }, [props.comments]);
 
-    return value.comment.map(comment => (
-        <div>
+    return value.comment.map((comment, index) => (
+        <div key={index}>
             <h5><strong>{comment.name}: </strong></h5>
             <h6>{comment.comment}</h6>
         </div>

@@ -7,6 +7,7 @@ import ForUserMessage from './ForUserMessage/ForUserMessage';
 function ShowMessages(props) {
     const [user, modifyUser] = useState({ id: [] });
     const [comments, modifyComments] = useState({ comments: [] });
+    const [chatButton, modifyButton] = useState({ id: "", comment: "" });
     useEffect(() => {
         let data = [];
         for (let i = 0; i < props.comments.length; i++) {
@@ -32,6 +33,7 @@ function ShowMessages(props) {
         await axios.get(`/user/getById/${userId}`).then(result => {
             modifyComments({ comment: result.data.comments });
         });
+        modifyButton({ ['id']: name });
     }
 
 
@@ -54,10 +56,12 @@ function ShowMessages(props) {
 
                         </div>
                         <div className="chatInput">
-                            <p>user text/chat input goes here</p>
+                            <form>
+                                <label>Message: </label>
+                                <input type="textarea"></input>
+                                <button type="submit" className="btn btn-primary">Send</button>
+                            </form>
                         </div>
-
-
                     </fieldset>
                 </form>
             </div>
