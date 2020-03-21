@@ -5,6 +5,7 @@
 
 .field {
     background-color: white;
+    display: flex;
 }
 
 .chatContainer {
@@ -15,7 +16,9 @@
 }
 
 .chatRoom {
+    display: flex;
     flex: 2;
+    flex-direction: column;
     min-height: 400px;
     background-color: rgba(209, 191, 191, 0.5);
     border-top-right-radius: 5px;
@@ -29,7 +32,6 @@
 
 .userChat {
     margin-left: 1%;
-
     flex: 1;
     min-height: 400px;
     background-color: rgba(209, 191, 191, 0.5);
@@ -44,4 +46,35 @@
     margin: 1%;
     height: 175px;
     border-radius: 5px;
+    margin-top: 0px;
+}
+
+.text-box {
+    width: 60%;
+    margin-top: 65px;
+}
+
+.send-btn {
+    margin-left: 0px;
+}
+
+.chat-header {
+    display: flex;
+    background-color: rgb(202, 160, 126);
+}
+
+.chat-card {
+    display: flex;
+    width: 400px;
+    height: 380px;
+    background-color: white;
+    margin: 10px;
+}
+
+.user-card {
+    display: flex;
+    background-color: white;
+    width: 90px;
+    height: 380px;
+    margin: 10px;
 }

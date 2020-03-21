@@ -26,7 +26,7 @@ class Messages extends Component {
     return (
       <section className="messageContainer">
         <ShowMessages comments={this.state.comments} userId={this.state.thisUser} />
-        <form className="form-container">
+        {/* <form className="form-container">
           <fieldset className="field">
             <div>
               <legend>Chat Room</legend>
@@ -44,7 +44,7 @@ class Messages extends Component {
               <p>user text/chat input goes here</p>
             </div>
           </fieldset>
-        </form>
+        </form> */}
 
       </section>
     );
