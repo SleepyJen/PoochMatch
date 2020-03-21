@@ -4,7 +4,6 @@ import '../Messages.css';
 
 function ForUserMessage(props) {
     const [value, modifier] = useState({ name: "" });
-    console.log(props);
     useEffect(() => {
         axios.get(`/user/getById/${props.user}`).then(result => {
             let fullName = result.data.firstName + " " + result.data.lastName;
@@ -12,10 +11,13 @@ function ForUserMessage(props) {
         });
     }, [props.user]);
 
-
+    function clicked() {
+        let user = props.user;
+        props.click(user);
+    }
 
     return (
-        <div className="chatIm">
+        <div onClick={clicked} className="chatIm" value={props.user}>
             <p>{value.name}</p>
         </div>
     )

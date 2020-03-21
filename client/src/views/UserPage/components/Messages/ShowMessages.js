@@ -6,7 +6,7 @@ import ForUserMessage from './ForUserMessage/ForUserMessage';
 
 function ShowMessages(props) {
     const [user, modifyUser] = useState({ id: [] });
-    const [comments, modifyComment] = useState({ commentsInfo: [] });
+    const [comments, modifyComments] = useState({ comments: [] });
     useEffect(() => {
         let data = [];
         for (let i = 0; i < props.comments.length; i++) {
@@ -25,10 +25,15 @@ function ShowMessages(props) {
         }
     }, [props]);
 
-    function clikedChat(event) {
-        const { name } = event.target;
+    async function clicked(name) {
         console.log(name);
+        const urlQuerries = new URLSearchParams(window.location.search);
+        const userId = urlQuerries.get('user_id');
+        await axios.get(`/user/getById/${userId}`).then(result => {
+            modifyComments({ comment: result.data.comments });
+        });
     }
+
 
     return (
         <div>
@@ -40,11 +45,11 @@ function ShowMessages(props) {
 
                             <div className="userChat">
                                 {user.id.map((use, index) => (
-                                    <ForUserMessage click={clikedChat} key={index} user={use.userId} />
+                                    <ForUserMessage click={clicked} key={index} user={use.userId} name={use.userId} />
                                 ))}
                             </div>
                             <div className="chatRoom">
-                                <Comments />
+                                <Comments comments={comments.comment} />
                             </div>
 
                         </div>

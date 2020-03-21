@@ -31,6 +31,7 @@ class Dashboard extends Component {
       [City]: user.data.City,
       [_id]: userId
     });
+    console.log("helloooooooo");
   }
 
   static defaultProps = {
