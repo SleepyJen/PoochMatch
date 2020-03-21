@@ -3,6 +3,7 @@ import './Messages.css';
 import axios from 'axios';
 import Comments from './Comments/Comments';
 import ForUserMessage from './ForUserMessage/ForUserMessage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ShowMessages(props) {
     const [user, modifyUser] = useState({ id: [] });
@@ -44,21 +45,31 @@ function ShowMessages(props) {
                 <form>
                     <fieldset className="field">
                         <div className="chatContainer">
-
                             <div className="userChat">
-                                {user.id.map((use, index) => (
-                                    <ForUserMessage click={clicked} key={index} user={use.userId} name={use.userId} />
-                                ))}
+                                <div className="container">
+                                    <div className="row justify-content-center">
+                                        <div className="col-sm-8 user-card">
+                                            {user.id.map((use, index) => (
+                                                <ForUserMessage click={clicked} key={index} user={use.userId} name={use.userId} />
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="chatRoom">
-                                <Comments comments={comments.comment} />
+                                <div className="container">
+                                    <div className="row justify-content-center">
+                                        <div className="col-sm-10 chat-card">
+                                            <Comments comments={comments.comment} />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
                         <div className="chatInput">
-                            <label>Message: </label>
-                            <input type="textarea"></input>
-                            <button type="submit" className="btn btn-primary">Send</button>
+                            <label className="title-message">Message: </label>
+                            <input type="textarea" className="text-box"></input>
+                            <button type="submit" className="btn btn-primary send-btn">Send</button>
                         </div>
                     </fieldset>
                 </form>

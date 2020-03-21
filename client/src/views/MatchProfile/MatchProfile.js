@@ -1,10 +1,11 @@
-import React from 'react' // , { useState }
+import React, { useState } from 'react'; // { useState }
+// import axios from 'axios';
+// import Interests from '../Interests/Interests';
+// import ProfilePic from '../ProfilePic/ProfilePic';
 import './MatchProfile.css';
 import { Card, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import { ListGroupItem } from 'react-bootstrap';
-
-
 
 function MatchProfile(props) {
 
