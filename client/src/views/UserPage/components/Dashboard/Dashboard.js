@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import "./Dashboard.css";
 import UserCards from '../UserCards/UserCards';
