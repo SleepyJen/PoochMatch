@@ -17,3 +17,9 @@
     border-color: rgba(209, 191, 191, 0.5);
     border-color: cutom-cor;
 }
+
+.card-img {
+    height: 50vh;
+    width: 300px;
+    margin-left: 15px;
+}
